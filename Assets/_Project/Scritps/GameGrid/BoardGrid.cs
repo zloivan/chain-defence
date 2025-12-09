@@ -10,8 +10,8 @@ namespace IKhom.GridSystems._Samples.LevelGrid
 {
     public class BoardGrid : MonoBehaviour
     {
-        public event EventHandler OnNewStackPlaced;
-        public event EventHandler OnStackremoved;
+        public event EventHandler OnNewBallPlaced;
+        public event EventHandler OnBallRemoved;
         public static BoardGrid Instance { get; private set; }
 
         private const float SLOT_SIZE = 2f;
@@ -22,16 +22,16 @@ namespace IKhom.GridSystems._Samples.LevelGrid
         [SerializeField] private bool _enableDebug;
 
 
-        private GridSystemBase<GridObject<TileStack>> _gridSystem;
+        private GridSystemBase<GridObject<Ball>> _gridSystem;
 
         private void Awake()
         {
             Instance = this;
 
-            _gridSystem = new GridSystemSquare<GridObject<TileStack>>(
+            _gridSystem = new GridSystemSquare<GridObject<Ball>>(
                 _width,
                 _height,
-                (grid, pos) => new GridObject<TileStack>(grid, pos),
+                (grid, pos) => new GridObject<Ball>(grid, pos),
                 SLOT_SIZE);
 
             if (_enableDebug)
@@ -76,7 +76,7 @@ namespace IKhom.GridSystems._Samples.LevelGrid
         public bool IsSlotEmpty(GridPosition gridPos) =>
             _gridSystem.GetGridObject(gridPos).Get() == null;
 
-        public void PlaceStackAtPosition(GridPosition gridPos, TileStack tileStack)
+        public void PlaceBallAtPosition(GridPosition gridPos, Ball ball)
         {
             var gridObject = _gridSystem.GetGridObject(gridPos);
 
@@ -85,11 +85,11 @@ namespace IKhom.GridSystems._Samples.LevelGrid
                 return;
             }
 
-            gridObject.Set(tileStack);
-            OnNewStackPlaced?.Invoke(this, EventArgs.Empty);
+            gridObject.Set(ball);
+            OnNewBallPlaced?.Invoke(this, EventArgs.Empty);
         }
 
-        public void RemoveStackAtPosition(GridPosition position)
+        public void RemoveBallAtPosition(GridPosition position)
         {
             var gridObj = _gridSystem.GetGridObject(position);
             var stack = gridObj.Get();
@@ -99,7 +99,7 @@ namespace IKhom.GridSystems._Samples.LevelGrid
 
             Destroy(stack.gameObject);
             gridObj.ClearObjectList();
-            OnStackremoved?.Invoke(this, EventArgs.Empty);
+            OnBallRemoved?.Invoke(this, EventArgs.Empty);
         }
     }
 }

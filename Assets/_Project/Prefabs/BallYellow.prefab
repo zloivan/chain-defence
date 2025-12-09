@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4985942638511127605
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6871015396814410120}
+    m_Modifications:
+    - target: {fileID: 411509815961816755, guid: 360ce98979514406c83372fa78002a2a,
+        type: 3}
+      propertyPath: _ball
+      value: 
+      objectReference: {fileID: 5497571249881746452}
+    - target: {fileID: 2595192466767738693, guid: 360ce98979514406c83372fa78002a2a,
+        type: 3}
+      propertyPath: m_Name
+      value: BallVisualYellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677220424189386335, guid: 360ce98979514406c83372fa78002a2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677220424189386335, guid: 360ce98979514406c83372fa78002a2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677220424189386335, guid: 360ce98979514406c83372fa78002a2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 360ce98979514406c83372fa78002a2a, type: 3}
+--- !u!4 &6923938781801701994 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2677220424189386335, guid: 360ce98979514406c83372fa78002a2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4985942638511127605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5063003425474395278
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 722877385642782874, guid: 17cba7350d1b840478a17e3a964204fd,
+        type: 3}
+      propertyPath: _ball
+      value: 
+      objectReference: {fileID: 11400000, guid: b37c40e8319f2460785d39062130b77f,
+        type: 2}
+    - target: {fileID: 1808660151517867270, guid: 17cba7350d1b840478a17e3a964204fd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808660151517867270, guid: 17cba7350d1b840478a17e3a964204fd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808660151517867270, guid: 17cba7350d1b840478a17e3a964204fd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846052207188263215, guid: 17cba7350d1b840478a17e3a964204fd,
+        type: 3}
+      propertyPath: m_Name
+      value: BallYellow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1808660151517867270, guid: 17cba7350d1b840478a17e3a964204fd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6923938781801701994}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17cba7350d1b840478a17e3a964204fd, type: 3}
+--- !u!114 &5497571249881746452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 722877385642782874, guid: 17cba7350d1b840478a17e3a964204fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 5063003425474395278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb89b4124fe2d4a8b85d91fe08eb04c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &6871015396814410120 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1808660151517867270, guid: 17cba7350d1b840478a17e3a964204fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 5063003425474395278}
+  m_PrefabAsset: {fileID: 0}

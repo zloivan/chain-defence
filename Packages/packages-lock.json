@@ -209,13 +209,6 @@
       "dependencies": {},
       "hash": "fce74995d0ebb07bbd61ccd9b30699f4e18f2fc2"
     },
-    "com.zloivan.gridsystems": {
-      "version": "https://github.com/zloivan/grid-systems.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "1d95c481e1409d92e9d53f9393a3a677db3b9420"
-    },
     "com.zloivan.soundsystem": {
       "version": "git@github.com:zloivan/sound-system.git",
       "depth": 0,
