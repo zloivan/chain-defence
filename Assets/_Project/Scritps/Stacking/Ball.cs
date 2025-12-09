@@ -12,12 +12,15 @@ namespace IKhom.GridSystems._Samples.helpers
         private BallSO _ball;
 
         private BoardGrid _boardGrid;
-
+        private BallSpawner _ballSpawner;
         private void Start()
         {
             _boardGrid = BoardGrid.Instance;
             UpdateBoardPosition();
         }
+
+        public void Setup(BallSpawner spawner) =>
+            _ballSpawner = spawner;
 
         private void UpdateBoardPosition()
         {
@@ -48,5 +51,11 @@ namespace IKhom.GridSystems._Samples.helpers
 
         public override string ToString() =>
             GetBallColorSO().Name;
+
+        public void DestroyBall()//TODO: Return to pool
+        {
+            _ballSpawner.ReturnBall(this);
+           // Destroy(gameObject);
+        }
     }
 }

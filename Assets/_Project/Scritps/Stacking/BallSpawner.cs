@@ -13,17 +13,32 @@ namespace IKhom.GridSystems._Samples.helpers
 
         private BoardGrid _boardGrid;
 
-        private void Awake()
-        {
+        private void Awake() =>
             _boardGrid = BoardGrid.Instance;
+
+        public void SpawnRandomBallAtGridPosition(GridPosition position) //TODO: Add pool
+        {
+            var ballPrefab = GetRandomBall();
+
+            SpawnBall(ballPrefab, position);
         }
 
-        public void SpawnRandomBallAtGridPosition(GridPosition position)//TODO: Add pool
+        //TODO: Add pool
+        public void ReturnBall(Ball ball) =>
+            Destroy(ball.gameObject);
+
+        private BallSO GetRandomBall()
         {
             var randomIndex = Random.Range(0, _ballConfigList.Count);
             var ballPrefab = _ballConfigList[randomIndex];
-            var worldPosition = _boardGrid.GetWorldPosition(position);
-            Instantiate(ballPrefab.BallPrefab, worldPosition, Quaternion.identity);
+            return ballPrefab;
+        }
+
+        private void SpawnBall(BallSO ballPrefab, GridPosition gridPosition)
+        {
+            var worldPosition = _boardGrid.GetWorldPosition(gridPosition);
+            var ball = Instantiate(ballPrefab.BallPrefab, worldPosition, Quaternion.identity);
+            ball.GetComponent<Ball>().Setup(this);
         }
     }
 }
