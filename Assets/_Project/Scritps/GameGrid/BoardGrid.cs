@@ -112,5 +112,16 @@ namespace ChainDefense.GameGrid
             gridObj.ClearObjectList();
             OnBallRemoved?.Invoke(this, EventArgs.Empty);
         }
+
+        public List<GridPosition> GetAllValidNeighbors(GridPosition position)
+        {
+            var neighbors = GetNeighbors(position);
+            neighbors.Add(position + new GridPosition(1, 1)); //Top-right
+            neighbors.Add(position + new GridPosition(1, -1)); //Bottom-right
+            neighbors.Add(position + new GridPosition(-1, 1)); //Top-left
+            neighbors.Add(position + new GridPosition(-1, -1)); //Bottom-left
+
+            return neighbors.Where(IsValidGridPosition).ToList();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ChainDefense.Balls;
 using ChainDefense.Core;
@@ -9,12 +10,14 @@ namespace ChainDefense.ChainManagment
 {
     public class ChainValidator : MonoBehaviour
     {
+        public event EventHandler<Vector3> OnHeadChangedPosition;//TODO: collection changed
+        public event EventHandler OnChainBreak;
         private const int MIN_DESTROY_NUMBER = 2;
         
         [SerializeField] private BoardGrid _boardGrid;
         [SerializeField] private InputController _inputController;
 
-        private List<Ball> _conntectedList = new();
+        private List<Ball> _conntectedList = new(); //TODO: Get collection
         private GridPosition _lastConnectedPosition;
 
         private void Start()
@@ -32,6 +35,7 @@ namespace ChainDefense.ChainManagment
                 _conntectedList.Add(first);
                 first.SetSelected();
                 _lastConnectedPosition = gridPosition;
+                OnHeadChangedPosition?.Invoke(this, worldPos);
             }
             else
             {
@@ -48,7 +52,8 @@ namespace ChainDefense.ChainManagment
                 else
                     connectedBall.Deselect();
             }
-
+            
+            OnChainBreak?.Invoke(this, EventArgs.Empty);
             _conntectedList.Clear();
         }
 
@@ -70,7 +75,7 @@ namespace ChainDefense.ChainManagment
                     return;
 
 
-                var validNeighbors = _boardGrid.GetValidNeighbors(_lastConnectedPosition);
+                var validNeighbors = _boardGrid.GetAllValidNeighbors(_lastConnectedPosition);
                 
                 //Not neighbor and not in connections -> ignore
                 if (!validNeighbors.Contains(dragGridPosition) && !_conntectedList.Contains(selectedBall))
@@ -87,6 +92,7 @@ namespace ChainDefense.ChainManagment
                     }
 
                     _lastConnectedPosition = dragGridPosition;
+                    OnHeadChangedPosition?.Invoke(this, worldPos);
                     return;
                 }
 
@@ -94,6 +100,7 @@ namespace ChainDefense.ChainManagment
                 selectedBall.SetSelected();
                 _conntectedList.Add(selectedBall);
                 _lastConnectedPosition = dragGridPosition;
+                OnHeadChangedPosition?.Invoke(this, worldPos);
             }
         }
     }
