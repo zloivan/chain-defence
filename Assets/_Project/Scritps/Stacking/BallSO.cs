@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IKhom.GridSystems._Samples.helpers
+namespace MergeDefence.Stacking
 {
     
     

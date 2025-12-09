@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using IKhom.GridSystems._Samples.LevelGrid;
-using IKhom.GridSystems.Runtime.core;
+using MergeDefence.GameGrid;
+using MergeDefence.GridSystem.core;
 using Unity.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace IKhom.GridSystems._Samples.helpers
+namespace MergeDefence.Stacking
 {
     public class BallSpawner : MonoBehaviour
     {

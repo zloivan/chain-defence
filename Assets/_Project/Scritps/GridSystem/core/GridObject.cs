@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace IKhom.GridSystems.Runtime.core
+namespace MergeDefence.GridSystem.core
 {
     public class GridObject<T> where T : MonoBehaviour
     {

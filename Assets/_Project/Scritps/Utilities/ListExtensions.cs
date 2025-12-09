@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace IKhom.GridSystems._Samples.helpers
+namespace MergeDefence.Utilities
 {
     public static class ListExtensions
     {

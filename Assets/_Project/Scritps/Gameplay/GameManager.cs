@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using IKhom.GridSystems._Samples.helpers;
-using IKhom.GridSystems._Samples.LevelGrid;
+using MergeDefence.GameGrid;
+using MergeDefence.Stacking;
+using MergeDefence.Utilities;
 using UnityEngine;
 
-namespace _Project.Scritps.Gameplay
+namespace MergeDefence.Gameplay
 {
     public class GameManager : MonoBehaviour
     {

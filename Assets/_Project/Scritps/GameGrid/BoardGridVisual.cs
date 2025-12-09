@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using IKhom.GridSystems._Samples.helpers;
-using IKhom.GridSystems.Runtime.core;
+using MergeDefence.GridSystem.core;
+using MergeDefence.Utilities;
 using UnityEngine;
 
-namespace IKhom.GridSystems._Samples.LevelGrid
+namespace MergeDefence.GameGrid
 {
     public class BoardGridVisual : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace IKhom.GridSystems.Runtime.core
+namespace MergeDefence.GridSystem.core
 {
     public readonly struct GridPosition : IEquatable<GridPosition>
     {

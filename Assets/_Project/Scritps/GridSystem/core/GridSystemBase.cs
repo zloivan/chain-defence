@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using IKhom.GridSystems.Runtime.components;
+using MergeDefence.GridSystem.components;
 using UnityEngine;
 
-namespace IKhom.GridSystems.Runtime.core
+namespace MergeDefence.GridSystem.core
 {
     public abstract class GridSystemBase<TGridObject>
     {

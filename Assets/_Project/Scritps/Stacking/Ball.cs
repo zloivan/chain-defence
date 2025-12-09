@@ -1,9 +1,8 @@
-using System;
-using IKhom.GridSystems._Samples.LevelGrid;
+using MergeDefence.GameGrid;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace IKhom.GridSystems._Samples.helpers
+namespace MergeDefence.Stacking
 {
     [SelectionBase]
     public class Ball : MonoBehaviour

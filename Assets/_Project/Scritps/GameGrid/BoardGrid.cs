@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using IKhom.GridSystems._Samples.helpers;
-using IKhom.GridSystems.Runtime;
-using IKhom.GridSystems.Runtime.core;
+using MergeDefence.GridSystem;
+using MergeDefence.GridSystem.core;
+using MergeDefence.Stacking;
 using UnityEngine;
 
-namespace IKhom.GridSystems._Samples.LevelGrid
+namespace MergeDefence.GameGrid
 {
     public class BoardGrid : MonoBehaviour
     {

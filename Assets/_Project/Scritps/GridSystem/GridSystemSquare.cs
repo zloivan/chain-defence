@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using IKhom.GridSystems.Runtime.core;
+using MergeDefence.GridSystem.core;
 using UnityEngine;
 
-namespace IKhom.GridSystems.Runtime
+namespace MergeDefence.GridSystem
 {
     public class GridSystemSquare<T> : GridSystemBase<T>
     {

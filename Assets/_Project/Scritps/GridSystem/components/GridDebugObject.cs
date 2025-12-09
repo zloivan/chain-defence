@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IKhom.GridSystems.Runtime.components
+namespace MergeDefence.GridSystem.components
 {
     public class GridDebugObject : MonoBehaviour
     {

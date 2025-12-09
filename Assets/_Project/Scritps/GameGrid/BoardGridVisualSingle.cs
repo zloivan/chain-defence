@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IKhom.GridSystems._Samples.LevelGrid
+namespace MergeDefence.GameGrid
 {
     public class BoardGridVisualSingle : MonoBehaviour
     {
