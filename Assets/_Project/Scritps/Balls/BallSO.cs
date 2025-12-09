@@ -1,9 +1,7 @@
 using UnityEngine;
 
-namespace ChainDefense.Stacking
+namespace ChainDefense.Balls
 {
-    
-    
     [CreateAssetMenu(fileName = "New Ball Color", menuName = "Config/BallSO", order = 0)]
     public class BallSO : ScriptableObject
     {

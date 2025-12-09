@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-namespace ChainDefense.Stacking
+namespace ChainDefense.Balls
 {
     public class BallVisual : MonoBehaviour
     {

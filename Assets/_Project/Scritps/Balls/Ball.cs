@@ -2,7 +2,7 @@ using System;
 using ChainDefense.GameGrid;
 using UnityEngine;
 
-namespace ChainDefense.Stacking
+namespace ChainDefense.Balls
 {
     [SelectionBase]
     public class Ball : MonoBehaviour

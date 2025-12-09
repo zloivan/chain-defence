@@ -3,7 +3,7 @@ using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
 using UnityEngine;
 
-namespace ChainDefense.Stacking
+namespace ChainDefense.Balls
 {
     public class BallSpawner : MonoBehaviour
     {
