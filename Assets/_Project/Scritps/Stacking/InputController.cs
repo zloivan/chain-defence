@@ -23,6 +23,26 @@ namespace MergeDefence.Stacking
 
         private void Update()
         {
+            if (Input.touchCount > 0)
+            {
+                var touch = Input.GetTouch(0);
+                switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+                        if (!_isDragging) StartDrag();
+                        break;
+                    case TouchPhase.Moved:
+                    case TouchPhase.Stationary:
+                        if (_isDragging) HandleDrag();
+                        break;
+                    case TouchPhase.Ended:
+                    case TouchPhase.Canceled:
+                        if (_isDragging) OnEndDrag();
+                        break;
+                }
+                return;
+            }
+            
             if (Input.GetMouseButtonDown(0))
             {
                 if (!_isDragging)
