@@ -1,3 +1,4 @@
+using System;
 using MergeDefence.GameGrid;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -7,11 +8,15 @@ namespace MergeDefence.Stacking
     [SelectionBase]
     public class Ball : MonoBehaviour
     {
+        public event EventHandler OnBallSelected;
+        public event EventHandler OnBallDeselected;
+
         [FormerlySerializedAs("_ballColor")] [SerializeField]
         private BallSO _ball;
 
         private BoardGrid _boardGrid;
         private BallSpawner _ballSpawner;
+
         private void Start()
         {
             _boardGrid = BoardGrid.Instance;
@@ -51,10 +56,15 @@ namespace MergeDefence.Stacking
         public override string ToString() =>
             GetBallColorSO().Name;
 
-        public void DestroyBall()//TODO: Return to pool
+        public void DestroyBall() //TODO: Return to pool
         {
             _ballSpawner.ReturnBall(this);
-           // Destroy(gameObject);
         }
+
+        public void SetSelected() =>
+            OnBallSelected?.Invoke(this, EventArgs.Empty);
+
+        public void Deselect() =>
+            OnBallDeselected?.Invoke(this, EventArgs.Empty);
     }
 }

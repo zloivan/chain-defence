@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ballSpawner: {fileID: 1917212137}
   _boardGrid: {fileID: 1270108531}
+  _inputController: {fileID: 368697124}
 --- !u!1 &304161091
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +374,50 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &368697122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 368697123}
+  - component: {fileID: 368697124}
+  m_Layer: 0
+  m_Name: InputController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &368697123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368697122}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1999629187}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368697124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368697122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5a973bc91e4ef4b23f3163efd60049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &400573757
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +788,7 @@ MonoBehaviour:
   _height: 10
   _gridDebug: {fileID: 2599551500137322411, guid: 67abfaa3037cb46dcbaa462162281a51,
     type: 3}
-  _enableDebug: 1
+  _enableDebug: 0
 --- !u!114 &1270108532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,6 +1060,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 983ac0f3c854a4bb4b4c34a7b04f615b, type: 2}
   - {fileID: 11400000, guid: 051f2e30979984d9bb5a77c494583248, type: 2}
   - {fileID: 11400000, guid: b37c40e8319f2460785d39062130b77f, type: 2}
+  _numberOfBalls: 
 --- !u!1 &1972422001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,6 +1126,7 @@ Transform:
   - {fileID: 400573758}
   - {fileID: 1270108530}
   - {fileID: 1917212136}
+  - {fileID: 368697123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807

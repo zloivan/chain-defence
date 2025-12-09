@@ -89,15 +89,26 @@ namespace MergeDefence.GameGrid
             OnNewBallPlaced?.Invoke(this, EventArgs.Empty);
         }
 
+        public bool TryGetBall(GridPosition position, out Ball ball)
+        {
+            if (IsValidGridPosition(position) && !IsSlotEmpty(position))
+            {
+                ball = _gridSystem.GetGridObject(position).Get();
+                return true;
+            }
+
+            ball = null;
+            return false;
+        }
+
         public void RemoveBallAtPosition(GridPosition position)
         {
             var gridObj = _gridSystem.GetGridObject(position);
-            var stack = gridObj.Get();
+            var ball = gridObj.Get();
 
-            if (stack == null)
+            if (ball == null)
                 return;
 
-            Destroy(stack.gameObject);
             gridObj.ClearObjectList();
             OnBallRemoved?.Invoke(this, EventArgs.Empty);
         }
