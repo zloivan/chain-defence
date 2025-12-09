@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeDefence.GameGrid
+namespace ChainDefense.GameGrid
 {
     public class BoardGridVisualSingle : MonoBehaviour
     {

@@ -1,8 +1,8 @@
 using System;
-using MergeDefence.GameGrid;
+using ChainDefense.GameGrid;
 using UnityEngine;
 
-namespace MergeDefence.Stacking
+namespace ChainDefense.Stacking
 {
     [SelectionBase]
     public class Ball : MonoBehaviour

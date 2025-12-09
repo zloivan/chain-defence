@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using MergeDefence.GameGrid;
-using MergeDefence.GridSystem.core;
+using ChainDefense.GameGrid;
+using ChainDefense.GridSystem.core;
 using UnityEngine;
 
-namespace MergeDefence.Stacking
+namespace ChainDefense.Stacking
 {
     public class BallSpawner : MonoBehaviour
     {

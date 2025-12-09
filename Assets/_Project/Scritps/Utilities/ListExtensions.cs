@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MergeDefence.Utilities
+namespace ChainDefense.Utilities
 {
     public static class ListExtensions
     {

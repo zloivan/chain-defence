@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MergeDefence.GridSystem.core;
-using MergeDefence.Utilities;
+using ChainDefense.GridSystem.core;
+using ChainDefense.Utilities;
 using UnityEngine;
 
-namespace MergeDefence.GameGrid
+namespace ChainDefense.GameGrid
 {
     public class BoardGridVisual : MonoBehaviour
     {

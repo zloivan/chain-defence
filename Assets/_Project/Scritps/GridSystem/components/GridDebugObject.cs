@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeDefence.GridSystem.components
+namespace ChainDefense.GridSystem.components
 {
     public class GridDebugObject : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeDefence.Stacking
+namespace ChainDefense.Stacking
 {
     
     

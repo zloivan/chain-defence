@@ -1,8 +1,8 @@
 using System;
-using MergeDefence.Utilities;
+using ChainDefense.Utilities;
 using UnityEngine;
 
-namespace MergeDefence.Stacking
+namespace ChainDefense.Core
 {
     public class InputController : MonoBehaviour
     {

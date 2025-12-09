@@ -1,7 +1,7 @@
 using Cinemachine;
 using UnityEngine;
 
-namespace MergeDefence.Utilities
+namespace ChainDefense.Utilities
 {
     public class OrthographicCameraAdjuster : MonoBehaviour
     {

@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using MergeDefence.GameGrid;
-using MergeDefence.GridSystem.core;
-using MergeDefence.Stacking;
-using MergeDefence.Utilities;
+using ChainDefense.GameGrid;
+using ChainDefense.Stacking;
+using ChainDefense.Utilities;
 using UnityEngine;
 
-namespace MergeDefence.Gameplay
+namespace ChainDefense.Core
 {
     public class LevelManager : MonoBehaviour
     {

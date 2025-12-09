@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using MergeDefence.GridSystem.components;
+using ChainDefense.GridSystem.components;
 using UnityEngine;
 
-namespace MergeDefence.GridSystem.core
+namespace ChainDefense.GridSystem.core
 {
     public abstract class GridSystemBase<TGridObject>
     {

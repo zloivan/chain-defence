@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeDefence.Utilities
+namespace ChainDefense.Utilities
 {
     internal class PointerToWorld : MonoBehaviour
     {

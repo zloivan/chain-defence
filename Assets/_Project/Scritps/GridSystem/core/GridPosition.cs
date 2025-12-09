@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MergeDefence.GridSystem.core
+namespace ChainDefense.GridSystem.core
 {
     public readonly struct GridPosition : IEquatable<GridPosition>
     {

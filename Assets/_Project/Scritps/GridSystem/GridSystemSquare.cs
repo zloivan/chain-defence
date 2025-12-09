@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using MergeDefence.GridSystem.core;
+using ChainDefense.GridSystem.core;
 using UnityEngine;
 
-namespace MergeDefence.GridSystem
+namespace ChainDefense.GridSystem
 {
     public class GridSystemSquare<T> : GridSystemBase<T>
     {

@@ -1,9 +1,11 @@
 using System.Collections.Generic;
-using MergeDefence.GameGrid;
-using MergeDefence.GridSystem.core;
+using ChainDefense.Core;
+using ChainDefense.GameGrid;
+using ChainDefense.GridSystem.core;
+using ChainDefense.Stacking;
 using UnityEngine;
 
-namespace MergeDefence.Stacking
+namespace ChainDefense.ChainManagment
 {
     public class ChainValidator : MonoBehaviour
     {
