@@ -1,28 +1,22 @@
-using System;
 using System.Collections.Generic;
 using MergeDefence.GameGrid;
 using MergeDefence.GridSystem.core;
-using MergeDefence.Stacking;
-using MergeDefence.Utilities;
 using UnityEngine;
 
-namespace MergeDefence.Gameplay
+namespace MergeDefence.Stacking
 {
-    public class GameManager : MonoBehaviour
+    public class ChainValidator : MonoBehaviour
     {
-        [SerializeField] private BallSpawner _ballSpawner;
+        private const int MIN_DESTROY_NUMBER = 2;
+        
         [SerializeField] private BoardGrid _boardGrid;
         [SerializeField] private InputController _inputController;
 
-        private const int MIN_DESTROY_NUMBER = 2;
         private List<Ball> _conntectedList = new();
-
-        private void Awake() =>
-            Application.targetFrameRate = 30;
+        private GridPosition _lastConnectedPosition;
 
         private void Start()
         {
-            FillBoardWithGuaranteedDistribution();
             _inputController.OnDrag += InputController_OnDrag;
             _inputController.OnDragStart += InputController_OnDragStart;
             _inputController.OnDragEnd += InputController_OnDragEnd;
@@ -55,8 +49,6 @@ namespace MergeDefence.Gameplay
 
             _conntectedList.Clear();
         }
-
-        private GridPosition _lastConnectedPosition;
 
         private void InputController_OnDrag(object sender, Vector3 worldPos)
         {
@@ -100,54 +92,6 @@ namespace MergeDefence.Gameplay
                 selectedBall.SetSelected();
                 _conntectedList.Add(selectedBall);
                 _lastConnectedPosition = dragGridPosition;
-            }
-        }
-
-        private void FillBoardWithRandomBalls()
-        {
-            var allGridPosition = _boardGrid.GetAllGridPositions();
-
-            foreach (var gridPosition in allGridPosition)
-            {
-                if (_boardGrid.IsSlotEmpty(gridPosition))
-                {
-                    _ballSpawner.SpawnRandomBallAtGridPosition(gridPosition);
-                }
-            }
-        }
-
-        private void FillBoardWithGuaranteedDistribution()
-        {
-            var allGridPositions = _boardGrid.GetAllGridPositions();
-            var totalSlots = allGridPositions.Count;
-
-            var ballIndices = new List<int>();
-
-            var numberOfBallTypes = 4;
-            var ballsPerType = totalSlots / numberOfBallTypes;
-            var remainder = totalSlots % numberOfBallTypes;
-
-            for (var ballType = 0; ballType < numberOfBallTypes; ballType++)
-            {
-                var count = ballsPerType;
-
-                if (ballType < remainder)
-                    count++;
-
-                for (var i = 0; i < count; i++)
-                {
-                    ballIndices.Add(ballType);
-                }
-            }
-
-            ballIndices.ShuffleList();
-
-            for (var i = 0; i < allGridPositions.Count; i++)
-            {
-                if (_boardGrid.IsSlotEmpty(allGridPositions[i]))
-                {
-                    _ballSpawner.SpawnBallAtGridPosition(ballIndices[i], allGridPositions[i]);
-                }
             }
         }
     }
