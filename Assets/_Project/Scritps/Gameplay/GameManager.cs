@@ -15,7 +15,7 @@ namespace MergeDefence.Gameplay
         [SerializeField] private InputController _inputController;
 
         private const int MIN_DESTROY_NUMBER = 2;
-        private LinkedList<Ball> _conntectedList = new();
+        private List<Ball> _conntectedList = new();
 
         private void Awake() =>
             Application.targetFrameRate = 30;
@@ -33,7 +33,7 @@ namespace MergeDefence.Gameplay
             var gridPosition = _boardGrid.GetGridPosition(worldPos);
             if (_boardGrid.TryGetBall(gridPosition, out var first))
             {
-                _conntectedList.AddFirst(first);
+                _conntectedList.Add(first);
                 first.SetSelected();
                 _lastConnectedPosition = gridPosition;
             }
@@ -66,12 +66,13 @@ namespace MergeDefence.Gameplay
 
             if (_boardGrid.TryGetBall(dragGridPosition, out var selectedBall))
             {
+                var lastConnectedBall = _conntectedList[^1];
                 //Same ball -> ignore
-                if (_conntectedList.Last.Value == selectedBall)
+                if (lastConnectedBall == selectedBall)
                     return;
 
                 //Different type -> ignore
-                if (_conntectedList.Last.Value.GetBallColorSO() != selectedBall.GetBallColorSO())
+                if (lastConnectedBall.GetBallColorSO() != selectedBall.GetBallColorSO())
                     return;
 
 
@@ -81,14 +82,14 @@ namespace MergeDefence.Gameplay
                 if (!validNeighbors.Contains(dragGridPosition) && !_conntectedList.Contains(selectedBall))
                     return;
 
-                //If not neighbor but in connections already -> remove till that one
-                if (!validNeighbors.Contains(dragGridPosition) && _conntectedList.Contains(selectedBall))
+                //If in connections already -> remove till that one
+                if (_conntectedList.Contains(selectedBall))
                 {
-                    while (_conntectedList.Last.Value != selectedBall)
+                    while (_conntectedList[^1] != selectedBall)
                     {
-                        var toRemove = _conntectedList.Last.Value;
+                        var toRemove = _conntectedList[^1];
                         toRemove.Deselect();
-                        _conntectedList.RemoveLast();
+                        _conntectedList.Remove(toRemove);
                     }
 
                     _lastConnectedPosition = dragGridPosition;
@@ -97,7 +98,7 @@ namespace MergeDefence.Gameplay
 
 
                 selectedBall.SetSelected();
-                _conntectedList.AddLast(selectedBall);
+                _conntectedList.Add(selectedBall);
                 _lastConnectedPosition = dragGridPosition;
             }
         }
