@@ -1,5 +1,6 @@
 using System;
 using ChainDefense.GameGrid;
+using ChainDefense.GridSystem.core;
 using UnityEngine;
 
 namespace ChainDefense.Balls
@@ -14,37 +15,26 @@ namespace ChainDefense.Balls
 
         private BoardGrid _boardGrid;
         private BallSpawner _ballSpawner;
+        private GridPosition _currentGridPosition;
 
-        private void Start()
+        private void Awake()
         {
             _boardGrid = BoardGrid.Instance;
-            UpdateBoardPosition();
         }
 
-        public void Setup(BallSpawner spawner) =>
-            _ballSpawner = spawner;
-
-        private void UpdateBoardPosition()
+        public void Setup(BallSpawner spawner)
         {
-            var boardposition = _boardGrid.GetGridPosition(transform.position);
+            _ballSpawner = spawner;
+            
+            _currentGridPosition = _boardGrid.GetGridPosition(transform.position);
+            _boardGrid.PlaceBallAtPosition(_currentGridPosition, this);
+        }
 
-            var isSlotEmpty = _boardGrid.IsSlotEmpty(boardposition);
-            if (!_boardGrid.IsValidGridPosition(boardposition))
-            {
-                Debug.LogWarning("Outside of board bounds", this);
-                return;
-            }
-
-            if (isSlotEmpty)
-            {
-                //Center to cell
-                transform.position = _boardGrid.GetWorldPosition(boardposition);
-                _boardGrid.PlaceBallAtPosition(boardposition, this);
-            }
-            else
-            {
-                Debug.LogWarning("Slot already occupied", this);
-            }
+        public void UpdateUnitPosition(GridPosition newPosition)//TODO: DRY
+        {
+            transform.position = _boardGrid.GetWorldPosition(newPosition);
+            _boardGrid.MoveBall(_currentGridPosition, newPosition);
+            _currentGridPosition = newPosition;
         }
 
         public BallSO GetBallColorSO() =>
@@ -53,8 +43,11 @@ namespace ChainDefense.Balls
         public override string ToString() =>
             GetBallColorSO().Name;
 
-        public void DestroyBall() =>
+        public void DestroyBall()
+        {
+            _boardGrid.RemoveBallAtPosition(_boardGrid.GetGridPosition(transform.position));
             _ballSpawner.ReturnBall(this);
+        }
 
         public void SetSelected() =>
             OnBallSelected?.Invoke(this, EventArgs.Empty);

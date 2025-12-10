@@ -107,6 +107,22 @@ namespace ChainDefense.GameGrid
             OnBallRemoved?.Invoke(this, EventArgs.Empty);
         }
 
+        public void MoveBall(GridPosition from, GridPosition to)
+        {
+            var fromGridObj = _gridSystem.GetGridObject(from);
+            var ball = fromGridObj.Get();
+
+            if (ball == null)
+                return;
+
+            var toGridObj = _gridSystem.GetGridObject(to);
+            if (toGridObj.Get() != null)
+                return;
+
+            fromGridObj.ClearObjectList();
+            toGridObj.Set(ball);
+        }
+
         public List<GridPosition> GetAllValidNeighbors(GridPosition position)
         {
             var neighbors = _gridSystem.GetNeighbors(position);
