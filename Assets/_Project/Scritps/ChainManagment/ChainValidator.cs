@@ -10,14 +10,15 @@ namespace ChainDefense.ChainManagment
 {
     public class ChainValidator : MonoBehaviour
     {
-        public event EventHandler<Vector3> OnHeadChangedPosition;//TODO: collection changed
+        public event EventHandler<Vector3> OnHeadChangedPosition;
         public event EventHandler OnChainBreak;
+        public event EventHandler<List<Ball>> OnChainDestroyed;
         private const int MIN_DESTROY_NUMBER = 2;
         
         [SerializeField] private BoardGrid _boardGrid;
         [SerializeField] private InputController _inputController;
 
-        private List<Ball> _conntectedList = new(); //TODO: Get collection
+        private readonly List<Ball> _conntectedList = new();
         private GridPosition _lastConnectedPosition;
         private void Start()
         {
@@ -47,11 +48,15 @@ namespace ChainDefense.ChainManagment
             foreach (var connectedBall in _conntectedList)
             {
                 if (_conntectedList.Count > MIN_DESTROY_NUMBER)
+                {
                     connectedBall.DestroyBall();
+                   
+                }
                 else
                     connectedBall.Deselect();
             }
             
+            OnChainDestroyed?.Invoke(this, _conntectedList);
             OnChainBreak?.Invoke(this, EventArgs.Empty);
             _conntectedList.Clear();
         }
