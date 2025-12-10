@@ -22,19 +22,33 @@ namespace ChainDefense.Balls
             _boardGrid = BoardGrid.Instance;
         }
 
-        public void Setup(BallSpawner spawner)
+        private void Start()
         {
-            _ballSpawner = spawner;
-            
             _currentGridPosition = _boardGrid.GetGridPosition(transform.position);
-            _boardGrid.PlaceBallAtPosition(_currentGridPosition, this);
+            _boardGrid.AddBallToPosition(_currentGridPosition, this);
         }
 
-        public void UpdateUnitPosition(GridPosition newPosition)//TODO: DRY
+        public void SetupSpawner(BallSpawner spawner)
         {
-            transform.position = _boardGrid.GetWorldPosition(newPosition);
-            _boardGrid.MoveBall(_currentGridPosition, newPosition);
-            _currentGridPosition = newPosition;
+            _ballSpawner = spawner;
+        }
+
+        private void Update()
+        {
+            UpdateUnitPosition();
+        }
+
+        public void UpdateUnitPosition()
+        {
+            var newGridPosition = _boardGrid.GetGridPosition(transform.position);
+            
+            if (newGridPosition == _currentGridPosition)
+                return;
+
+            var oldGridPosition = _currentGridPosition;
+            _currentGridPosition = newGridPosition;
+            
+            _boardGrid.MoveBall(oldGridPosition, newGridPosition, this);
         }
 
         public BallSO GetBallColorSO() =>
@@ -45,7 +59,7 @@ namespace ChainDefense.Balls
 
         public void DestroyBall()
         {
-            _boardGrid.RemoveBallAtPosition(_boardGrid.GetGridPosition(transform.position));
+            _boardGrid.RemoveBallAtPosition(_boardGrid.GetGridPosition(transform.position), this);
             _ballSpawner.ReturnBall(this);
         }
 
@@ -54,5 +68,8 @@ namespace ChainDefense.Balls
 
         public void Deselect() =>
             OnBallDeselected?.Invoke(this, EventArgs.Empty);
+
+        public GridPosition GetGridPosition() =>
+            _currentGridPosition;
     }
 }

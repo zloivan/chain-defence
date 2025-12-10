@@ -10,6 +10,7 @@ namespace ChainDefense.ChainManagment
 {
     public class ChainValidator : MonoBehaviour
     {
+        public static ChainValidator Instance { get; private set; }
         public event EventHandler<Vector3> OnHeadChangedPosition;
         public event EventHandler OnChainBreak;
         public event EventHandler<List<Ball>> OnChainDestroyed;
@@ -20,6 +21,12 @@ namespace ChainDefense.ChainManagment
 
         private readonly List<Ball> _conntectedList = new();
         private GridPosition _lastConnectedPosition;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start()
         {
             _inputController.OnDrag += InputController_OnDrag;

@@ -42,7 +42,7 @@ namespace ChainDefense.Balls
         {
             var worldPosition = _boardGrid.GetWorldPosition(gridPosition);
             var ball = Instantiate(_ballConfigList[ballIndex].BallPrefab, worldPosition, Quaternion.identity, _parent);
-            ball.GetComponent<Ball>().Setup(this);
+            ball.GetComponent<Ball>().SetupSpawner(this);
         }
     }
 }

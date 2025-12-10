@@ -12,6 +12,9 @@ namespace ChainDefense.GameGrid
     {
         public event EventHandler OnNewBallPlaced;
         public event EventHandler OnBallRemoved;
+        public event EventHandler OnBallMoved;
+        
+        
         public static BoardGrid Instance { get; private set; }
 
         private const float SLOT_SIZE = 2f;
@@ -70,24 +73,20 @@ namespace ChainDefense.GameGrid
         public bool IsSlotEmpty(GridPosition gridPos) =>
             _gridSystem.GetGridObject(gridPos).Get() == null;
 
-        public void PlaceBallAtPosition(GridPosition gridPos, Ball ball)
+        public void AddBallToPosition(GridPosition gridPos, Ball ball)
         {
-            var gridObject = _gridSystem.GetGridObject(gridPos);
-
-            if (gridObject.Get() != null)
-            {
-                return;
-            }
-
-            gridObject.Set(ball);
+            _gridSystem.GetGridObject(gridPos).Add(ball);
             OnNewBallPlaced?.Invoke(this, EventArgs.Empty);
         }
 
+        public Ball GetBallAtPosition(GridPosition position) =>
+            _gridSystem.GetGridObject(position).Get();
+        
         public bool TryGetBall(GridPosition position, out Ball ball)
         {
             if (_gridSystem.IsValidGridPosition(position) && !IsSlotEmpty(position))
             {
-                ball = _gridSystem.GetGridObject(position).Get();
+                ball = GetBallAtPosition(position);
                 return true;
             }
 
@@ -95,32 +94,18 @@ namespace ChainDefense.GameGrid
             return false;
         }
 
-        public void RemoveBallAtPosition(GridPosition position)
+        public void RemoveBallAtPosition(GridPosition position, Ball targetBall)
         {
-            var gridObj = _gridSystem.GetGridObject(position);
-            var ball = gridObj.Get();
-
-            if (ball == null)
-                return;
-
-            gridObj.ClearObjectList();
+            _gridSystem.GetGridObject(position).Remove(targetBall);
             OnBallRemoved?.Invoke(this, EventArgs.Empty);
         }
 
-        public void MoveBall(GridPosition from, GridPosition to)
+        public void MoveBall(GridPosition from, GridPosition to, Ball targetBall)
         {
-            var fromGridObj = _gridSystem.GetGridObject(from);
-            var ball = fromGridObj.Get();
-
-            if (ball == null)
-                return;
-
-            var toGridObj = _gridSystem.GetGridObject(to);
-            if (toGridObj.Get() != null)
-                return;
-
-            fromGridObj.ClearObjectList();
-            toGridObj.Set(ball);
+           RemoveBallAtPosition(from, targetBall);
+           AddBallToPosition(to, targetBall);
+           
+           OnBallMoved?.Invoke(this, EventArgs.Empty);
         }
 
         public List<GridPosition> GetAllValidNeighbors(GridPosition position)
