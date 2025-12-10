@@ -13,6 +13,8 @@ namespace IKhom.StateMachineSystem.Runtime
         public event EventHandler<int> OnWaveCompleted;
         public event EventHandler OnEnemyWaveSpawned;
         public event EventHandler<int> OnEnemyNumberChanged;
+        public event EventHandler AllWavesCompleted;
+        
         public static WaveManager Instance { get; private set; }
 
         [SerializeField] private List<WaveSO> _wavesList;
@@ -44,18 +46,20 @@ namespace IKhom.StateMachineSystem.Runtime
 
             _currentWaveIndex++;
             OnWaveCompleted?.Invoke(this, _currentWaveIndex);
+            
             StartWave(CancellationToken.None).Forget();
         }
 
-        public async UniTask StartWave(CancellationToken cancellationToken)
+        private async UniTask StartWave(CancellationToken cancellationToken)
         {
             if (_currentWaveIndex >= _wavesList.Count)
             {
+                AllWavesCompleted?.Invoke(this, EventArgs.Empty);
                 return;
             }
-
-            var currentWave = _wavesList[_currentWaveIndex];
             
+            var currentWave = _wavesList[_currentWaveIndex];
+
             await UniTask.Delay(
                 TimeSpan.FromSeconds(currentWave.DelayBeforeStarting),
                 cancellationToken: cancellationToken
