@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using ChainDefense.Balls;
 using ChainDefense.ChainManagment;
@@ -10,7 +9,7 @@ using UnityEngine;
 
 namespace ChainDefense.Core
 {
-    public class LevelManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour//TODO: TEMP SOLUTION, FIX AND REFACTOR.
     {
         private enum LevelState
         {
@@ -26,6 +25,8 @@ namespace ChainDefense.Core
         private LevelState _currentState;
         private bool _isRefillCompleted;
         private bool _isReorderCompleted;
+        private readonly Dictionary<Ball, Vector3> _ballTargetPositions = new();
+        private readonly List<GridPosition> _allOccupiedPositions = new();
 
         private void Awake()
         {
@@ -75,33 +76,32 @@ namespace ChainDefense.Core
             }
         }
 
-        Dictionary<Ball, Vector3> _ballTargetPositions = new();
 
         private void ReorderBallsOnBoard()
         {
             _ballTargetPositions.Clear();
             var allGridPositions = _boardGrid.GetAllGridPositions();
-            var allOccupiedPositions = new List<GridPosition>();
+            _allOccupiedPositions.Clear();
 
             foreach (var gridPosition in allGridPositions)
             {
                 if (!_boardGrid.IsSlotEmpty(gridPosition))
                 {
-                    allOccupiedPositions.Add(gridPosition);
+                    _allOccupiedPositions.Add(gridPosition);
                 }
             }
 
-            for (var index = 0; index < allOccupiedPositions.Count; index++)
+            for (var index = 0; index < _allOccupiedPositions.Count; index++)
             {
-                var ocupiedGridPosition = allOccupiedPositions[index];
-                var newGridPosition = GotLowestGridPosition(ocupiedGridPosition, allOccupiedPositions);
+                var ocupiedGridPosition = _allOccupiedPositions[index];
+                var newGridPosition = GotLowestGridPosition(ocupiedGridPosition, _allOccupiedPositions);
 
                 if (_boardGrid.TryGetBall(ocupiedGridPosition, out var ball))
                 {
                     _ballTargetPositions.Add(ball, _boardGrid.GetWorldPosition(newGridPosition));
                 }
 
-                allOccupiedPositions[index] = newGridPosition;
+                _allOccupiedPositions[index] = newGridPosition;
             }
 
             foreach (var (ball, newPosition) in _ballTargetPositions)
@@ -110,14 +110,15 @@ namespace ChainDefense.Core
             }
 
             _isRefillCompleted = false;
+            _currentState = LevelState.RefillBalls;
         }
 
         private GridPosition GotLowestGridPosition(GridPosition startPosition, List<GridPosition> occupiedPositions)
         {
             var targetPosition = startPosition;
-            
+
             var newPosition = startPosition + new GridPosition(0, -1);
-            
+
             while (!occupiedPositions.Contains(newPosition) && _boardGrid.IsValidGridPosition(newPosition))
             {
                 targetPosition = newPosition;
@@ -155,8 +156,13 @@ namespace ChainDefense.Core
 
             for (var i = 0; i < allGridPositions.Count; i++)
             {
-                _ballSpawner.SpawnBallAtGridPosition(ballIndices[i], allGridPositions[i]);
+                if (!_allOccupiedPositions.Contains(allGridPositions[i]))
+                {
+                    _ballSpawner.SpawnBallAtGridPosition(ballIndices[i], allGridPositions[i]);
+                }
             }
         }
+
+      
     }
 }

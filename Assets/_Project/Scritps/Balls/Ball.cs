@@ -1,6 +1,7 @@
 using System;
 using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
+using DG.Tweening;
 using UnityEngine;
 
 namespace ChainDefense.Balls
@@ -27,6 +28,9 @@ namespace ChainDefense.Balls
             _currentGridPosition = _boardGrid.GetGridPosition(transform.position);
             _boardGrid.AddBallToPosition(_currentGridPosition, this);
         }
+
+        private void OnDisable() =>
+            transform.DOKill();
 
         public void SetupSpawner(BallSpawner spawner)
         {

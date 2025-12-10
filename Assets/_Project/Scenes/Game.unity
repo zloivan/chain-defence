@@ -1082,7 +1082,7 @@ MonoBehaviour:
   _height: 10
   _gridDebug: {fileID: 2599551500137322411, guid: 67abfaa3037cb46dcbaa462162281a51,
     type: 3}
-  _enableDebug: 1
+  _enableDebug: 0
 --- !u!114 &1270108532
 MonoBehaviour:
   m_ObjectHideFlags: 0
