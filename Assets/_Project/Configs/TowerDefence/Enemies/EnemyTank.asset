@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f629f470bf2c4d118d10b5b1a93ee295, type: 3}
-  m_Name: EnemyBasic
+  m_Name: EnemyTank
   m_EditorClassIdentifier: 
-  MaxHealth: 50
+  MaxHealth: 120
   MoveSpeed: 1
-  BaseDamage: 1
-  EnemyPrefab: {fileID: 1891984561505503618, guid: 8c9e7ba5f015d4d2e97f1ce1a1c109bd,
+  BaseDamage: 3
+  EnemyPrefab: {fileID: 1891984561505503618, guid: fe6ce0cb484d74a02aea8d130c2fd6b3,
     type: 3}
