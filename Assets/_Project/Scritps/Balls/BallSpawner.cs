@@ -8,11 +8,19 @@ namespace ChainDefense.Balls
     public class BallSpawner : MonoBehaviour
     {
         [SerializeField] private List<BallSO> _ballConfigList;
+        [SerializeField] private Transform _parent;
 
         private BoardGrid _boardGrid;
 
-        private void Awake() =>
+        private void Awake()
+        {
             _boardGrid = BoardGrid.Instance;
+
+            if (_parent == null)
+            {
+                _parent = transform;
+            }
+        }
 
         public void SpawnBallAtGridPosition(int ballIndex, GridPosition position) =>
             SpawnBall(ballIndex, position);
@@ -25,7 +33,7 @@ namespace ChainDefense.Balls
         private void SpawnBall(int ballIndex, GridPosition gridPosition)
         {
             var worldPosition = _boardGrid.GetWorldPosition(gridPosition);
-            var ball = Instantiate(_ballConfigList[ballIndex].BallPrefab, worldPosition, Quaternion.identity);
+            var ball = Instantiate(_ballConfigList[ballIndex].BallPrefab, worldPosition, Quaternion.identity, _parent);
             ball.GetComponent<Ball>().Setup(this);
         }
     }

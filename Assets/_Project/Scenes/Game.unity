@@ -1053,7 +1053,7 @@ MonoBehaviour:
   _height: 10
   _gridDebug: {fileID: 2599551500137322411, guid: 67abfaa3037cb46dcbaa462162281a51,
     type: 3}
-  _enableDebug: 0
+  _enableDebug: 1
 --- !u!114 &1270108532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,6 +1381,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 983ac0f3c854a4bb4b4c34a7b04f615b, type: 2}
   - {fileID: 11400000, guid: 051f2e30979984d9bb5a77c494583248, type: 2}
   - {fileID: 11400000, guid: b37c40e8319f2460785d39062130b77f, type: 2}
+  _parent: {fileID: 0}
 --- !u!1 &1972422001
 GameObject:
   m_ObjectHideFlags: 0
