@@ -67,12 +67,6 @@ namespace ChainDefense.GameGrid
             return result;
         }
 
-        public List<GridPosition> GetNeighbors(GridPosition targetPosition) =>
-            _gridSystem.GetNeighbors(targetPosition);
-
-        public List<GridPosition> GetValidNeighbors(GridPosition targetPosition) =>
-            GetNeighbors(targetPosition).Where(IsValidGridPosition).ToList();
-
         public bool IsSlotEmpty(GridPosition gridPos) =>
             _gridSystem.GetGridObject(gridPos).Get() == null;
 
@@ -91,7 +85,7 @@ namespace ChainDefense.GameGrid
 
         public bool TryGetBall(GridPosition position, out Ball ball)
         {
-            if (IsValidGridPosition(position) && !IsSlotEmpty(position))
+            if (_gridSystem.IsValidGridPosition(position) && !IsSlotEmpty(position))
             {
                 ball = _gridSystem.GetGridObject(position).Get();
                 return true;
@@ -115,13 +109,13 @@ namespace ChainDefense.GameGrid
 
         public List<GridPosition> GetAllValidNeighbors(GridPosition position)
         {
-            var neighbors = GetNeighbors(position);
+            var neighbors = _gridSystem.GetNeighbors(position);
             neighbors.Add(position + new GridPosition(1, 1)); //Top-right
             neighbors.Add(position + new GridPosition(1, -1)); //Bottom-right
             neighbors.Add(position + new GridPosition(-1, 1)); //Top-left
             neighbors.Add(position + new GridPosition(-1, -1)); //Bottom-left
 
-            return neighbors.Where(IsValidGridPosition).ToList();
+            return neighbors.Where(n => _gridSystem.IsValidGridPosition(n)).ToList();
         }
     }
 }
