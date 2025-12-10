@@ -7,10 +7,9 @@ namespace ChainDefense.Core
     public class InputController : MonoBehaviour
     {
         public event EventHandler<Vector3> OnDragStart;
-        public event EventHandler<Vector3> OnDragEnd;
         public event EventHandler<Vector3> OnDrag;
-        public event EventHandler OnInterrupted;
-        
+        public event EventHandler OnDragEnd;
+
         public static InputController Instance { get; private set; }
         
 
@@ -61,8 +60,7 @@ namespace ChainDefense.Core
 
         public void InterruptDragging()
         {
-            _isDragging = false;
-            OnInterrupted?.Invoke(this, EventArgs.Empty);
+            OnEndDrag();
         }
 
         private void HandleDrag() =>
@@ -77,7 +75,7 @@ namespace ChainDefense.Core
         private void OnEndDrag()
         {
             _isDragging = false;
-            OnDragEnd?.Invoke(this, PointerToWorld.GetPointerPositionInWorld());
+            OnDragEnd?.Invoke(this, EventArgs.Empty);
         }
     }
 }

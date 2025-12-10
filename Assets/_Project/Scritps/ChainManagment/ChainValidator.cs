@@ -19,7 +19,6 @@ namespace ChainDefense.ChainManagment
 
         private List<Ball> _conntectedList = new(); //TODO: Get collection
         private GridPosition _lastConnectedPosition;
-
         private void Start()
         {
             _inputController.OnDrag += InputController_OnDrag;
@@ -43,7 +42,7 @@ namespace ChainDefense.ChainManagment
             }
         }
 
-        private void InputController_OnDragEnd(object sender, Vector3 worldPos)
+        private void InputController_OnDragEnd(object sender, EventArgs e)
         {
             foreach (var connectedBall in _conntectedList)
             {
@@ -102,6 +101,17 @@ namespace ChainDefense.ChainManagment
                 _lastConnectedPosition = dragGridPosition;
                 OnHeadChangedPosition?.Invoke(this, worldPos);
             }
+        }
+        
+        public Vector3[] GetConnectedPositions()//TODO: Lot of garbage
+        {
+            var positions = new Vector3[_conntectedList.Count];
+            for (var i = 0; i < positions.Length; i++)
+            {
+                positions[i] = _conntectedList[i].transform.position;
+            }
+
+            return positions;
         }
     }
 }
