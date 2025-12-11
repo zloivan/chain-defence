@@ -82,7 +82,7 @@ namespace ChainDefense.ChainManagment
                     return;
 
                 //Different type -> ignore
-                if (lastConnectedBall.GetBallColorSO() != selectedBall.GetBallColorSO())
+                if (lastConnectedBall.GetBallConfig() != selectedBall.GetBallConfig())
                     return;
 
 

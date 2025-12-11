@@ -1963,11 +1963,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e57331d4fd40dcaff3336eb444d4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerBallMapping:
+  _towerBallMappingList:
   - {fileID: 11400000, guid: 1beca05660eb84dc88d9a3520ade53d5, type: 2}
   - {fileID: 11400000, guid: 0cf8b9c270c3149d3a0f626db6eee10a, type: 2}
   - {fileID: 11400000, guid: 9fa4fd55209ab42b992bff0d9dc1699f, type: 2}
   - {fileID: 11400000, guid: a67c14ee7867147aa9c87d5080d168bb, type: 2}
+  _levelMappingList:
+  - DestroyedBallRange: {x: 3, y: 4}
+    LevelNumber: 1
+  - DestroyedBallRange: {x: 5, y: 6}
+    LevelNumber: 2
+  - DestroyedBallRange: {x: 7, y: 30}
+    LevelNumber: 3
 --- !u!1 &1403722961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,7 +2502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13274e61ce04fd49e58365ab1d4e12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parent: {fileID: 0}
+  _parent: {fileID: 1928306958}
 --- !u!1 &1972422001
 GameObject:
   m_ObjectHideFlags: 0

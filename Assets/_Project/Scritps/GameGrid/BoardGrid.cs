@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace ChainDefense.GameGrid
 {
-    public class BoardGrid : MonoBehaviour
+    public class BoardGrid : MonoBehaviour//TODO: Add support for towers
     {
         public event EventHandler OnNewBallPlaced;
         public event EventHandler OnBallRemoved;

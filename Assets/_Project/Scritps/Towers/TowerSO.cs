@@ -9,5 +9,6 @@ namespace ChainDefense.Towers
         public float AttackRange;
         public float AttackSpeed;
         public GameObject TowerPrefab;
+        public LevelModifierSO _levelingModifier;
     }
 }

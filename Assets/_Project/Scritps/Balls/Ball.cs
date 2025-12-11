@@ -25,7 +25,7 @@ namespace ChainDefense.Balls
 
         private void Start()
         {
-            _currentGridPosition = _boardGrid.GetGridPosition(transform.position);
+            _currentGridPosition = _boardGrid.GetGridPosition(GetWorldPosition());
             _boardGrid.AddBallToPosition(_currentGridPosition, this);
         }
 
@@ -37,12 +37,12 @@ namespace ChainDefense.Balls
             _ballSpawner = spawner;
         }
 
-        private void Update()
+        private void Update()//TODO: Check performance, probable problem
         {
             UpdateUnitPosition();
         }
 
-        public void UpdateUnitPosition()
+        private void UpdateUnitPosition()
         {
             var newGridPosition = _boardGrid.GetGridPosition(transform.position);
             
@@ -55,15 +55,15 @@ namespace ChainDefense.Balls
             _boardGrid.MoveBall(oldGridPosition, newGridPosition, this);
         }
 
-        public BallSO GetBallColorSO() =>
+        public BallSO GetBallConfig() =>
             _ball;
 
         public override string ToString() =>
-            GetBallColorSO().Name;
+            GetBallConfig().Name;
 
         public void DestroyBall()
         {
-            _boardGrid.RemoveBallAtPosition(_boardGrid.GetGridPosition(transform.position), this);
+            _boardGrid.RemoveBallAtPosition(_boardGrid.GetGridPosition(GetWorldPosition()), this);
             _ballSpawner.ReturnBall(this);
         }
 
@@ -75,5 +75,8 @@ namespace ChainDefense.Balls
 
         public GridPosition GetGridPosition() =>
             _currentGridPosition;
+
+        public Vector3 GetWorldPosition() =>
+            transform.position;
     }
 }
