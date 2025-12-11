@@ -14,8 +14,8 @@ namespace ChainDefense.ChainManagment
         public event EventHandler<Vector3> OnHeadChangedPosition;
         public event EventHandler OnChainBreak;
         public event EventHandler<List<Ball>> OnChainDestroyed;
-        private const int MIN_DESTROY_NUMBER = 2;
-        
+        private const int MIN_DESTROY_NUMBER = 10;
+
         [SerializeField] private BoardGrid _boardGrid;
         [SerializeField] private InputController _inputController;
 
@@ -52,18 +52,24 @@ namespace ChainDefense.ChainManagment
 
         private void InputController_OnDragEnd(object sender, EventArgs e)
         {
-            foreach (var connectedBall in _conntectedList)
+            if (_conntectedList.Count > MIN_DESTROY_NUMBER)
             {
-                if (_conntectedList.Count > MIN_DESTROY_NUMBER)
+                foreach (var connectedBall in _conntectedList)
                 {
                     connectedBall.DestroyBall();
-                   
                 }
-                else
-                    connectedBall.Deselect();
+
+                OnChainDestroyed?.Invoke(this, _conntectedList);
             }
-            
-            OnChainDestroyed?.Invoke(this, _conntectedList);
+            else
+            {
+                foreach (var connectedBall in _conntectedList)
+                {
+                    connectedBall.Deselect();
+                }
+            }
+
+
             OnChainBreak?.Invoke(this, EventArgs.Empty);
             _conntectedList.Clear();
         }
@@ -87,7 +93,7 @@ namespace ChainDefense.ChainManagment
 
 
                 var validNeighbors = _boardGrid.GetAllValidNeighbors(_lastConnectedPosition);
-                
+
                 //Not neighbor and not in connections -> ignore
                 if (!validNeighbors.Contains(dragGridPosition) && !_conntectedList.Contains(selectedBall))
                     return;
@@ -114,8 +120,8 @@ namespace ChainDefense.ChainManagment
                 OnHeadChangedPosition?.Invoke(this, worldPos);
             }
         }
-        
-        public Vector3[] GetConnectedPositions()//TODO: Lot of garbage
+
+        public Vector3[] GetConnectedPositions() //TODO: Lot of garbage
         {
             var positions = new Vector3[_conntectedList.Count];
             for (var i = 0; i < positions.Length; i++)

@@ -17,11 +17,12 @@ namespace ChainDefense.Towers
 
     public class TowerManager : MonoBehaviour
     {
-        [FormerlySerializedAs("_towerBallMapping")] [SerializeField]
-        private List<TowerBallPairSO> _towerBallMappingList;
+        private const int MAX_NUMBER_OF_TOWERS = 3;
 
+        [SerializeField] private List<TowerBallPairSO> _towerBallMappingList;
         [SerializeField] private List<LevelDefinition> _levelMappingList;
 
+        private int _spawnedTowersNumber;
         private ChainValidator _chainValidator;
 
         private void Start()
@@ -31,17 +32,20 @@ namespace ChainDefense.Towers
             _chainValidator.OnChainDestroyed += ChainValidator_OnChainDestroyed;
         }
 
+        //TODO: Add visualization for tower spawn and tower range
         private void ChainValidator_OnChainDestroyed(object sender, List<Ball> destroyedBalls)
         {
-            //find center of destroyed balls
-            //build a tower at the center of destroyed balls based on ball type
+            if (_spawnedTowersNumber >= MAX_NUMBER_OF_TOWERS)
+                return;
+
             var indexOfCenterBalls = destroyedBalls.Count / 2;
             var centerBall = destroyedBalls[indexOfCenterBalls];
-            var centerPosition = centerBall.GetWorldPosition();
+            var chainCenterPosition = centerBall.GetWorldPosition();
             var towerConfig = GetTowerTypeFromBall(centerBall.GetBallConfig());
 
-            var towerGo = Tower.SpawnTower(towerConfig, centerPosition);
+            var towerGo = Tower.SpawnTower(towerConfig, chainCenterPosition);
             towerGo.GetComponent<Tower>().SetLevel(GetLevel(destroyedBalls.Count));
+            _spawnedTowersNumber++;
         }
 
         private TowerSO GetTowerTypeFromBall(BallSO ballType)
