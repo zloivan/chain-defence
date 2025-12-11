@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 330235c2e4b449f2b04c2c129fb1212b, type: 3}
-  m_Name: Red
+  m_Script: {fileID: 11500000, guid: e31511c3ae434903975c1f97e8d3e57b, type: 3}
+  m_Name: TowerGreen
   m_EditorClassIdentifier: 
-  BallPrefab: {fileID: 361347919993437601, guid: 1b892f664c5b243f3ab05b92dfe84e9c,
+  BaseDamage: 5
+  AttackRange: 2
+  AttackSpeed: 0.8
+  TowerPrefab: {fileID: 4212539874750110819, guid: 3b1ddfea8e4bf47bf8da84119573653a,
     type: 3}
-  Name: Red Ball

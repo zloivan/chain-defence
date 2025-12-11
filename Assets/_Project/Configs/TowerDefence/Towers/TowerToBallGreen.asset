@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 330235c2e4b449f2b04c2c129fb1212b, type: 3}
-  m_Name: Blue
+  m_Script: {fileID: 11500000, guid: 84e8831207a74ac5bd6c7908ccb7a932, type: 3}
+  m_Name: TowerToBallGreen
   m_EditorClassIdentifier: 
-  BallPrefab: {fileID: 361347919993437601, guid: a6c91304bc4a7417f8376d0a0120d4c3,
-    type: 3}
-  Name: Blue Ball
+  TowerConfig: {fileID: 11400000, guid: d2b026619bb2647e1a2759a2700459c8, type: 2}
+  BallConfig: {fileID: 11400000, guid: 983ac0f3c854a4bb4b4c34a7b04f615b, type: 2}

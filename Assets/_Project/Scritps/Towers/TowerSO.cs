@@ -8,5 +8,6 @@ namespace ChainDefense.Towers
         public int BaseDamage;
         public float AttackRange;
         public float AttackSpeed;
+        public GameObject TowerPrefab;
     }
 }

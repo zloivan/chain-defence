@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e31511c3ae434903975c1f97e8d3e57b, type: 3}
-  m_Name: Yellow
+  m_Name: TowerYellow
   m_EditorClassIdentifier: 
   BaseDamage: 12
   AttackRange: 3
   AttackSpeed: 1.5
+  TowerPrefab: {fileID: 4212539874750110819, guid: ee16ca719d7f34a3d82347ec3601426a,
+    type: 3}

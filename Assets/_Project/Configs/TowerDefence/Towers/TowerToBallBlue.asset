@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8831207a74ac5bd6c7908ccb7a932, type: 3}
+  m_Name: TowerToBallBlue
+  m_EditorClassIdentifier: 
+  TowerConfig: {fileID: 11400000, guid: 97a6429d8dc5f4830b2b9471deee7eef, type: 2}
+  BallConfig: {fileID: 11400000, guid: b2f9780610a1e40f6b381b1f7e84112e, type: 2}

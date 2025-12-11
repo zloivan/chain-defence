@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e31511c3ae434903975c1f97e8d3e57b, type: 3}
-  m_Name: Red
+  m_Script: {fileID: 11500000, guid: 330235c2e4b449f2b04c2c129fb1212b, type: 3}
+  m_Name: BallYellow
   m_EditorClassIdentifier: 
-  BaseDamage: 15
-  AttackRange: 2.5
-  AttackSpeed: 1
+  BallPrefab: {fileID: 361347919993437601, guid: 68693ce8b4a8f451682adea88e7b86b6,
+    type: 3}
+  Name: Yello Ball
