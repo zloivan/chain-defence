@@ -1,14 +1,15 @@
 using System;
 using ChainDefense.PathFinding;
+using ChainDefense.UI.ProgressBar;
 using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ChainDefense.Enemies
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, IHasProgress
     {
         private const float MIN_DISTANCE_TO_WAYPOINT = 0.1f;
-
+        public event EventHandler<IHasProgress.ProgressEventArgs> OnProgressUpdate;
         public event EventHandler OnEnemyReachedBase;
         public static event EventHandler OnEnemyDestroyed;
 
@@ -70,6 +71,10 @@ namespace ChainDefense.Enemies
         public void TakeDamage(int damage)
         {
             _currentHealth -= damage;
+            
+            OnProgressUpdate?.Invoke(this,
+                new IHasProgress.ProgressEventArgs(GetNormalizedProgress()));
+            
             if (_currentHealth <= 0)
                 SelfDestroy();
         }
@@ -90,5 +95,9 @@ namespace ChainDefense.Enemies
 
         public static GameObject SpawnEnemy(EnemySO config, Vector3 position) =>
             EnemySpawner.Instance.SpawnEnemy(config, position);
+
+        
+        public float GetNormalizedProgress() =>
+            _currentHealth/(float)_enemySO.MaxHealth;
     }
 }

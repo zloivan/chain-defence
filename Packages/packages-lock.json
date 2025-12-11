@@ -223,6 +223,13 @@
       "dependencies": {},
       "hash": "f1bd377941ab9c3c676ef6ff75dce4d2b7ab1e0d"
     },
+    "com.zloivan.utilities": {
+      "version": "https://github.com/zloivan/utility-library.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "078f680523ad9d23e2911136ffdf3aba351cbf80"
+    },
     "com.zloivan.v-fav": {
       "version": "git@github.com:zloivan/v-fav.git",
       "depth": 0,
