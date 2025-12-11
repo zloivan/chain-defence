@@ -17,7 +17,7 @@ namespace ChainDefense.Towers
 
     public class TowerManager : MonoBehaviour
     {
-        private const int MAX_NUMBER_OF_TOWERS = 3;
+        private const int MAX_NUMBER_OF_TOWERS = 10;
 
         [SerializeField] private List<TowerBallPairSO> _towerBallMappingList;
         [SerializeField] private List<LevelDefinition> _levelMappingList;

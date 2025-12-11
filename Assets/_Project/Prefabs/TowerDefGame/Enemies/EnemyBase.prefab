@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9089126563512899133}
   - component: {fileID: -3569444644481727816}
+  - component: {fileID: 5425587126306378496}
   m_Layer: 7
   m_Name: EnemyBase
   m_TagString: Untagged
@@ -45,3 +46,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySO: {fileID: 0}
+--- !u!65 &5425587126306378496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228330275944504887}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}

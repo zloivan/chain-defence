@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TowerGreen
   m_EditorClassIdentifier: 
   BaseDamage: 5
-  AttackRange: 2
-  AttackSpeed: 0.8
+  BaseAttackRange: 38
+  BaseAttackSpeed: 0.8
   TowerPrefab: {fileID: 4212539874750110819, guid: 3b1ddfea8e4bf47bf8da84119573653a,
     type: 3}
+  _levelingModifier: {fileID: 0}

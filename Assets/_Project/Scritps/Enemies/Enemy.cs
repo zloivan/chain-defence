@@ -16,18 +16,20 @@ namespace ChainDefense.Enemies
 
         private int _currentHealth;
         private int _currentWaypointIndex;
+        private bool _isDead;
 
         private PathManager _pathManager;
         private EnemySpawner _enemySpawner;
-        
+
 
         private void Awake()
         {
             _currentHealth = _enemySO.MaxHealth;
             _currentWaypointIndex = 0;
+            _isDead = false;
         }
 
-        private void Start()
+        private void Start() //TODO: with pool need reorganize initialization
         {
             _pathManager = PathManager.Instance;
             _enemySpawner = EnemySpawner.Instance;
@@ -36,33 +38,55 @@ namespace ChainDefense.Enemies
 
         private void Update()
         {
+            Navigate();
+        }
+
+        private void Navigate()
+        {
             var targetPosition = _pathManager.GetWaypointPosition(_currentWaypointIndex);
-            if (Vector3.Distance(targetPosition, transform.position) < MIN_DISTANCE_TO_WAYPOINT)
-            {
-                _currentWaypointIndex++;
-                if (_currentWaypointIndex >= _pathManager.GetWaypointCount())
-                {
-                    // Reached the end
-                    SelfDestroy();
-
-                    OnEnemyReachedBase?.Invoke(this, EventArgs.Empty);
-                    return;
-                }
-
-                targetPosition = _pathManager.GetWaypointPosition(_currentWaypointIndex);
-            }
-
+            var distanceBeforeMoving = Vector3.Distance(targetPosition, transform.position);
             var moveDirection = (targetPosition - transform.position).normalized;
+
             transform.position += _enemySO.MoveSpeed * Time.deltaTime * moveDirection;
+            var distanceAfterMoving = Vector3.Distance(targetPosition, transform.position);
+
+            // Check if we overshot the waypoint (distance increased instead of decreased)
+            if (distanceBeforeMoving >= distanceAfterMoving 
+                && distanceAfterMoving >= MIN_DISTANCE_TO_WAYPOINT)
+                return;
+
+            // Snap to waypoint position
+            transform.position = targetPosition;
+            _currentWaypointIndex++;
+            if (_currentWaypointIndex >= _pathManager.GetWaypointCount())
+            {
+                //TODO: latter attack the base
+                SelfDestroy();
+
+                OnEnemyReachedBase?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            _currentHealth -= damage;
+            if (_currentHealth <= 0)
+                SelfDestroy();
         }
 
         public void SelfDestroy()
         {
             //Destroy(gameObject);
             _enemySpawner.ReturnEnemy(this);
-            
+            _isDead = true;
             OnEnemyDestroyed?.Invoke(this, EventArgs.Empty);
         }
+
+        public int GetWaypointIndex() =>
+            _currentWaypointIndex;
+
+        public bool GetIsDead() =>
+            _isDead;
 
         public static GameObject SpawnEnemy(EnemySO config, Vector3 position) =>
             EnemySpawner.Instance.SpawnEnemy(config, position);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ChainDefense.Towers
 {
@@ -6,8 +7,8 @@ namespace ChainDefense.Towers
     public class TowerSO : ScriptableObject
     {
         public int BaseDamage;
-        public float AttackRange;
-        public float AttackSpeed;
+        [FormerlySerializedAs("AttackRange")] public float BaseAttackRange;
+        [FormerlySerializedAs("AttackSpeed")] public float BaseAttackSpeed;
         public GameObject TowerPrefab;
         public LevelModifierSO _levelingModifier;
     }

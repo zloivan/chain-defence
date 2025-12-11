@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TowerRed
   m_EditorClassIdentifier: 
   BaseDamage: 15
-  AttackRange: 2.5
-  AttackSpeed: 1
+  BaseAttackRange: 38
+  BaseAttackSpeed: 1
   TowerPrefab: {fileID: 4212539874750110819, guid: 7cac6b1b6fd384f9e8d356cc43df6c9f,
     type: 3}
+  _levelingModifier: {fileID: 0}

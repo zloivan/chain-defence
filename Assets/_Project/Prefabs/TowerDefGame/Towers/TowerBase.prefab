@@ -60,6 +60,9 @@ MonoBehaviour:
     DamageModifier: 2
     AttackSpeedModifier: 1.2
     AttackRangeModifier: 1
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &4793461116811358143
 GameObject:
   m_ObjectHideFlags: 0

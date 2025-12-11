@@ -14,7 +14,7 @@ namespace ChainDefense.ChainManagment
         public event EventHandler<Vector3> OnHeadChangedPosition;
         public event EventHandler OnChainBreak;
         public event EventHandler<List<Ball>> OnChainDestroyed;
-        private const int MIN_DESTROY_NUMBER = 10;
+        private const int MIN_DESTROY_NUMBER = 3;
 
         [SerializeField] private BoardGrid _boardGrid;
         [SerializeField] private InputController _inputController;
@@ -52,7 +52,7 @@ namespace ChainDefense.ChainManagment
 
         private void InputController_OnDragEnd(object sender, EventArgs e)
         {
-            if (_conntectedList.Count > MIN_DESTROY_NUMBER)
+            if (_conntectedList.Count >= MIN_DESTROY_NUMBER)
             {
                 foreach (var connectedBall in _conntectedList)
                 {
