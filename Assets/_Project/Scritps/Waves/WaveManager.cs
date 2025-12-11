@@ -22,6 +22,7 @@ namespace IKhom.StateMachineSystem.Runtime
         private int _currentWaveIndex;
         private int _enemiesAlive;
         private PathManager _pathManager;
+        private float _timeoutTimer;
 
         private void Awake() =>
             Instance = this;
@@ -60,10 +61,17 @@ namespace IKhom.StateMachineSystem.Runtime
             
             var currentWave = _wavesList[_currentWaveIndex];
 
+            //TODO: Bad usage, unable
             await UniTask.Delay(
                 TimeSpan.FromSeconds(currentWave.DelayBeforeStarting),
                 cancellationToken: cancellationToken
             );
+            
+            while (_timeoutTimer < currentWave.DelayBeforeStarting)
+            {
+                await UniTask.Yield(cancellationToken);
+                _timeoutTimer += Time.deltaTime;
+            }
 
             foreach (var wave in currentWave.Waves)
             {
