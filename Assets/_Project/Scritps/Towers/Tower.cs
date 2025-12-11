@@ -13,6 +13,14 @@ namespace ChainDefense.Towers
     {
         private const float DELAY_BETWEEN_SEARCH = .5f;
 
+        public class AttackInfoEventArts : EventArgs
+        {
+            public Enemy TargetEnemy;
+            public int DamageDealt;
+        }
+
+        public event EventHandler<AttackInfoEventArts> OnTowerAttack;
+
         [SerializeField] private TowerSO _towerConfig;
         [SerializeField] private TextMeshPro _levelNumberLabel; //TODO: DEBUG
         [SerializeField] private List<LevelModifier> _levelModifierSOList;
@@ -44,10 +52,13 @@ namespace ChainDefense.Towers
         {
             //TODO: DEBUG
             _currentAttackRange = _towerConfig.BaseAttackRange;
-            
+
             FindTarget();
+            HandleAttack();
+        }
 
-
+        private void HandleAttack()
+        {
             if (_currentTarget == null)
                 return;
 
@@ -59,9 +70,14 @@ namespace ChainDefense.Towers
 
             _attackCooldownTimer = 0;
             PerformAttack(_currentTarget);
+            OnTowerAttack?.Invoke(this, new AttackInfoEventArts
+            {
+                TargetEnemy = _currentTarget,
+                DamageDealt = _currentDamage
+            });
         }
 
-        private void FindTarget()
+        private void FindTarget() //TODO: look for other way of prioritizing enemies & optimize if needed
         {
             if (_findDelayTimer <= DELAY_BETWEEN_SEARCH)
             {
