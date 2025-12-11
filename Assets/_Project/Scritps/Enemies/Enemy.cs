@@ -10,7 +10,7 @@ namespace ChainDefense.Enemies
     {
         private const float MIN_DISTANCE_TO_WAYPOINT = 0.1f;
         public event EventHandler<IHasProgress.ProgressEventArgs> OnProgressUpdate;
-        public event EventHandler OnEnemyReachedBase;
+        public static event EventHandler OnAnyEnemyReachedBase;
         public static event EventHandler OnEnemyDestroyed;
 
         [SerializeField] private EnemySO _enemySO;
@@ -18,6 +18,7 @@ namespace ChainDefense.Enemies
         private int _currentHealth;
         private int _currentWaypointIndex;
         private bool _isDead;
+        private int _currentAttackDamage;
 
         private PathManager _pathManager;
         private EnemySpawner _enemySpawner;
@@ -28,6 +29,7 @@ namespace ChainDefense.Enemies
             _currentHealth = _enemySO.MaxHealth;
             _currentWaypointIndex = 0;
             _isDead = false;
+            _currentAttackDamage = _enemySO.BaseDamage;
         }
 
         private void Start() //TODO: with pool need reorganize initialization
@@ -52,7 +54,7 @@ namespace ChainDefense.Enemies
             var distanceAfterMoving = Vector3.Distance(targetPosition, transform.position);
 
             // Check if we overshot the waypoint (distance increased instead of decreased)
-            if (distanceBeforeMoving >= distanceAfterMoving 
+            if (distanceBeforeMoving >= distanceAfterMoving
                 && distanceAfterMoving >= MIN_DISTANCE_TO_WAYPOINT)
                 return;
 
@@ -64,24 +66,23 @@ namespace ChainDefense.Enemies
                 //TODO: latter attack the base
                 SelfDestroy();
 
-                OnEnemyReachedBase?.Invoke(this, EventArgs.Empty);
+                OnAnyEnemyReachedBase?.Invoke(this, EventArgs.Empty);
             }
         }
 
         public void TakeDamage(int damage)
         {
             _currentHealth -= damage;
-            
+
             OnProgressUpdate?.Invoke(this,
                 new IHasProgress.ProgressEventArgs(GetNormalizedProgress()));
-            
+
             if (_currentHealth <= 0)
                 SelfDestroy();
         }
 
         public void SelfDestroy()
         {
-            //Destroy(gameObject);
             _enemySpawner.ReturnEnemy(this);
             _isDead = true;
             OnEnemyDestroyed?.Invoke(this, EventArgs.Empty);
@@ -96,8 +97,10 @@ namespace ChainDefense.Enemies
         public static GameObject SpawnEnemy(EnemySO config, Vector3 position) =>
             EnemySpawner.Instance.SpawnEnemy(config, position);
 
-        
         public float GetNormalizedProgress() =>
-            _currentHealth/(float)_enemySO.MaxHealth;
+            _currentHealth / (float)_enemySO.MaxHealth;
+
+        public int GetAttackDamage() =>
+            _currentAttackDamage;
     }
 }

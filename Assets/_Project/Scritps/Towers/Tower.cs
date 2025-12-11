@@ -50,9 +50,6 @@ namespace ChainDefense.Towers
 
         private void Update()
         {
-            //TODO: DEBUG
-            _currentAttackRange = _towerConfig.BaseAttackRange;
-
             FindTarget();
             HandleAttack();
         }
@@ -175,7 +172,7 @@ namespace ChainDefense.Towers
         private List<LevelModifier> GetModifiers(int levelIndexModifier) =>
             _levelModifierSOList.Where(l => l.LevelIndexModifier <= levelIndexModifier).ToList();
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (_currentTarget != null)
             {
