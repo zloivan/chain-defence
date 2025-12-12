@@ -67,11 +67,6 @@ namespace ChainDefense.Towers
 
             _attackCooldownTimer = 0;
             PerformAttack(_currentTarget);
-            OnTowerAttack?.Invoke(this, new AttackInfoEventArts
-            {
-                TargetEnemy = _currentTarget,
-                DamageDealt = _currentDamage
-            });
         }
 
         private void FindTarget() //TODO: look for other way of prioritizing enemies & optimize if needed
@@ -146,6 +141,12 @@ namespace ChainDefense.Towers
         public void PerformAttack(Enemy enemy)
         {
             enemy.TakeDamage(_currentDamage);
+
+            OnTowerAttack?.Invoke(this, new AttackInfoEventArts
+            {
+                TargetEnemy = _currentTarget,
+                DamageDealt = _currentDamage
+            });
         }
 
         private void ApplyModifiers(List<LevelModifier> modifiers)
