@@ -8,8 +8,29 @@ namespace ChainDefense.PathFinding
     {
         public static PathManager Instance { get; set; }
 
-        [SerializeField] private List<Transform> _waypoints;
+        [SerializeField] private Transform _pathParent;
+        [SerializeField] private List<Transform> _waypoints = new();
         [SerializeField] private Transform _spawnPosition;
+
+        private void OnValidate()
+        {
+            if (_pathParent == null) 
+                return;
+            
+            _waypoints ??= new List<Transform>();
+            _waypoints.Clear();
+            foreach (Transform child in _pathParent)
+            {
+                if (child.GetSiblingIndex() != 0)
+                {
+                    _waypoints.Add(child);
+                }
+                else
+                {
+                    _spawnPosition = child;
+                }
+            }
+        }
 
         private void Awake() =>
             Instance = this;
