@@ -8,6 +8,15 @@ using UnityEngine.Serialization;
 
 namespace ChainDefense.Towers
 {
+    [Serializable]
+    public struct LevelModifier
+    {
+        public int LevelIndexModifier;
+        public float DamageModifier;
+        public float AttackSpeedModifier;
+        public float AttackRangeModifier;
+    }
+    
     [SelectionBase]
     public class Tower : MonoBehaviour
     {
@@ -18,8 +27,8 @@ namespace ChainDefense.Towers
             public Enemy TargetEnemy;
             public int DamageDealt;
         }
-
-        public event EventHandler<AttackInfoEventArts> OnTowerAttack;
+        public event EventHandler<AttackInfoEventArts> OnTowerFinishAttack;
+        public event EventHandler<AttackInfoEventArts> OnTowerBeginAttack;
 
         [SerializeField] private TowerSO _towerConfig;
         [SerializeField] private TextMeshPro _levelNumberLabel; //TODO: DEBUG
@@ -140,9 +149,15 @@ namespace ChainDefense.Towers
 
         public void PerformAttack(Enemy enemy)
         {
+            OnTowerBeginAttack?.Invoke(this, new AttackInfoEventArts
+            {
+                TargetEnemy = _currentTarget,
+                DamageDealt = _currentDamage
+            });
+            
             enemy.TakeDamage(_currentDamage);
 
-            OnTowerAttack?.Invoke(this, new AttackInfoEventArts
+            OnTowerFinishAttack?.Invoke(this, new AttackInfoEventArts
             {
                 TargetEnemy = _currentTarget,
                 DamageDealt = _currentDamage

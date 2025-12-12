@@ -12,7 +12,7 @@ namespace ChainDefense.Towers
         {
             _tower = GetComponentInParent<Tower>();
             
-            _tower.OnTowerAttack += Tower_OnTowerAttack;
+            _tower.OnTowerFinishAttack += TowerFinishOnTowerFinishAttack;
             
             _sequence = DOTween.Sequence();
             _sequence.SetAutoKill(false);
@@ -29,7 +29,7 @@ namespace ChainDefense.Towers
         private void OnDestroy() =>
             _sequence.Kill();
 
-        private void Tower_OnTowerAttack(object sender, Tower.AttackInfoEventArts attackInfo) =>
+        private void TowerFinishOnTowerFinishAttack(object sender, Tower.AttackInfoEventArts attackInfo) =>
             _sequence.Restart();
     }
 }
