@@ -16,7 +16,7 @@ namespace ChainDefense.Towers
         public float AttackSpeedModifier;
         public float AttackRangeModifier;
     }
-    
+
     [SelectionBase]
     public class Tower : MonoBehaviour
     {
@@ -27,6 +27,7 @@ namespace ChainDefense.Towers
             public Enemy TargetEnemy;
             public int DamageDealt;
         }
+
         public event EventHandler<AttackInfoEventArts> OnTowerFinishAttack;
         public event EventHandler<AttackInfoEventArts> OnTowerBeginAttack;
 
@@ -43,8 +44,8 @@ namespace ChainDefense.Towers
         private float _attackCooldownTimer;
 
         private Enemy _currentTarget;
-
         private float _findDelayTimer;
+        private TowerAttackType _attackType;
 
         private readonly List<LevelModifier> _levelModifiersList = new();
         private readonly Collider[] _enemyCollidersArray = new Collider[20];
@@ -147,6 +148,24 @@ namespace ChainDefense.Towers
             _levelNumberLabel.text = _currentLevel.ToString(); //TODO: DEBUG
         }
 
+        private void ApplyAttackType(Enemy target, TowerSO config)
+        {
+            switch (config.AttackType)
+            {
+                case TowerAttackType.SingleTarget:
+                    break;
+                case TowerAttackType.AOE:
+                    break;
+                case TowerAttackType.Slow:
+                    target.ApplySlow(config.SlowPercentage, config.SlowDuration).Forget();
+                    break;
+                case TowerAttackType.Chain:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(config), config, null);
+            }
+        }
+
         public void PerformAttack(Enemy enemy)
         {
             OnTowerBeginAttack?.Invoke(this, new AttackInfoEventArts
@@ -154,8 +173,9 @@ namespace ChainDefense.Towers
                 TargetEnemy = _currentTarget,
                 DamageDealt = _currentDamage
             });
-            
+
             enemy.TakeDamage(_currentDamage);
+            ApplyAttackType(enemy, _towerConfig);
 
             OnTowerFinishAttack?.Invoke(this, new AttackInfoEventArts
             {

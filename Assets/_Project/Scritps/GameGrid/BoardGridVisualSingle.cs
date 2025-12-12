@@ -13,7 +13,7 @@ namespace ChainDefense.GameGrid
         private MaterialPropertyBlock _mpb;
         private Color _originalColor;
         private bool _isHighlighted;
-        private Material _sharedMaterial; // Cached reference to avoid GetComponent calls
+        private Material _sharedMaterial;
 
         private void Awake()
         {
@@ -26,10 +26,9 @@ namespace ChainDefense.GameGrid
             if (_sharedMaterial != matForVisual)
             {
                 _sharedMaterial = matForVisual;
-                _meshRenderer.sharedMaterial = matForVisual; // Use shared, not instanced
+                _meshRenderer.sharedMaterial = matForVisual;
                 _originalColor = matForVisual.GetColor(BaseColorPropertyId);
 
-                // Enable emission keyword on SHARED material (one-time cost for all cells)
                 if (!matForVisual.IsKeywordEnabled("_EMISSION"))
                 {
                     matForVisual.EnableKeyword("_EMISSION");
@@ -39,7 +38,6 @@ namespace ChainDefense.GameGrid
             _meshRenderer.enabled = true;
             _isHighlighted = false;
 
-            // Reset MPB to original state
             _mpb.Clear();
             _meshRenderer.SetPropertyBlock(_mpb);
         }
@@ -54,7 +52,6 @@ namespace ChainDefense.GameGrid
         {
             if (!_meshRenderer.enabled || _isHighlighted) return;
 
-            // Override emission via MPB (no material instance created)
             _mpb.SetColor(EmissionColorPropertyId, _originalColor * _emissionIntensity);
             _meshRenderer.SetPropertyBlock(_mpb);
 
@@ -65,7 +62,6 @@ namespace ChainDefense.GameGrid
         {
             if (!_meshRenderer.enabled || !_isHighlighted) return;
 
-            // Clear MPB overrides (uses shared material's default values)
             _mpb.Clear();
             _meshRenderer.SetPropertyBlock(_mpb);
 

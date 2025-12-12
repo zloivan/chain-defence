@@ -33,12 +33,12 @@ namespace IKhom.StateMachineSystem.Runtime
         {
             _pathManager = PathManager.Instance;
 
-            Enemy.OnEnemyDestroyed += Enemy_OnEnemyDestroyed;
+            Enemy.OnAnyEnemyDestroyed += AnyEnemyOnAnyEnemyDestroyed;
 
             ProcessWaves(CancellationToken.None).Forget();
         }
 
-        private void Enemy_OnEnemyDestroyed(object sender, EventArgs e)
+        private void AnyEnemyOnAnyEnemyDestroyed(object sender, EventArgs e)
         {
             _enemiesAlive--;
 

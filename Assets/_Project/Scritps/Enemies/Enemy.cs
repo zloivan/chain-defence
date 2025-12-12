@@ -1,6 +1,8 @@
 using System;
+using System.Threading;
 using ChainDefense.PathFinding;
 using ChainDefense.UI.ProgressBar;
+using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,23 +12,28 @@ namespace ChainDefense.Enemies
     {
         private const float MIN_DISTANCE_TO_WAYPOINT = 0.1f;
         public event EventHandler<IHasProgress.ProgressEventArgs> OnProgressUpdate;
-        public static event EventHandler OnAnyEnemyReachedBase;//TODO: Clear static events
-        public static event EventHandler OnEnemyDestroyed;//TODO: Clear static events
+        public static event EventHandler OnAnyEnemyReachedBase; //TODO: Clear static events
+        public static event EventHandler OnAnyEnemyDestroyed; //TODO: Clear static events
 
+        public event EventHandler OnEnemySlowedStart;
+        public event EventHandler OnEnemySlowedFinish;
+        
         [SerializeField] private EnemySO _enemySO;
 
         private int _currentHealth;
         private int _currentWaypointIndex;
         private bool _isDead;
         private int _currentAttackDamage;
-
+        private float _currentSpeed;
+        private float _speedMultiplier = 1f;
         private PathManager _pathManager;
         private EnemySpawner _enemySpawner;
-
+        private CancellationTokenSource _slowCts;
 
         private void Awake()
         {
             _currentHealth = _enemySO.MaxHealth;
+            _currentSpeed = _enemySO.BaseMoveSpeed;
             _currentWaypointIndex = 0;
             _isDead = false;
             _currentAttackDamage = _enemySO.BaseDamage;
@@ -50,7 +57,7 @@ namespace ChainDefense.Enemies
             var distanceBeforeMoving = Vector3.Distance(targetPosition, transform.position);
             var moveDirection = (targetPosition - transform.position).normalized;
 
-            transform.position += _enemySO.MoveSpeed * Time.deltaTime * moveDirection;
+            transform.position += _currentSpeed * _speedMultiplier * Time.deltaTime * moveDirection;
             var distanceAfterMoving = Vector3.Distance(targetPosition, transform.position);
 
             // Check if we overshot the waypoint (distance increased instead of decreased)
@@ -69,6 +76,34 @@ namespace ChainDefense.Enemies
                 OnAnyEnemyReachedBase?.Invoke(this, EventArgs.Empty);
             }
         }
+        
+        public async UniTaskVoid ApplySlow(float percent, float duration)
+        {
+            _slowCts?.Cancel();
+            _slowCts?.Dispose();
+    
+            _slowCts = new CancellationTokenSource();
+    
+            var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(
+                _slowCts.Token, 
+                this.GetCancellationTokenOnDestroy()
+            );
+    
+            _speedMultiplier = 1f - percent;
+            OnEnemySlowedStart?.Invoke(this, EventArgs.Empty);
+            var cancelled = await UniTask.Delay(
+                TimeSpan.FromSeconds(duration), 
+                cancellationToken: linkedCts.Token
+            ).SuppressCancellationThrow();
+    
+            linkedCts?.Dispose();
+    
+            if (!cancelled)
+            {
+                _speedMultiplier = 1f;
+                OnEnemySlowedFinish?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         public void TakeDamage(int damage)
         {
@@ -85,7 +120,7 @@ namespace ChainDefense.Enemies
         {
             _enemySpawner.ReturnEnemy(this);
             _isDead = true;
-            OnEnemyDestroyed?.Invoke(this, EventArgs.Empty);
+            OnAnyEnemyDestroyed?.Invoke(this, EventArgs.Empty);
         }
 
         public int GetWaypointIndex() =>

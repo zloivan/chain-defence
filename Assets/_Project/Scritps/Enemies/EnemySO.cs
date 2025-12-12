@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ChainDefense.Enemies
 {
@@ -6,7 +7,7 @@ namespace ChainDefense.Enemies
     public class EnemySO : ScriptableObject
     {
         public int MaxHealth;
-        public float MoveSpeed;
+        [FormerlySerializedAs("MoveSpeed")] public float BaseMoveSpeed;
         public int BaseDamage;
         public GameObject EnemyPrefab;
     }

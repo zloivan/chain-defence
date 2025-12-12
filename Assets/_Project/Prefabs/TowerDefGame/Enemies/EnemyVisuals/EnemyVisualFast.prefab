@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1254258305327780791}
   - component: {fileID: 5159461278977409063}
   - component: {fileID: 3190739382082211396}
+  - component: {fileID: 3348889918237469859}
   m_Layer: 0
   m_Name: EnemyVisualFast
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3348889918237469859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169312784300300892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e8aed23bf341c8b7c8c3b8a0d6c6c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slowColor: {r: 0.43204877, g: 0.4538164, b: 0.6886792, a: 1}
