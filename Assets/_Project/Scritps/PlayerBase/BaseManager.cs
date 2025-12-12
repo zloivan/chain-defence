@@ -19,10 +19,8 @@ namespace ChainDefense.PlayerBase
             _currentHealth = MAX_HEALTH;
         }
 
-        private void Start()
-        {
+        private void Start() =>
             Enemy.OnAnyEnemyReachedBase += Enemy_OnAnyEnemyReachedBase;
-        }
 
         private void Enemy_OnAnyEnemyReachedBase(object sender, EventArgs e)
         {
