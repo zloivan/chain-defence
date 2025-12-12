@@ -78,15 +78,30 @@ namespace IKhom.StateMachineSystem.Runtime
 
         private async UniTask StartWave(CancellationToken cancellationToken, WaveSO targetWave)
         {
-            foreach (var wave in targetWave.Waves)
+            if (targetWave.EnemyTypes == null || targetWave.EnemyTypes.Length == 0)
             {
-                for (var i = 0; i < wave.EnemyCount; i++)
-                {
-                    SpawnEnemy(wave.EnemyType);
+                _currentWaveIndex++;
+                OnWaveCompleted?.Invoke(this, _currentWaveIndex);
 
-                    if (i < wave.EnemyCount - 1)
+                if (_currentWaveIndex >= _wavesList.Count)
+                {
+                    OnAllWavesCompleted?.Invoke(this, EventArgs.Empty);
+                    return;
+                }
+
+                ProcessWaves(cancellationToken).Forget();
+                return;
+            }
+            
+            foreach (var enemy in targetWave.EnemyTypes)
+            {
+                for (var i = 0; i < enemy.EnemyCount; i++)
+                {
+                    SpawnEnemy(enemy.EnemyType);
+
+                    if (i < enemy.EnemyCount - 1)
                     {
-                        await UniTask.Delay(TimeSpan.FromSeconds(wave.TimeBetweenSpawns),
+                        await UniTask.Delay(TimeSpan.FromSeconds(enemy.TimeBetweenSpawns),
                             cancellationToken: cancellationToken);
                     }
                 }

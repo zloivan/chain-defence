@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1eec98b2084743fe995ee32e702036b9, type: 3}
-  m_Name: 1_1_Wave B2
+  m_Name: 6_1_Wave B12F3T2
   m_EditorClassIdentifier: 
   EnemyTypes:
   - EnemyType: {fileID: 11400000, guid: 191322fd668584c3fbf047a91ef7ea2c, type: 2}
+    EnemyCount: 12
+    TimeBetweenSpawns: 0.5
+  - EnemyType: {fileID: 11400000, guid: 5fa1d07c6c3ee4ffabe22cf19987ebd1, type: 2}
+    EnemyCount: 3
+    TimeBetweenSpawns: 0.5
+  - EnemyType: {fileID: 11400000, guid: 62610a196973845b3bc0805b389479dd, type: 2}
     EnemyCount: 2
     TimeBetweenSpawns: 0.5
-  DelayBeforeStarting: 2
+  DelayBeforeStarting: 12

@@ -1,7 +1,6 @@
 using System;
 using ChainDefense.Enemies;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace IKhom.StateMachineSystem.Runtime
 {
@@ -16,7 +15,7 @@ namespace IKhom.StateMachineSystem.Runtime
     [CreateAssetMenu(fileName = "New Wave", menuName = "Configs/Wave SO", order = 0)]
     public class WaveSO : ScriptableObject
     {
-        [FormerlySerializedAs("Enemies")] public WaveConfig[] Waves;
+        public WaveConfig[] EnemyTypes;
         public float DelayBeforeStarting;
     }
 }
