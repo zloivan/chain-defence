@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using ChainDefense.Enemies;
 using ChainDefense.PathFinding;
 using Cysharp.Threading.Tasks;
@@ -14,7 +15,8 @@ namespace IKhom.StateMachineSystem.Runtime
         public event EventHandler OnEnemyWaveSpawned;
         public event EventHandler<int> OnEnemyNumberChanged;
         public event EventHandler AllWavesCompleted;
-        
+        public event EventHandler<float> OnWaveCooldownChanged;
+
         public static WaveManager Instance { get; private set; }
 
         [SerializeField] private List<WaveSO> _wavesList;
@@ -22,7 +24,7 @@ namespace IKhom.StateMachineSystem.Runtime
         private int _currentWaveIndex;
         private int _enemiesAlive;
         private PathManager _pathManager;
-        private float _timeoutTimer;
+        private float _cooldownTimer;
 
         private void Awake() =>
             Instance = this;
@@ -32,8 +34,8 @@ namespace IKhom.StateMachineSystem.Runtime
             _pathManager = PathManager.Instance;
 
             Enemy.OnEnemyDestroyed += Enemy_OnEnemyDestroyed;
-            
-            StartWave(CancellationToken.None).Forget();
+
+            ProcessWaves(CancellationToken.None).Forget();
         }
 
         private void Enemy_OnEnemyDestroyed(object sender, EventArgs e)
@@ -47,35 +49,37 @@ namespace IKhom.StateMachineSystem.Runtime
 
             _currentWaveIndex++;
             OnWaveCompleted?.Invoke(this, _currentWaveIndex);
-            
-            StartWave(CancellationToken.None).Forget();
-        }
 
-        private async UniTask StartWave(CancellationToken cancellationToken)
-        {
             if (_currentWaveIndex >= _wavesList.Count)
             {
                 AllWavesCompleted?.Invoke(this, EventArgs.Empty);
                 return;
             }
-            
-            var currentWave = _wavesList[_currentWaveIndex];
 
-            //TODO: Bad usage, unable
-            await UniTask.Delay(
-                TimeSpan.FromSeconds(currentWave.DelayBeforeStarting),
-                cancellationToken: cancellationToken
-            );
-            
-            while (_timeoutTimer < currentWave.DelayBeforeStarting)
+            ProcessWaves(CancellationToken.None).Forget();
+        }
+
+        private async UniTask ProcessWaves(CancellationToken cancellationToken)
+        {
+            var currentWave = _wavesList[_currentWaveIndex];
+            _cooldownTimer = currentWave.DelayBeforeStarting;
+            OnWaveCooldownChanged?.Invoke(this, _cooldownTimer);
+
+            while (_cooldownTimer >= 0)
             {
-                await UniTask.Yield(cancellationToken);
-                _timeoutTimer += Time.deltaTime;
+                await UniTask.Yield();
+                _cooldownTimer -= Time.deltaTime;
+                OnWaveCooldownChanged?.Invoke(this, _cooldownTimer);
             }
 
-            foreach (var wave in currentWave.Waves)
+            StartWave(cancellationToken, currentWave).Forget();
+        }
+
+        private async UniTask StartWave(CancellationToken cancellationToken, WaveSO targetWave)
+        {
+            foreach (var wave in targetWave.Waves)
             {
-                for (int i = 0; i < wave.EnemyCount; i++)
+                for (var i = 0; i < wave.EnemyCount; i++)
                 {
                     SpawnEnemy(wave.EnemyType);
 
@@ -98,6 +102,9 @@ namespace IKhom.StateMachineSystem.Runtime
 
         public int GetTotalWavesCount() =>
             _wavesList.Count;
+
+        public float GetCalldownTimer() =>
+            _cooldownTimer;
 
         private void SpawnEnemy(EnemySO waveEnemyType)
         {
