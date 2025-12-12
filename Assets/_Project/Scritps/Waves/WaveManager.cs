@@ -27,7 +27,8 @@ namespace ChainDefense.Waves
         public event EventHandler<float> OnWaveCooldownChanged;
 
         [SerializeField] private List<WaveSO> _wavesList;
-
+        [SerializeField] private bool _useMockWaves;
+        
         private int _currentWaveIndex;
         private PathManager _pathManager;
         private float _delayBeforeWaveTimer;
@@ -37,7 +38,16 @@ namespace ChainDefense.Waves
             _pathManager = PathManager.Instance;
             Enemy.OnDestroyed += OnDestroyed;
 
-            RunWaveSequence().Forget();
+            if (_useMockWaves)
+            {
+                RunWaveSequence().Forget();
+            }
+        }
+        
+        public void SetupWavesList(List<WaveSO> wavesList)
+        {
+            _wavesList = wavesList;
+            _currentWaveIndex = 0;
         }
 
         private void OnDestroyed(object sender, Enemy enemy)
@@ -48,7 +58,7 @@ namespace ChainDefense.Waves
             CompleteCurrentWave();
         }
 
-        private async UniTask RunWaveSequence()
+        public async UniTask RunWaveSequence()
         {
             while (_currentWaveIndex < _wavesList.Count)
             {

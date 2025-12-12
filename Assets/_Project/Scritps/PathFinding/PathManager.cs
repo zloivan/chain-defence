@@ -1,25 +1,26 @@
 using System;
 using System.Collections.Generic;
+using ChainDefense.MapManagement;
+using IKhom.UtilitiesLibrary.Runtime.components;
+using Unity.Collections;
 using UnityEngine;
 
 namespace ChainDefense.PathFinding
 {
-    public class PathManager : MonoBehaviour
+    public class PathManager : SingletonBehaviour<PathManager>
     {
-        public static PathManager Instance { get; set; }
-
         [SerializeField] private Transform _pathParent;
-        [SerializeField] private List<Transform> _waypoints = new();
-        [SerializeField] private Transform _spawnPosition;
+        [SerializeField] [ReadOnly] private List<Transform> _waypoints = new();
+        [SerializeField] [ReadOnly] private Transform _spawnPosition;
 
-        private void OnValidate()
+        public void SetupPathPrefab(Transform pathPrefab)
         {
-            if (_pathParent == null) 
+            if (pathPrefab == null)
                 return;
-            
+
             _waypoints ??= new List<Transform>();
             _waypoints.Clear();
-            foreach (Transform child in _pathParent)
+            foreach (Transform child in pathPrefab)
             {
                 if (child.GetSiblingIndex() != 0)
                 {
@@ -32,9 +33,6 @@ namespace ChainDefense.PathFinding
             }
         }
 
-        private void Awake() =>
-            Instance = this;
-
         public Vector3 GetWaypointPosition(int index) =>
             _waypoints[index].position;
 
@@ -43,6 +41,9 @@ namespace ChainDefense.PathFinding
 
         public Vector3 GetSpawnPosition() =>
             _spawnPosition.position;
+
+        private void OnValidate() =>
+            SetupPathPrefab(_pathParent);
 
         private void OnDrawGizmos()
         {

@@ -15,4 +15,4 @@ MonoBehaviour:
   MapName: Mountains
   PathPrefab: {fileID: 3366851532075801754, guid: 15f8868915b0345d6b5128b243f4d079,
     type: 3}
-  GroundMaterial: {fileID: 0}
+  GroundMaterial: {fileID: 2100000, guid: 7ce16cfe2d8604eaf9ecfbf56b915db6, type: 2}

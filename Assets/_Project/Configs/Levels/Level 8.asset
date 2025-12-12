@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab774870e694eb1b344befcdc88797f, type: 3}
   m_Name: Level 8
   m_EditorClassIdentifier: 
+  LevelName: 
   LevelNumber: 8
   Map: {fileID: 11400000, guid: 5a8791a60891d4d32806cf16d365f6e0, type: 2}
   Waves:
-  - {fileID: 11400000, guid: 0508faebd51fa4d11a2eaa722754c2f7, type: 2}
-  - {fileID: 11400000, guid: 78ddf4114c6e7448284c80a27703a44e, type: 2}
-  - {fileID: 11400000, guid: fe7772be4d5d14a73a0e94e80927463f, type: 2}
+  - {fileID: 11400000, guid: c774712df301c46f0bbd3aa6bda47c01, type: 2}
+  - {fileID: 11400000, guid: 1c5560ae7b40f49cf92a7e0818ecf73a, type: 2}
+  - {fileID: 11400000, guid: a52758c11230b4b5cbdf964c08c6e4f7, type: 2}
+  - {fileID: 11400000, guid: 3dfa1438c26744d3abe8ff85b8a371df, type: 2}
+  - {fileID: 11400000, guid: ae8ea7e26cd5b443e8703e4eb50236df, type: 2}
