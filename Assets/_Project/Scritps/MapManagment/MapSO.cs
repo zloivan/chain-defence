@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace ChainDefense.MapManagment
 {
     [CreateAssetMenu(fileName = "Map", menuName = "Configs/Map SO", order = 0)]
     public class MapSO : ScriptableObject

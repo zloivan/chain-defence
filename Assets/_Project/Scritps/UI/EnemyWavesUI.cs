@@ -1,8 +1,8 @@
-using IKhom.StateMachineSystem.Runtime;
+using ChainDefense.Waves;
 using TMPro;
 using UnityEngine;
 
-namespace ChainDefense
+namespace ChainDefense.UI
 {
     public class EnemyWavesUI : MonoBehaviour
     {

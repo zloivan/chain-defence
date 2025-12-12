@@ -22,9 +22,9 @@ namespace ChainDefense.Core
 
         private void Update()
         {
-            if (Input.touchCount > 0)
+            if (UnityEngine.Input.touchCount > 0)
             {
-                var touch = Input.GetTouch(0);
+                var touch = UnityEngine.Input.GetTouch(0);
                 switch (touch.phase)
                 {
                     case TouchPhase.Began:
@@ -42,13 +42,13 @@ namespace ChainDefense.Core
                 return;
             }
             
-            if (Input.GetMouseButtonDown(0))
+            if (UnityEngine.Input.GetMouseButtonDown(0))
             {
                 if (!_isDragging)
                     StartDrag();
             }
 
-            if (Input.GetMouseButtonUp(0))
+            if (UnityEngine.Input.GetMouseButtonUp(0))
             {
                 if (_isDragging)
                     OnEndDrag();

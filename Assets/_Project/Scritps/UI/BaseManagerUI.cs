@@ -2,7 +2,7 @@ using ChainDefense.PlayerBase;
 using TMPro;
 using UnityEngine;
 
-namespace ChainDefense
+namespace ChainDefense.UI
 {
     public class BaseManagerUI : MonoBehaviour
     {

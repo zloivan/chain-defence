@@ -2,7 +2,7 @@ using System;
 using ChainDefense.Enemies;
 using UnityEngine;
 
-namespace IKhom.StateMachineSystem.Runtime
+namespace ChainDefense.Waves
 {
     [Serializable]
     public class WaveConfig

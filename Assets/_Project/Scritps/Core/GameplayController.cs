@@ -6,13 +6,13 @@ using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
 using ChainDefense.PlayerBase;
 using ChainDefense.Utilities;
+using ChainDefense.Waves;
 using DG.Tweening;
-using IKhom.StateMachineSystem.Runtime;
 using UnityEngine;
 
 namespace ChainDefense.Core
 {
-    public class LevelManager : MonoBehaviour //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
+    public class GameplayController : MonoBehaviour //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
     {
         private enum LevelState
         {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using DefaultNamespace;
-using IKhom.StateMachineSystem.Runtime;
+using ChainDefense.MapManagment;
+using ChainDefense.Waves;
 using UnityEngine;
 
-namespace ChainDefense.Core
+namespace ChainDefense.LevelManagment
 {
     [CreateAssetMenu(fileName = "Level", menuName = "Configs/Leve SO", order = 0)]
     public class LevelSO : ScriptableObject

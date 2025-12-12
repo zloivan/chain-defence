@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace ChainDefense.MapManagment
 {
     public class MapManager : SingletonBehaviour<MapManager>
     {

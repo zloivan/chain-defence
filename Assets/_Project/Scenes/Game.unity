@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 136847363}
   - component: {fileID: 136847364}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameplayController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
