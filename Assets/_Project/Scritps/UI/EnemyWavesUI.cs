@@ -9,23 +9,31 @@ namespace ChainDefense.UI
         [SerializeField] private TextMeshProUGUI _wavesIndexLabel;
         [SerializeField] private TextMeshProUGUI _waveTimerLabel;
 
+        private WaveManager _waveManager;
+
         private void Start()
         {
-            WaveManager.Instance.OnEnemyWaveSpawned += (_, waveInfo) =>
-            {
-                _wavesIndexLabel.text =
-                    $"Wave: {(waveInfo.WaveIndex + 1).ToString()} / {WaveManager.Instance.GetTotalWavesCount().ToString()}";
-            };
-            WaveManager.Instance.OnWaveCooldownChanged += (_, waveDelayTimer) =>
-            {
-                _waveTimerLabel.text = $"Next Wave In: {Mathf.CeilToInt(waveDelayTimer).ToString()}s";
-            };
+            _waveManager = WaveManager.Instance;
 
-            _wavesIndexLabel.text =
-                $"Wave: {(WaveManager.Instance.GetWaveIndex() + 1).ToString()} / {WaveManager.Instance.GetTotalWavesCount().ToString()}";
+            _waveManager.OnWavesListUpdate += (_, _) => UpdateWavesNumber();
+            _waveManager.OnEnemyWaveSpawned += (_, _) => UpdateWavesNumber();
+            _waveManager.OnWaveCooldownChanged += (_, _) => UpdateTimerLabel();
 
+            UpdateWavesNumber();
+
+            UpdateTimerLabel();
+        }
+
+        private void UpdateTimerLabel()
+        {
             _waveTimerLabel.text =
-                $"Next Wave In: {Mathf.CeilToInt(WaveManager.Instance.GetDelayBeforeWaveTimer()).ToString()}s";
+                $"Next Wave In: {Mathf.CeilToInt(_waveManager.GetDelayBeforeWaveTimer()).ToString()}s";
+        }
+
+        private void UpdateWavesNumber()
+        {
+            _wavesIndexLabel.text =
+                $"Wave: {(_waveManager.GetWaveIndex() + 1).ToString()} / {_waveManager.GetTotalWavesCount().ToString()}";
         }
     }
 }

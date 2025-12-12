@@ -2039,7 +2039,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistAcrossScenes: 0
   _unParentOnAwake: 0
-  _parent: {fileID: 0}
 --- !u!4 &1403722963
 Transform:
   m_ObjectHideFlags: 0
@@ -2465,10 +2464,9 @@ MonoBehaviour:
   _persistAcrossScenes: 0
   _unParentOnAwake: 0
   _levelList:
-  - {fileID: 11400000, guid: 66291530cb549410d930fc971d274f98, type: 2}
+  - {fileID: 11400000, guid: c115b752fcee54088aeee7c1d46995a3, type: 2}
   - {fileID: 11400000, guid: 7b220f69f3ef14e3b9040e0d368571af, type: 2}
   _loadFirstOnStart: 1
-  _debugTestLevelLoop: 1
 --- !u!1 &1532930506
 GameObject:
   m_ObjectHideFlags: 0

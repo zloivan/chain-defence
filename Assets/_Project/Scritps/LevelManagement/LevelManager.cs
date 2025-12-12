@@ -48,5 +48,8 @@ namespace ChainDefense.LevelManagement
             _waveManager.SetupWavesList(_currentLevel.Waves);
             _waveManager.RunWaveSequence().Forget();
         }
+
+        public int GetCurrentLevelNumber() =>
+            _currentLevel.LevelNumber;
     }
 }

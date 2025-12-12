@@ -25,6 +25,7 @@ namespace ChainDefense.Waves
         public event EventHandler<WaveEventArgs> OnEnemyWaveSpawned;
         public event EventHandler OnAllWavesCompleted;
         public event EventHandler<float> OnWaveCooldownChanged;
+        public event EventHandler OnWavesListUpdate;
 
         [SerializeField] private List<WaveSO> _wavesList;
         [SerializeField] private bool _useMockWaves;
@@ -47,6 +48,7 @@ namespace ChainDefense.Waves
         public void SetupWavesList(List<WaveSO> wavesList)
         {
             _wavesList = wavesList;
+            OnWavesListUpdate?.Invoke(this, EventArgs.Empty);
             _currentWaveIndex = 0;
         }
 

@@ -31,16 +31,15 @@ namespace ChainDefense.Enemies
         private EnemySpawner _enemySpawner;
         private CancellationTokenSource _slowCts;
 
-        public void Initialize(EnemySO enemyConfig, PathManager pathManager, EnemySpawner enemySpawner)
+        public void Initialize(EnemySO enemyConfig, PathManager pathManager, EnemySpawner enemySpawner, int levelNumber)
         {
-            _currentHealth = enemyConfig.MaxHealth;
+            _currentHealth = CalculateMaxHealth(enemyConfig.MaxHealth, levelNumber);
             _currentSpeed = enemyConfig.BaseMoveSpeed;
             _currentAttackDamage = enemyConfig.BaseDamage;
-            
 
             _pathManager = pathManager;
             _enemySpawner = enemySpawner;
-            
+
             transform.position = _pathManager.GetSpawnPosition();
             _currentWaypointIndex = 0;
             _isDead = false;
@@ -48,6 +47,13 @@ namespace ChainDefense.Enemies
 
         private void Update() =>
             MoveToWaypoint();
+
+        private int CalculateMaxHealth(int enemyConfigMaxHealth, int levelNumber)
+        {
+            const float PER_LEVEL_HEALTH_MULTIPLIER = 0.15f;
+            
+            return Mathf.RoundToInt(enemyConfigMaxHealth * (1 + levelNumber * PER_LEVEL_HEALTH_MULTIPLIER));
+        }
 
         private void MoveToWaypoint()
         {
@@ -130,24 +136,25 @@ namespace ChainDefense.Enemies
 
         public static Enemy SpawnEnemy(EnemySO config, Vector3 position) =>
             EnemySpawner.Instance.SpawnEnemy(config, position);
+
         public static int GetAliveEnemyCount() =>
             EnemySpawner.Instance.GetAliveCount();
-        
+
         public static IReadOnlyList<Enemy> GetAliveEnemies() =>
             EnemySpawner.Instance.GetAliveEnemies();
-        
+
         public static event EventHandler<Enemy> OnEnemySpawned
         {
             add => EnemySpawner.Instance.OnEnemySpawned += value;
             remove => EnemySpawner.Instance.OnEnemySpawned -= value;
         }
-        
+
         public static event EventHandler<Enemy> OnDestroyed
         {
             add => EnemySpawner.Instance.OnEnemyDestroyed += value;
             remove => EnemySpawner.Instance.OnEnemyDestroyed -= value;
         }
-        
+
         public static event EventHandler<int> OnAliveCountChanged
         {
             add => EnemySpawner.Instance.OnAliveCountChanged += value;
