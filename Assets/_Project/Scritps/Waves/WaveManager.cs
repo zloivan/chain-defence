@@ -14,7 +14,7 @@ namespace IKhom.StateMachineSystem.Runtime
         public event EventHandler<int> OnWaveCompleted;
         public event EventHandler OnEnemyWaveSpawned;
         public event EventHandler<int> OnEnemyNumberChanged;
-        public event EventHandler AllWavesCompleted;
+        public event EventHandler OnAllWavesCompleted;
         public event EventHandler<float> OnWaveCooldownChanged;
 
         public static WaveManager Instance { get; private set; }
@@ -52,13 +52,14 @@ namespace IKhom.StateMachineSystem.Runtime
 
             if (_currentWaveIndex >= _wavesList.Count)
             {
-                AllWavesCompleted?.Invoke(this, EventArgs.Empty);
+                OnAllWavesCompleted?.Invoke(this, EventArgs.Empty);
                 return;
             }
 
             ProcessWaves(CancellationToken.None).Forget();
         }
-
+        
+        //BUG: Sometimes waves more then max and enemies less then on screen
         private async UniTask ProcessWaves(CancellationToken cancellationToken)
         {
             var currentWave = _wavesList[_currentWaveIndex];

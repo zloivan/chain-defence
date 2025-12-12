@@ -1,15 +1,19 @@
+using System;
 using System.Collections.Generic;
 using ChainDefense.Balls;
 using ChainDefense.ChainManagment;
 using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
+using ChainDefense.PlayerBase;
 using ChainDefense.Utilities;
 using DG.Tweening;
+using IKhom.StateMachineSystem.Runtime;
 using UnityEngine;
 
 namespace ChainDefense.Core
 {
-    public class LevelManager : MonoBehaviour//TODO: TEMP SOLUTION, FIX AND REFACTOR.
+    public class
+        LevelManager : MonoBehaviour //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
     {
         private enum LevelState
         {
@@ -27,6 +31,8 @@ namespace ChainDefense.Core
         private bool _isReorderCompleted;
         private readonly Dictionary<Ball, Vector3> _ballTargetPositions = new();
         private readonly List<GridPosition> _allOccupiedPositions = new();
+        private WaveManager _waveManager;
+        private BaseManager _baseManager;
 
         private void Awake()
         {
@@ -38,9 +44,24 @@ namespace ChainDefense.Core
             _boardGrid = BoardGrid.Instance;
             _ballSpawner = BallSpawner.Instance;
             _chainValidator = ChainValidator.Instance;
+            _waveManager = WaveManager.Instance;
+            _baseManager = BaseManager.Instance;
+
             _chainValidator.OnChainDestroyed += ChainValidator_OnChainDestroyed;
+            _waveManager.OnAllWavesCompleted += WaveManager_OnAllWavesCompleted;
+            _baseManager.OnGameOver += BaseManager_OnGameOver;
 
             FillBoardWithGuaranteedDistribution();
+        }
+
+        private void BaseManager_OnGameOver(object sender, EventArgs e)
+        {
+            Debug.Log("Game Over!");
+        }
+
+        private void WaveManager_OnAllWavesCompleted(object sender, EventArgs e)
+        {
+            Debug.Log("Victory!");
         }
 
         private void ChainValidator_OnChainDestroyed(object sender, List<Ball> e)
@@ -162,7 +183,5 @@ namespace ChainDefense.Core
                 }
             }
         }
-
-      
     }
 }

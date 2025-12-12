@@ -35,10 +35,11 @@ namespace ChainDefense.PlayerBase
             _currentHealth -= damage;
             OnBaseTakeDamage?.Invoke(this, _currentHealth);
 
-            if (_currentHealth <= 0)
-            {
-                OnGameOver?.Invoke(this, EventArgs.Empty);
-            }
+            if (_currentHealth > 0) 
+                return;
+            
+            _currentHealth = 0;
+            OnGameOver?.Invoke(this, EventArgs.Empty);
         }
 
         public int GetCurrentHealth() =>
