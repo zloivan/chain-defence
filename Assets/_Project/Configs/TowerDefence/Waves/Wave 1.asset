@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waves:
   - EnemyType: {fileID: 11400000, guid: 191322fd668584c3fbf047a91ef7ea2c, type: 2}
-    EnemyCount: 5
+    EnemyCount: 7
     TimeBetweenSpawns: 0.8
   DelayBeforeStarting: 0

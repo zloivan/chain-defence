@@ -18,6 +18,7 @@ namespace ChainDefense.Towers
         public float BaseAttackSpeed;
         public TowerAttackType AttackType;
         public float AoeRadius;
+        public float AoeDamagePercentage;
         public float SlowPercentage;
         public int ChainTargets;
         public float SlowDuration;

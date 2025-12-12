@@ -97,3 +97,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slowColor: {r: 0.5943396, g: 0.31986028, b: 0.31118724, a: 1}
+  _damageColor: {r: 1, g: 0.63529414, b: 0.63529414, a: 1}

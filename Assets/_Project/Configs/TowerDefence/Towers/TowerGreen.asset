@@ -16,7 +16,8 @@ MonoBehaviour:
   BaseAttackRange: 38
   BaseAttackSpeed: 0.8
   AttackType: 1
-  AoeRadius: 1.5
+  AoeRadius: 3.5
+  AoeDamagePercentage: 0.4
   SlowPercentage: 0
   ChainTargets: 0
   SlowDuration: 0

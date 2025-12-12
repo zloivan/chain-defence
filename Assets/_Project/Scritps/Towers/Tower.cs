@@ -155,6 +155,27 @@ namespace ChainDefense.Towers
                 case TowerAttackType.SingleTarget:
                     break;
                 case TowerAttackType.AOE:
+
+                    var numberOfTargets = Physics.OverlapSphereNonAlloc(
+                        target.transform.position,
+                        config.AoeRadius,
+                        _enemyCollidersArray,
+                        _enemyLayerMask
+                    );
+
+                    if (numberOfTargets > 1)
+                    {
+                        for (var i = 0; i < numberOfTargets; i++)
+                        {
+                            var enemy = _enemyCollidersArray[i].GetComponent<Enemy>();
+                            if (enemy == target || enemy == null)
+                                continue;
+                            
+                            var aoeDamage = Mathf.CeilToInt(_currentDamage * config.AoeDamagePercentage);
+                            enemy.TakeDamage(aoeDamage);
+                        }
+                    }
+
                     break;
                 case TowerAttackType.Slow:
                     target.ApplySlow(config.SlowPercentage, config.SlowDuration).Forget();
@@ -216,9 +237,16 @@ namespace ChainDefense.Towers
                 Gizmos.DrawLine(transform.position, _currentTarget.transform.position);
             }
 
-            // Optional: Also draw the attack range sphere
+            // Draw the attack range sphere
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, _currentAttackRange);
+
+            // Draw AOE radius at target position if this is an AOE tower
+            if (_towerConfig != null && _towerConfig.AttackType == TowerAttackType.AOE && _currentTarget != null)
+            {
+                Gizmos.color = new Color(1f, 0.5f, 0f, 0.5f); // Orange
+                Gizmos.DrawWireSphere(_currentTarget.transform.position, _towerConfig.AoeRadius);
+            }
         }
 
         public static GameObject SpawnTower(TowerSO config, Vector3 position) =>

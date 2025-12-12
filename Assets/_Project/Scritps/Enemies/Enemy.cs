@@ -15,9 +15,10 @@ namespace ChainDefense.Enemies
         public static event EventHandler OnAnyEnemyReachedBase; //TODO: Clear static events
         public static event EventHandler OnAnyEnemyDestroyed; //TODO: Clear static events
 
+        public event EventHandler<int> OnEnemyTakeDamage;
         public event EventHandler OnEnemySlowedStart;
         public event EventHandler OnEnemySlowedFinish;
-        
+
         [SerializeField] private EnemySO _enemySO;
 
         private int _currentHealth;
@@ -76,28 +77,28 @@ namespace ChainDefense.Enemies
                 OnAnyEnemyReachedBase?.Invoke(this, EventArgs.Empty);
             }
         }
-        
+
         public async UniTaskVoid ApplySlow(float percent, float duration)
         {
             _slowCts?.Cancel();
             _slowCts?.Dispose();
-    
+
             _slowCts = new CancellationTokenSource();
-    
+
             var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(
-                _slowCts.Token, 
+                _slowCts.Token,
                 this.GetCancellationTokenOnDestroy()
             );
-    
+
             _speedMultiplier = 1f - percent;
             OnEnemySlowedStart?.Invoke(this, EventArgs.Empty);
             var cancelled = await UniTask.Delay(
-                TimeSpan.FromSeconds(duration), 
+                TimeSpan.FromSeconds(duration),
                 cancellationToken: linkedCts.Token
             ).SuppressCancellationThrow();
-    
+
             linkedCts?.Dispose();
-    
+
             if (!cancelled)
             {
                 _speedMultiplier = 1f;
@@ -111,6 +112,8 @@ namespace ChainDefense.Enemies
 
             OnProgressUpdate?.Invoke(this,
                 new IHasProgress.ProgressEventArgs(GetNormalizedProgress()));
+
+            OnEnemyTakeDamage?.Invoke(this, damage);
 
             if (_currentHealth <= 0)
                 SelfDestroy();

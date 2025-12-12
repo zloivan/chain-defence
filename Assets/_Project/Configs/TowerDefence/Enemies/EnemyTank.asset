@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyTank
   m_EditorClassIdentifier: 
   MaxHealth: 120
-  MoveSpeed: 1
+  BaseMoveSpeed: 2
   BaseDamage: 8
   EnemyPrefab: {fileID: 1891984561505503618, guid: fe6ce0cb484d74a02aea8d130c2fd6b3,
     type: 3}
