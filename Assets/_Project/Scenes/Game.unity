@@ -299,10 +299,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d634b6190b54c51879f43a3a44dba3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistAcrossScenes: 1
+  _unParentOnAwake: 1
   _wavesList:
   - {fileID: 11400000, guid: 0508faebd51fa4d11a2eaa722754c2f7, type: 2}
-  - {fileID: 11400000, guid: 78ddf4114c6e7448284c80a27703a44e, type: 2}
-  - {fileID: 11400000, guid: fe7772be4d5d14a73a0e94e80927463f, type: 2}
+  - {fileID: 11400000, guid: ff8ffa4a4162845ce83640ddcd2d93a8, type: 2}
+  - {fileID: 11400000, guid: 1e61ab5ead9484dedb141b0c28fb09e3, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,6 +1986,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e694b8b1c645465092cb7ca6a5491898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistAcrossScenes: 1
+  _unParentOnAwake: 1
   _parent: {fileID: 0}
 --- !u!4 &1403722963
 Transform:

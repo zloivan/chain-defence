@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using ChainDefense.PathFinding;
 using ChainDefense.UI.ProgressBar;
@@ -13,7 +14,7 @@ namespace ChainDefense.Enemies
         private const float MIN_DISTANCE_TO_WAYPOINT = 0.1f;
         public event EventHandler<IHasProgress.ProgressEventArgs> OnProgressUpdate;
         public static event EventHandler OnAnyEnemyReachedBase; //TODO: Clear static events
-        public static event EventHandler OnAnyEnemyDestroyed; //TODO: Clear static events
+        //public static event EventHandler OnAnyEnemyDestroyed; //TODO: Clear static events
 
         public event EventHandler<int> OnEnemyTakeDamage;
         public event EventHandler OnEnemySlowedStart;
@@ -121,9 +122,8 @@ namespace ChainDefense.Enemies
 
         public void SelfDestroy()
         {
-            _enemySpawner.ReturnEnemy(this);
             _isDead = true;
-            OnAnyEnemyDestroyed?.Invoke(this, EventArgs.Empty);
+            _enemySpawner.ReturnEnemy(this);
         }
 
         public int GetWaypointIndex() =>
@@ -132,8 +132,31 @@ namespace ChainDefense.Enemies
         public bool GetIsDead() =>
             _isDead;
 
-        public static GameObject SpawnEnemy(EnemySO config, Vector3 position) =>
+        public static Enemy SpawnEnemy(EnemySO config, Vector3 position) =>
             EnemySpawner.Instance.SpawnEnemy(config, position);
+        public static int GetAliveEnemyCount() =>
+            EnemySpawner.Instance.GetAliveCount();
+        
+        public static IReadOnlyList<Enemy> GetAliveEnemies() =>
+            EnemySpawner.Instance.GetAliveEnemies();
+        
+        public static event EventHandler<Enemy> OnEnemySpawned
+        {
+            add => EnemySpawner.Instance.OnEnemySpawned += value;
+            remove => EnemySpawner.Instance.OnEnemySpawned -= value;
+        }
+        
+        public static event EventHandler<Enemy> OnEnemyDestroyed
+        {
+            add => EnemySpawner.Instance.OnEnemyDestroyed += value;
+            remove => EnemySpawner.Instance.OnEnemyDestroyed -= value;
+        }
+        
+        public static event EventHandler<int> OnAliveCountChanged
+        {
+            add => EnemySpawner.Instance.OnAliveCountChanged += value;
+            remove => EnemySpawner.Instance.OnAliveCountChanged -= value;
+        }
 
         public float GetNormalizedProgress() =>
             _currentHealth / (float)_enemySO.MaxHealth;
