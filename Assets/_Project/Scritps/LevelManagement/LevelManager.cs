@@ -24,7 +24,15 @@ namespace ChainDefense.LevelManagement
             _mapManager = MapManager.Instance;
             _waveManager = WaveManager.Instance;
 
-            _waveManager.OnAllWavesCompleted += OnLevelComplete;
+            _waveManager.OnAllWavesCompleted += (_, _) => 
+                OnLevelComplete?.Invoke(this, EventArgs.Empty);
+
+            //TODO: REMOVE LATER DEBUG
+            OnLevelComplete += (sender, args) =>
+            {
+                Debug.Log("TEST");
+                LoadLevelByIndex((_levelList.IndexOf(_currentLevel) + 1) % _levelList.Count);
+            };
 
             //TODO: HERE WE FIND LEVEL NUMBER FROM OUTSIDE
             if (_loadFirstOnStart)
