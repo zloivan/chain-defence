@@ -145,7 +145,7 @@ namespace ChainDefense.Enemies
             remove => EnemySpawner.Instance.OnEnemySpawned -= value;
         }
         
-        public static event EventHandler<Enemy> OnEnemyDestroyed
+        public static event EventHandler<Enemy> OnDestroyed
         {
             add => EnemySpawner.Instance.OnEnemyDestroyed += value;
             remove => EnemySpawner.Instance.OnEnemyDestroyed -= value;

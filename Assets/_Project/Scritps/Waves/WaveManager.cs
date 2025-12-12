@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using ChainDefense.Enemies;
 using ChainDefense.PathFinding;
 using Cysharp.Threading.Tasks;
@@ -27,7 +26,6 @@ namespace ChainDefense.Waves
         public event EventHandler OnAllWavesCompleted;
         public event EventHandler<float> OnWaveCooldownChanged;
 
-
         [SerializeField] private List<WaveSO> _wavesList;
 
         private int _currentWaveIndex;
@@ -37,32 +35,41 @@ namespace ChainDefense.Waves
         private void Start()
         {
             _pathManager = PathManager.Instance;
+            Enemy.OnDestroyed += OnDestroyed;
 
-            Enemy.OnEnemyDestroyed += AnyEnemyOnAnyEnemyDestroyed;
-
-            ProcessWaves(CancellationToken.None).Forget();
+            RunWaveSequence().Forget();
         }
 
-        private void AnyEnemyOnAnyEnemyDestroyed(object sender, Enemy enemy)
+        private void OnDestroyed(object sender, Enemy enemy)
         {
             if (Enemy.GetAliveEnemyCount() > 0)
                 return;
 
-            _currentWaveIndex++;
-
-            if (_currentWaveIndex >= _wavesList.Count)
-            {
-                OnAllWavesCompleted?.Invoke(this, EventArgs.Empty);
-                return;
-            }
-
-            ProcessWaves(CancellationToken.None).Forget();
+            CompleteCurrentWave();
         }
 
-        private async UniTask ProcessWaves(CancellationToken cancellationToken)
+        private async UniTask RunWaveSequence()
         {
-            var currentWave = _wavesList[_currentWaveIndex];
-            _delayBeforeWaveTimer = currentWave.DelayBeforeStarting;
+            while (_currentWaveIndex < _wavesList.Count)
+            {
+                var currentWave = _wavesList[_currentWaveIndex];
+
+                await RunWaveCooldown(currentWave.DelayBeforeStarting);
+
+                await SpawnWave(currentWave);
+
+                if (currentWave.EnemyTypes == null || currentWave.EnemyTypes.Length == 0)
+                {
+                    continue;
+                }
+
+                return;
+            }
+        }
+
+        private async UniTask RunWaveCooldown(float cooldownDuration)
+        {
+            _delayBeforeWaveTimer = cooldownDuration;
             OnWaveCooldownChanged?.Invoke(this, _delayBeforeWaveTimer);
 
             while (_delayBeforeWaveTimer >= 0)
@@ -71,42 +78,44 @@ namespace ChainDefense.Waves
                 _delayBeforeWaveTimer -= Time.deltaTime;
                 OnWaveCooldownChanged?.Invoke(this, _delayBeforeWaveTimer);
             }
-
-            StartWave(cancellationToken, currentWave).Forget();
         }
 
-        private async UniTask StartWave(CancellationToken cancellationToken, WaveSO targetWave)
+        private async UniTask SpawnWave(WaveSO targetWave)
         {
-            //Case when wave have no enemies
+            // Case when wave has no enemies
             if (targetWave.EnemyTypes == null || targetWave.EnemyTypes.Length == 0)
             {
-                _currentWaveIndex++;
-
-                if (_currentWaveIndex >= _wavesList.Count)
-                {
-                    OnAllWavesCompleted?.Invoke(this, EventArgs.Empty);
-                    return;
-                }
-
-                ProcessWaves(cancellationToken).Forget();
+                CompleteCurrentWave();
                 return;
             }
 
-            foreach (var enemy in targetWave.EnemyTypes)
+            foreach (var enemyGroup in targetWave.EnemyTypes)
             {
-                for (var i = 0; i < enemy.EnemyCount; i++)
+                for (var i = 0; i < enemyGroup.EnemyCount; i++)
                 {
-                    Enemy.SpawnEnemy(enemy.EnemyType, _pathManager.GetSpawnPosition());
+                    Enemy.SpawnEnemy(enemyGroup.EnemyType, _pathManager.GetSpawnPosition());
 
-                    if (i < enemy.EnemyCount - 1)
+                    if (i < enemyGroup.EnemyCount - 1)
                     {
-                        await UniTask.Delay(TimeSpan.FromSeconds(enemy.TimeBetweenSpawns),
-                            cancellationToken: cancellationToken);
+                        await UniTask.Delay(TimeSpan.FromSeconds(enemyGroup.TimeBetweenSpawns));
                     }
                 }
 
                 OnEnemyWaveSpawned?.Invoke(this, new WaveEventArgs(_currentWaveIndex, Enemy.GetAliveEnemies()));
             }
+        }
+
+        private void CompleteCurrentWave()
+        {
+            _currentWaveIndex++;
+
+            if (_currentWaveIndex >= _wavesList.Count)
+            {
+                OnAllWavesCompleted?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+
+            RunWaveSequence().Forget();
         }
 
         public int GetWaveIndex() =>
