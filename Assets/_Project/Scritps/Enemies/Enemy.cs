@@ -31,28 +31,25 @@ namespace ChainDefense.Enemies
         private EnemySpawner _enemySpawner;
         private CancellationTokenSource _slowCts;
 
-        private void Awake()
+        public void Initialize(EnemySO enemyConfig, PathManager pathManager, EnemySpawner enemySpawner)
         {
-            _currentHealth = _enemySO.MaxHealth;
-            _currentSpeed = _enemySO.BaseMoveSpeed;
+            _currentHealth = enemyConfig.MaxHealth;
+            _currentSpeed = enemyConfig.BaseMoveSpeed;
+            _currentAttackDamage = enemyConfig.BaseDamage;
+            
+
+            _pathManager = pathManager;
+            _enemySpawner = enemySpawner;
+            
+            transform.position = _pathManager.GetSpawnPosition();
             _currentWaypointIndex = 0;
             _isDead = false;
-            _currentAttackDamage = _enemySO.BaseDamage;
         }
 
-        private void Start() //TODO: with pool need reorganize initialization
-        {
-            _pathManager = PathManager.Instance;
-            _enemySpawner = EnemySpawner.Instance;
-            transform.position = _pathManager.GetSpawnPosition();
-        }
+        private void Update() =>
+            MoveToWaypoint();
 
-        private void Update()
-        {
-            Navigate();
-        }
-
-        private void Navigate()
+        private void MoveToWaypoint()
         {
             var targetPosition = _pathManager.GetWaypointPosition(_currentWaypointIndex);
             var distanceBeforeMoving = Vector3.Distance(targetPosition, transform.position);

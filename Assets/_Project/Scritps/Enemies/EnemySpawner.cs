@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ChainDefense.PathFinding;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 
@@ -10,23 +11,21 @@ namespace ChainDefense.Enemies
         public event EventHandler<Enemy> OnEnemySpawned;
         public event EventHandler<Enemy> OnEnemyDestroyed;
         public event EventHandler<int> OnAliveCountChanged;
-        
-        [SerializeField] private Transform _parent;
-        
+
         private readonly List<Enemy> _aliveEnemies = new();
-        
-        protected override void Awake()
-        {
-            if (_parent == null)
-                _parent = transform;
-        }
+        private PathManager _pathManager;
+
+        private void Start() =>
+            _pathManager = PathManager.Instance;
 
         public Enemy SpawnEnemy(EnemySO enemySO, Vector3 position)
         {
-            var enemyGameObject = Instantiate(enemySO.EnemyPrefab, position, Quaternion.identity, _parent);
+            var enemyGameObject = Instantiate(enemySO.EnemyPrefab, position, Quaternion.identity, transform);
             var enemy = enemyGameObject.GetComponent<Enemy>();
+            enemy.Initialize(enemySO, _pathManager, this);
+
             _aliveEnemies.Add(enemy);
-            
+
             OnEnemySpawned?.Invoke(this, enemy);
             return enemy;
         }
@@ -38,12 +37,11 @@ namespace ChainDefense.Enemies
             OnAliveCountChanged?.Invoke(this, GetAliveCount());
             Destroy(enemy.gameObject);
         }
-        
+
         public int GetAliveCount() =>
             _aliveEnemies.Count;
-        
+
         public IReadOnlyList<Enemy> GetAliveEnemies() =>
             _aliveEnemies.AsReadOnly();
-        
     }
 }
