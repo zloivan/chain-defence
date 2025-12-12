@@ -15,6 +15,10 @@ MonoBehaviour:
   BaseDamage: 12
   BaseAttackRange: 38
   BaseAttackSpeed: 1.5
+  AttackType: 3
+  AoeRadius: 0
+  SlowPercentage: 0
+  ChainTargets: 2
+  SlowDuration: 0
   TowerPrefab: {fileID: 4212539874750110819, guid: ee16ca719d7f34a3d82347ec3601426a,
     type: 3}
-  _levelingModifier: {fileID: 0}
