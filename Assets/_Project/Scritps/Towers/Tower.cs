@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ChainDefense.Enemies;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -155,35 +156,98 @@ namespace ChainDefense.Towers
                 case TowerAttackType.SingleTarget:
                     break;
                 case TowerAttackType.AOE:
-
-                    var numberOfTargets = Physics.OverlapSphereNonAlloc(
-                        target.transform.position,
-                        config.AoeRadius,
-                        _enemyCollidersArray,
-                        _enemyLayerMask
-                    );
-
-                    if (numberOfTargets > 1)
-                    {
-                        for (var i = 0; i < numberOfTargets; i++)
-                        {
-                            var enemy = _enemyCollidersArray[i].GetComponent<Enemy>();
-                            if (enemy == target || enemy == null)
-                                continue;
-                            
-                            var aoeDamage = Mathf.CeilToInt(_currentDamage * config.AoeDamagePercentage);
-                            enemy.TakeDamage(aoeDamage);
-                        }
-                    }
-
+                    ApplyAOE(target, config);
                     break;
                 case TowerAttackType.Slow:
                     target.ApplySlow(config.SlowPercentage, config.SlowDuration).Forget();
                     break;
                 case TowerAttackType.Chain:
+                    ApplyChainDamage(target, config).Forget();
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(config), config, null);
+            }
+        }
+
+        private void ApplyAOE(Enemy target, TowerSO config)
+        {
+            var numberOfTargets = Physics.OverlapSphereNonAlloc(
+                target.transform.position,
+                config.AoeRadius,
+                _enemyCollidersArray,
+                _enemyLayerMask
+            );
+
+            if (numberOfTargets > 1)
+            {
+                for (var i = 0; i < numberOfTargets; i++)
+                {
+                    var enemy = _enemyCollidersArray[i].GetComponent<Enemy>();
+                    if (enemy == target || enemy == null)
+                        continue;
+
+                    var aoeDamage = Mathf.CeilToInt(_currentDamage * config.AoeDamagePercentage);
+                    enemy.TakeDamage(aoeDamage);
+                }
+            }
+        }
+
+        private async UniTask ApplyChainDamage(Enemy primaryTarget, TowerSO config)
+        {
+            //For not hitting same target
+            var hitEnemies = new HashSet<Enemy> { primaryTarget };
+            var currentTarget = primaryTarget;
+            var currentDamageMultiplier = config.ChainDamagePercentage;
+
+            for (var i = 0; i < config.ChainTargets - 1; i++)
+            {
+                if (config.ChainBounceDelay > 0)
+                {
+                    await UniTask.Delay(TimeSpan.FromSeconds(config.ChainBounceDelay));
+                }
+
+                if (currentTarget == null || currentTarget.GetIsDead())
+                    break;
+
+                var numberOfTargets = Physics.OverlapSphereNonAlloc(
+                    currentTarget.transform.position,
+                    config.ChainRadius,
+                    _enemyCollidersArray,
+                    _enemyLayerMask
+                );
+
+                if (numberOfTargets == 0)
+                    break;
+
+                Enemy nearestEnemy = null;
+                var nearestDistance = float.MaxValue;
+
+                for (var j = 0; j < numberOfTargets; j++)
+                {
+                    var enemy = _enemyCollidersArray[j].GetComponent<Enemy>();
+
+                    if (enemy == null || hitEnemies.Contains(enemy) || enemy.GetIsDead())
+                        continue;
+
+                    var distance = Vector3.Distance(currentTarget.transform.position, enemy.transform.position);
+                    if (distance < nearestDistance)
+                    {
+                        nearestDistance = distance;
+                        nearestEnemy = enemy;
+                    }
+                }
+
+                if (nearestEnemy == null)
+                    break;
+
+                var chainDamage = Mathf.CeilToInt(_currentDamage * currentDamageMultiplier);
+                nearestEnemy.TakeDamage(chainDamage);
+
+                hitEnemies.Add(nearestEnemy);
+                currentTarget = nearestEnemy;
+
+                currentDamageMultiplier *= config.ChainDamagePercentage;
             }
         }
 
@@ -212,8 +276,8 @@ namespace ChainDefense.Towers
             foreach (var levelModifier in _levelModifiersList)
             {
                 _currentDamage = Mathf.CeilToInt(_currentDamage * levelModifier.DamageModifier);
-                _currentAttackRange = Mathf.CeilToInt(_currentAttackRange * levelModifier.AttackRangeModifier);
-                _currentAttackSpeed = Mathf.CeilToInt(_currentAttackSpeed * levelModifier.AttackSpeedModifier);
+                _currentAttackRange *= levelModifier.AttackRangeModifier;
+                _currentAttackSpeed *= levelModifier.AttackSpeedModifier;
             }
         }
 
@@ -246,6 +310,13 @@ namespace ChainDefense.Towers
             {
                 Gizmos.color = new Color(1f, 0.5f, 0f, 0.5f); // Orange
                 Gizmos.DrawWireSphere(_currentTarget.transform.position, _towerConfig.AoeRadius);
+            }
+
+            // Draw Chain radius at target position if this is a Chain tower
+            if (_towerConfig != null && _towerConfig.AttackType == TowerAttackType.Chain && _currentTarget != null)
+            {
+                Gizmos.color = new Color(0f, 1f, 1f, 0.5f); // Cyan
+                Gizmos.DrawWireSphere(_currentTarget.transform.position, _towerConfig.ChainRadius);
             }
         }
 

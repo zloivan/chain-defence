@@ -22,6 +22,9 @@ namespace ChainDefense.Towers
         public float SlowPercentage;
         public int ChainTargets;
         public float SlowDuration;
+        public float ChainRadius;
+        public float ChainBounceDelay;
         public GameObject TowerPrefab;
+        public float ChainDamagePercentage;
     }
 }

@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31511c3ae434903975c1f97e8d3e57b, type: 3}
   m_Name: TowerYellow
   m_EditorClassIdentifier: 
-  BaseDamage: 12
+  BaseDamage: 10
   BaseAttackRange: 38
-  BaseAttackSpeed: 1.5
+  BaseAttackSpeed: 0.3
   AttackType: 3
   AoeRadius: 0
+  AoeDamagePercentage: 0
   SlowPercentage: 0
-  ChainTargets: 2
+  ChainTargets: 3
   SlowDuration: 0
+  ChainRadius: 5
+  ChainBounceDelay: 0.15
   TowerPrefab: {fileID: 4212539874750110819, guid: ee16ca719d7f34a3d82347ec3601426a,
     type: 3}
+  ChainDamagePercentage: 0.6
