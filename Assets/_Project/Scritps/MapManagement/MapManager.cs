@@ -10,14 +10,18 @@ namespace ChainDefense.MapManagement
         [SerializeField] private MapSO _defaultMap;
         //TODO: temp, prepare additive scenes with environment
         [SerializeField] private MeshRenderer _ground;
-
+        [SerializeField] private bool _useMockMap;
+        
         private PathManager _pathManager;
 
         private void Start()
         {
             _pathManager = PathManager.Instance;
-            
-            LoadMap(_defaultMap);
+
+            if (_useMockMap)
+            {
+                LoadMap(_defaultMap);
+            }
         }
 
         public void LoadMap(MapSO currentLevelMap)

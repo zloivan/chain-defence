@@ -218,8 +218,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistAcrossScenes: 0
   _unParentOnAwake: 0
-  _defaultMap: {fileID: 11400000, guid: e05e06b6abdf9405ba7ea12753ff8974, type: 2}
+  _defaultMap: {fileID: 11400000, guid: ce2db4edb335c468b9fc7e1f399c7ab3, type: 2}
   _ground: {fileID: 1080130333}
+  _useMockMap: 0
 --- !u!1 &304161091
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +304,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0508faebd51fa4d11a2eaa722754c2f7, type: 2}
   - {fileID: 11400000, guid: ff8ffa4a4162845ce83640ddcd2d93a8, type: 2}
   - {fileID: 11400000, guid: 4fa5aa6598c6b42119a391cea4cdb2c4, type: 2}
-  _useMockWaves: 1
+  _useMockWaves: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
