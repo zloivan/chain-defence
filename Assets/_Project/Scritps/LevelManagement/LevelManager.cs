@@ -37,12 +37,7 @@ namespace ChainDefense.LevelManagement
         {
             _currentLevel = _levelList[levelIndex];
 
-            if (_currentLevel != null)
-            {
-                Debug.LogWarning("No with this number found", this);
-                return;
-            }
-
+            Debug.Assert(_currentLevel, "Current Level is not assigned", this);
 
             LoadLevel();
         }
