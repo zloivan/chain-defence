@@ -10,8 +10,8 @@ namespace ChainDefense.Enemies
     {
         private const float MIN_DISTANCE_TO_WAYPOINT = 0.1f;
         public event EventHandler<IHasProgress.ProgressEventArgs> OnProgressUpdate;
-        public static event EventHandler OnAnyEnemyReachedBase;
-        public static event EventHandler OnEnemyDestroyed;
+        public static event EventHandler OnAnyEnemyReachedBase;//TODO: Clear static events
+        public static event EventHandler OnEnemyDestroyed;//TODO: Clear static events
 
         [SerializeField] private EnemySO _enemySO;
 

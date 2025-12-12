@@ -12,8 +12,7 @@ using UnityEngine;
 
 namespace ChainDefense.Core
 {
-    public class
-        LevelManager : MonoBehaviour //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
+    public class LevelManager : MonoBehaviour //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
     {
         private enum LevelState
         {
