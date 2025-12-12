@@ -1,4 +1,3 @@
-using ChainDefense.Enemies;
 using ChainDefense.Waves;
 using TMPro;
 using UnityEngine;
@@ -7,30 +6,26 @@ namespace ChainDefense.UI
 {
     public class EnemyWavesUI : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _enemyCounterLabel;
         [SerializeField] private TextMeshProUGUI _wavesIndexLabel;
         [SerializeField] private TextMeshProUGUI _waveTimerLabel;
 
-        private WaveManager _waveManager;
-
         private void Start()
         {
-            _waveManager = WaveManager.Instance;
-            Enemy.OnAliveCountChanged += (_, _) => UpdateUI();
-            _waveManager.OnEnemyWaveSpawned += (_, _) => UpdateUI();
-            _waveManager.OnWaveCooldownChanged += UpdateWaveCooldown;
+            WaveManager.Instance.OnEnemyWaveSpawned += (_, waveInfo) =>
+            {
+                _wavesIndexLabel.text =
+                    $"Wave: {(waveInfo.WaveIndex + 1).ToString()} / {WaveManager.Instance.GetTotalWavesCount().ToString()}";
+            };
+            WaveManager.Instance.OnWaveCooldownChanged += (_, waveDelayTimer) =>
+            {
+                _waveTimerLabel.text = $"Next Wave In: {Mathf.CeilToInt(waveDelayTimer).ToString()}s";
+            };
 
-            UpdateUI();
-        }
-
-        private void UpdateWaveCooldown(object sender, float cooldown) =>
-            _waveTimerLabel.text = $"Next Wave In: {Mathf.CeilToInt(cooldown).ToString()}s";
-
-        private void UpdateUI()
-        {
-            _enemyCounterLabel.text = $"Enemies Left: {Enemy.GetAliveEnemyCount().ToString()}";
             _wavesIndexLabel.text =
-                $"Wave: {(_waveManager.GetWaveIndex() + 1).ToString()} / {_waveManager.GetTotalWavesCount().ToString()}";
+                $"Wave: {(WaveManager.Instance.GetWaveIndex() + 1).ToString()} / {WaveManager.Instance.GetTotalWavesCount().ToString()}";
+
+            _waveTimerLabel.text =
+                $"Next Wave In: {Mathf.CeilToInt(WaveManager.Instance.GetDelayBeforeWaveTimer()).ToString()}s";
         }
     }
 }

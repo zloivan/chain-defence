@@ -11,9 +11,19 @@ namespace ChainDefense.Waves
 {
     public class WaveManager : SingletonBehaviour<WaveManager>
     {
-        public event EventHandler<int> OnWaveCompleted;
-        public event EventHandler OnEnemyWaveSpawned;
-        public event EventHandler<int> OnEnemyNumberChanged;
+        public class WaveEventArgs : EventArgs
+        {
+            public readonly int WaveIndex;
+            public IReadOnlyList<Enemy> SpawnedEnemies;
+
+            public WaveEventArgs(int waveIndex, IReadOnlyList<Enemy> spawnedEnemies)
+            {
+                WaveIndex = waveIndex;
+                SpawnedEnemies = spawnedEnemies;
+            }
+        }
+
+        public event EventHandler<WaveEventArgs> OnEnemyWaveSpawned;
         public event EventHandler OnAllWavesCompleted;
         public event EventHandler<float> OnWaveCooldownChanged;
 
@@ -22,7 +32,7 @@ namespace ChainDefense.Waves
 
         private int _currentWaveIndex;
         private PathManager _pathManager;
-        private float _cooldownTimer;
+        private float _delayBeforeWaveTimer;
 
         private void Start()
         {
@@ -39,7 +49,6 @@ namespace ChainDefense.Waves
                 return;
 
             _currentWaveIndex++;
-            OnWaveCompleted?.Invoke(this, _currentWaveIndex);
 
             if (_currentWaveIndex >= _wavesList.Count)
             {
@@ -50,18 +59,17 @@ namespace ChainDefense.Waves
             ProcessWaves(CancellationToken.None).Forget();
         }
 
-        //BUG: Sometimes waves more then max and enemies less then on screen
         private async UniTask ProcessWaves(CancellationToken cancellationToken)
         {
             var currentWave = _wavesList[_currentWaveIndex];
-            _cooldownTimer = currentWave.DelayBeforeStarting;
-            OnWaveCooldownChanged?.Invoke(this, _cooldownTimer);
+            _delayBeforeWaveTimer = currentWave.DelayBeforeStarting;
+            OnWaveCooldownChanged?.Invoke(this, _delayBeforeWaveTimer);
 
-            while (_cooldownTimer >= 0)
+            while (_delayBeforeWaveTimer >= 0)
             {
                 await UniTask.Yield();
-                _cooldownTimer -= Time.deltaTime;
-                OnWaveCooldownChanged?.Invoke(this, _cooldownTimer);
+                _delayBeforeWaveTimer -= Time.deltaTime;
+                OnWaveCooldownChanged?.Invoke(this, _delayBeforeWaveTimer);
             }
 
             StartWave(cancellationToken, currentWave).Forget();
@@ -69,10 +77,10 @@ namespace ChainDefense.Waves
 
         private async UniTask StartWave(CancellationToken cancellationToken, WaveSO targetWave)
         {
+            //Case when wave have no enemies
             if (targetWave.EnemyTypes == null || targetWave.EnemyTypes.Length == 0)
             {
                 _currentWaveIndex++;
-                OnWaveCompleted?.Invoke(this, _currentWaveIndex);
 
                 if (_currentWaveIndex >= _wavesList.Count)
                 {
@@ -97,7 +105,7 @@ namespace ChainDefense.Waves
                     }
                 }
 
-                OnEnemyWaveSpawned?.Invoke(this, EventArgs.Empty);
+                OnEnemyWaveSpawned?.Invoke(this, new WaveEventArgs(_currentWaveIndex, Enemy.GetAliveEnemies()));
             }
         }
 
@@ -107,7 +115,7 @@ namespace ChainDefense.Waves
         public int GetTotalWavesCount() =>
             _wavesList.Count;
 
-        public float GetCalldownTimer() =>
-            _cooldownTimer;
+        public float GetDelayBeforeWaveTimer() =>
+            _delayBeforeWaveTimer;
     }
 }
