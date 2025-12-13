@@ -27,7 +27,7 @@ namespace ChainDefense.MapManagement
         public void LoadMap(MapSO currentLevelMap)
         {
             _pathManager.SetupPathPrefab(currentLevelMap.PathPrefab.transform);
-            _ground.SetMaterials(new List<Material> { currentLevelMap.GroundMaterial });
+            _ground.material = currentLevelMap.GroundMaterial;
         }
     }
 }

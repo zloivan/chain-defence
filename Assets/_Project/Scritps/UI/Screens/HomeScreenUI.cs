@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ChainDefense.UI
 {
-    public class MainMenuUI : BaseScreenUI
+    public class HomeScreenUI : BaseScreenUI
     {
         [SerializeField] private Button _startButton;
         [SerializeField] private Button _settingsButton;

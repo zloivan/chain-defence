@@ -1,5 +1,8 @@
+using System;
+using ChainDefense.SavingSystem;
 using ChainDefense.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ChainDefense.MainMenu
 {
@@ -9,11 +12,18 @@ namespace ChainDefense.MainMenu
         [SerializeField] private BaseScreenUI _homeScreen;
         [SerializeField] private BaseScreenUI _settingsScreenScreen;
 
+        private SaveManager _saveManager;
+        
         private void Awake()
         {
             _homeScreen.Show();
             _levelSelectScreen.Hide();
             _settingsScreenScreen.Hide();
+        }
+
+        private void Start()
+        {
+            _saveManager = SaveManager.Instance;
         }
 
         public void OpenSettingsScreen()
@@ -41,6 +51,11 @@ namespace ChainDefense.MainMenu
             _homeScreen.Show();
             _levelSelectScreen.Hide();
             _settingsScreenScreen.Hide();
+        }
+
+        public void Loadgame()
+        {
+            SceneManager.LoadScene("Game");
         }
     }
 }
