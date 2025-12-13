@@ -8,6 +8,7 @@ using Cysharp.Threading.Tasks;
 using IKhom.EventBusSystem.Runtime;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ChainDefense.LevelManagement
 {
@@ -15,7 +16,6 @@ namespace ChainDefense.LevelManagement
     public class LevelManager : SingletonBehaviour<LevelManager>
     {
         [SerializeField] private List<LevelSO> _levelList;
-        [SerializeField] private bool _loadFirstOnStart;
 
         private MapManager _mapManager;
         private LevelSO _currentLevel;
@@ -44,8 +44,10 @@ namespace ChainDefense.LevelManagement
             EventBus<LevelCompletedEvent>.Raise(
                 new LevelCompletedEvent(GetCurrentLevelIndex(), GetCurrentLevelNumber()));
 
+            
+            SceneManager.LoadScene("Game");
             //TODO: TEMP - gonna restart the scene here
-            LoadLevelByIndex((_levelList.IndexOf(_currentLevel) + 1) % _levelList.Count);
+            //LoadLevelByIndex((_levelList.IndexOf(_currentLevel) + 1) % _levelList.Count);
         }
 
         private void LoadLevelByIndex(int levelIndex)

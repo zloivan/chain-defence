@@ -71,6 +71,11 @@ namespace ChainDefense.SavingSystem
 
         private void SetCompletedLevel(int levelIndex)
         {
+            if (_currentSave.CompletedLevelsArray.Length <= levelIndex)
+            {
+                Array.Resize(ref _currentSave.CompletedLevelsArray, levelIndex + 1);
+            }
+            
             _currentSave.CompletedLevelsArray[levelIndex] = true;
             _currentSave.LastCompletedLevelIndex = levelIndex;
 
