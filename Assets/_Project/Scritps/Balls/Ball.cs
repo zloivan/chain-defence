@@ -78,5 +78,8 @@ namespace ChainDefense.Balls
 
         public Vector3 GetWorldPosition() =>
             transform.position;
+        
+        public static Ball SpawnBall(int ballIndexType, GridPosition gridPosition) =>
+            BallSpawner.Instance.SpawnBallAtGridPosition(ballIndexType, gridPosition);
     }
 }

@@ -12,9 +12,10 @@ using UnityEngine;
 
 namespace ChainDefense.Core
 {
-    public class GameplayController : MonoBehaviour //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
+    public class
+        GameplayController : MonoBehaviour //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
     {
-        private enum LevelState
+        private enum GameplayState
         {
             Gameplay,
             RefillBalls,
@@ -22,10 +23,9 @@ namespace ChainDefense.Core
             LevelComplete
         }
 
-        private BallSpawner _ballSpawner;
         private BoardGrid _boardGrid;
         private ChainValidator _chainValidator;
-        private LevelState _currentState;
+        private GameplayState _currentState;
         private bool _isRefillCompleted;
         private bool _isReorderCompleted;
         private readonly Dictionary<Ball, Vector3> _ballTargetPositions = new();
@@ -41,7 +41,6 @@ namespace ChainDefense.Core
         private void Start()
         {
             _boardGrid = BoardGrid.Instance;
-            _ballSpawner = BallSpawner.Instance;
             _chainValidator = ChainValidator.Instance;
             _waveManager = WaveManager.Instance;
             _baseManager = BaseManager.Instance;
@@ -66,16 +65,16 @@ namespace ChainDefense.Core
         private void ChainValidator_OnChainDestroyed(object sender, List<Ball> e)
         {
             _isReorderCompleted = false;
-            _currentState = LevelState.ReorderBalls;
+            _currentState = GameplayState.ReorderBalls;
         }
 
         private void Update()
         {
             switch (_currentState)
             {
-                case LevelState.Gameplay:
+                case GameplayState.Gameplay:
                     break;
-                case LevelState.ReorderBalls:
+                case GameplayState.ReorderBalls:
                     if (!_isReorderCompleted)
                     {
                         ReorderBallsOnBoard();
@@ -83,7 +82,7 @@ namespace ChainDefense.Core
                     }
 
                     break;
-                case LevelState.RefillBalls:
+                case GameplayState.RefillBalls:
                     if (!_isRefillCompleted)
                     {
                         FillBoardWithGuaranteedDistribution();
@@ -91,7 +90,7 @@ namespace ChainDefense.Core
                     }
 
                     break;
-                case LevelState.LevelComplete:
+                case GameplayState.LevelComplete:
                     break;
             }
         }
@@ -130,7 +129,7 @@ namespace ChainDefense.Core
             }
 
             _isRefillCompleted = false;
-            _currentState = LevelState.RefillBalls;
+            _currentState = GameplayState.RefillBalls;
         }
 
         private GridPosition GotLowestGridPosition(GridPosition startPosition, List<GridPosition> occupiedPositions)
@@ -178,7 +177,7 @@ namespace ChainDefense.Core
             {
                 if (!_allOccupiedPositions.Contains(allGridPositions[i]))
                 {
-                    _ballSpawner.SpawnBallAtGridPosition(ballIndices[i], allGridPositions[i]);
+                    Ball.SpawnBall(ballIndices[i], allGridPositions[i]);
                 }
             }
         }

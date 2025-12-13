@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using ChainDefense.Events;
 using ChainDefense.MapManagement;
+using ChainDefense.SavingSystem;
 using ChainDefense.Waves;
 using Cysharp.Threading.Tasks;
+using IKhom.EventBusSystem.Runtime;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 
@@ -11,34 +14,38 @@ namespace ChainDefense.LevelManagement
     //TODO: this guy should hide everything and ask for scene number to load
     public class LevelManager : SingletonBehaviour<LevelManager>
     {
-        public event EventHandler OnLevelComplete;
         [SerializeField] private List<LevelSO> _levelList;
         [SerializeField] private bool _loadFirstOnStart;
 
         private MapManager _mapManager;
         private LevelSO _currentLevel;
         private WaveManager _waveManager;
+        private SaveManager _saveManager;
 
         private void Start()
         {
             _mapManager = MapManager.Instance;
             _waveManager = WaveManager.Instance;
+            _saveManager = SaveManager.Instance;
+            _waveManager.OnAllWavesCompleted += OnWaveManager_OnAllWavesCompleted;
 
-            _waveManager.OnAllWavesCompleted += (_, _) => 
-                OnLevelComplete?.Invoke(this, EventArgs.Empty);
-
-            //TODO: REMOVE LATER DEBUG
-            OnLevelComplete += (sender, args) =>
-            {
-                Debug.Log("TEST");
-                LoadLevelByIndex((_levelList.IndexOf(_currentLevel) + 1) % _levelList.Count);
-            };
-
-            //TODO: HERE WE FIND LEVEL NUMBER FROM OUTSIDE
-            if (_loadFirstOnStart)
+            var highestLevelUnlocked = _saveManager.GetLastCompletedLevelNumber();
+            if (highestLevelUnlocked == 0)
             {
                 LoadLevelByIndex(0);
+                return;
             }
+
+            LoadLevelByIndex((highestLevelUnlocked + 1) % _levelList.Count);
+        }
+
+        private void OnWaveManager_OnAllWavesCompleted(object o, EventArgs eventArgs)
+        {
+            EventBus<LevelCompletedEvent>.Raise(
+                new LevelCompletedEvent(GetCurrentLevelIndex(), GetCurrentLevelNumber()));
+
+            //TODO: TEMP - gonna restart the scene here
+            LoadLevelByIndex((_levelList.IndexOf(_currentLevel) + 1) % _levelList.Count);
         }
 
         private void LoadLevelByIndex(int levelIndex)
@@ -59,5 +66,11 @@ namespace ChainDefense.LevelManagement
 
         public int GetCurrentLevelNumber() =>
             _currentLevel.LevelNumber;
+
+        public int GetCurrentLevelIndex() =>
+            _levelList.IndexOf(_currentLevel);
+
+        public int GetNumberOfLevels() =>
+            _levelList.Count;
     }
 }

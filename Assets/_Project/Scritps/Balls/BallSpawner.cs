@@ -30,7 +30,7 @@ namespace ChainDefense.Balls
             _boardGrid = BoardGrid.Instance;
         }
 
-        public void SpawnBallAtGridPosition(int ballIndex, GridPosition position) =>
+        public Ball SpawnBallAtGridPosition(int ballIndex, GridPosition position) =>
             SpawnBall(ballIndex, position);
 
         //TODO: Add pool
@@ -38,11 +38,14 @@ namespace ChainDefense.Balls
             Destroy(ball.gameObject);
 
         //TODO: Add pool
-        private void SpawnBall(int ballIndex, GridPosition gridPosition)
+        private Ball SpawnBall(int ballIndex, GridPosition gridPosition)
         {
             var worldPosition = _boardGrid.GetWorldPosition(gridPosition);
-            var ball = Instantiate(_ballConfigList[ballIndex].BallPrefab, worldPosition, Quaternion.identity, _parent);
-            ball.GetComponent<Ball>().SetupSpawner(this);
+            var ballGameObject = Instantiate(_ballConfigList[ballIndex].BallPrefab, worldPosition, Quaternion.identity,
+                _parent);
+            var ball = ballGameObject.GetComponent<Ball>();
+            ball.SetupSpawner(this);
+            return ball;
         }
     }
 }
