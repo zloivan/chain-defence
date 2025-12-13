@@ -8,10 +8,11 @@ namespace ChainDefense.UI.ProgressBar
     {
         private const float FADE_DURATION = 0.2f;
 
-        [SerializeField] private Image _progressBarFill;
+        //[SerializeField] private Image _progressBarFill;
         [SerializeField] private GameObject _progressHolder;
         [SerializeField] private CanvasGroup _canvasGroup;
-
+        [SerializeField] private Slider _slider;
+        
         private IHasProgress _progressOwner;
 
         private void Awake()
@@ -53,7 +54,8 @@ namespace ChainDefense.UI.ProgressBar
                 Show();
             }
 
-            _progressBarFill.fillAmount = progressValue;
+           // _progressBarFill.fillAmount = progressValue;
+            _slider.SetValueWithoutNotify(progressValue);
         }
 
         private void Show()

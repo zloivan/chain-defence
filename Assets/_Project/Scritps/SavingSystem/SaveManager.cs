@@ -20,7 +20,7 @@ namespace ChainDefense.SavingSystem
         private const string SAVE_DATA_PLAYER_PREFS_KEY = "SaveData";
         private SaveData _currentSave;
 
-        private void Start()
+        protected override void Awake()
         {
             EventBus<LevelCompletedEvent>.Register(
                 new EventBinding<LevelCompletedEvent>(LevelManager_OnAnyLevelComplete));

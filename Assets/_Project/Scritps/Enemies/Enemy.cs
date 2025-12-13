@@ -30,10 +30,12 @@ namespace ChainDefense.Enemies
         private PathManager _pathManager;
         private EnemySpawner _enemySpawner;
         private CancellationTokenSource _slowCts;
+        private int _maxHealth;
 
         public void Initialize(EnemySO enemyConfig, PathManager pathManager, EnemySpawner enemySpawner, int levelNumber)
         {
-            _currentHealth = CalculateMaxHealth(enemyConfig.MaxHealth, levelNumber);
+            _maxHealth = CalculateMaxHealth(enemyConfig.MaxHealth, levelNumber);
+            _currentHealth = _maxHealth;
             _currentSpeed = enemyConfig.BaseMoveSpeed;
             _currentAttackDamage = enemyConfig.BaseDamage;
 
@@ -162,7 +164,7 @@ namespace ChainDefense.Enemies
         }
 
         public float GetNormalizedProgress() =>
-            _currentHealth / (float)_enemySO.MaxHealth;
+            _currentHealth / (float)_maxHealth;
 
         public int GetAttackDamage() =>
             _currentAttackDamage;
