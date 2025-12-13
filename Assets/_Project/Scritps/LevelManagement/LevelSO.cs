@@ -12,5 +12,6 @@ namespace ChainDefense.LevelManagement
         public int LevelNumber;
         public MapSO Map;
         public List<WaveSO> Waves;
+        public float FirstWaveDelay;
     }
 }

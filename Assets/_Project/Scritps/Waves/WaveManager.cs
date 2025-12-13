@@ -60,8 +60,10 @@ namespace ChainDefense.Waves
             CompleteCurrentWave();
         }
 
-        public async UniTask RunWaveSequence()
+        public async UniTask RunWaveSequence(float initialDelay = 0f)
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(initialDelay));
+
             while (_currentWaveIndex < _wavesList.Count)
             {
                 var currentWave = _wavesList[_currentWaveIndex];

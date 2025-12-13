@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ChainDefense.SavingSystem;
 using ChainDefense.UI;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,8 @@ namespace ChainDefense.MainMenu
     public class LevelSelectUI : MonoBehaviour
     {
         [SerializeField] private List<LevelStageUI> _leveStageList;
-
+        [SerializeField] private ScrollRect _scrollRect;
+        
 
         private SaveManager _saveManager;
         private int _highestCompletedLevelIndex;
@@ -21,6 +23,8 @@ namespace ChainDefense.MainMenu
             _highestCompletedLevelIndex = _saveManager.GetHighestCompletedLevelIndex();
 
             UpdateLevelStageVisuals();
+            
+            ScrollToActiveLevelAsync().Forget();
         }
 
         private void UpdateLevelStageVisuals()
@@ -35,6 +39,47 @@ namespace ChainDefense.MainMenu
                 _leveStageList[i].SetTopPath(i < _leveStageList.Count - 1);
                 _leveStageList[i].SetDownPath(i > 0);
             }
+        }
+        
+        private async UniTaskVoid ScrollToActiveLevelAsync()
+        {
+            // Wait for one frame to ensure layout is calculated
+            await UniTask.Yield();
+            
+            ScrollToActiveLevel();
+        }
+
+        private void ScrollToActiveLevel()
+        {
+            if (_leveStageList.Count == 0 || _highestCompletedLevelIndex < 0 || _highestCompletedLevelIndex >= _leveStageList.Count)
+                return;
+
+            RectTransform content = _scrollRect.content;
+            RectTransform viewport = _scrollRect.viewport;
+            RectTransform targetItem = _leveStageList[_highestCompletedLevelIndex].GetComponent<RectTransform>();
+
+            if (content == null || viewport == null || targetItem == null)
+                return;
+
+            // Force canvas update to ensure layout is calculated
+            Canvas.ForceUpdateCanvases();
+
+            // Calculate the position of the target item relative to the content
+            float contentHeight = content.rect.height;
+            float viewportHeight = viewport.rect.height;
+            
+            // Get the target item's position in the content
+            float targetPosition = -targetItem.localPosition.y;
+            
+            // Center the target item in the viewport
+            float targetOffset = targetPosition - (viewportHeight / 2f) + (targetItem.rect.height / 2f);
+            
+            // Calculate normalized position (0 = bottom, 1 = top for vertical scroll)
+            float maxScroll = contentHeight - viewportHeight;
+            float normalizedPosition = maxScroll > 0 ? Mathf.Clamp01(targetOffset / maxScroll) : 0f;
+            
+            // Set the vertical normalized position (inverted: 1 = top, 0 = bottom)
+            _scrollRect.verticalNormalizedPosition = 1f - normalizedPosition;
         }
     }
 }

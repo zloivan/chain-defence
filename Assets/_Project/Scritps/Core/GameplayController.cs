@@ -8,13 +8,17 @@ using ChainDefense.PlayerBase;
 using ChainDefense.Utilities;
 using ChainDefense.Waves;
 using DG.Tweening;
+using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 
 namespace ChainDefense.Core
 {
-    public class
-        GameplayController : MonoBehaviour //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
+    //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
+    public class GameplayController : SingletonBehaviour<GameplayController>
     {
+        public event EventHandler OnGamePaused;
+        public event EventHandler OnGameResumed;
+
         private enum GameplayState
         {
             Gameplay,
@@ -32,9 +36,11 @@ namespace ChainDefense.Core
         private readonly List<GridPosition> _allOccupiedPositions = new();
         private WaveManager _waveManager;
         private BaseManager _baseManager;
+        private bool _isGamePaused;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Application.targetFrameRate = 30;
         }
 
@@ -179,6 +185,21 @@ namespace ChainDefense.Core
                 {
                     Ball.SpawnBall(ballIndices[i], allGridPositions[i]);
                 }
+            }
+        }
+
+        public void SwitchPauseState()
+        {
+            _isGamePaused = !_isGamePaused;
+            if (_isGamePaused)
+            {
+                Time.timeScale = 0f;
+                OnGamePaused?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                OnGameResumed?.Invoke(this, EventArgs.Empty);
             }
         }
     }

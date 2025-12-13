@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 823e103603a20475c98de4c7d30a1ff3, type: 2}
   - {fileID: 11400000, guid: 17e01ef9efbb64fa7bb0ede5dbacd1e9, type: 2}
   - {fileID: 11400000, guid: 4fa5aa6598c6b42119a391cea4cdb2c4, type: 2}
+  FirstWaveDelay: 5

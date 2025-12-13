@@ -17,3 +17,4 @@ MonoBehaviour:
   Map: {fileID: 11400000, guid: ce2db4edb335c468b9fc7e1f399c7ab3, type: 2}
   Waves:
   - {fileID: 11400000, guid: 5673a2956e77147a6b9a48f5c389b980, type: 2}
+  FirstWaveDelay: 5

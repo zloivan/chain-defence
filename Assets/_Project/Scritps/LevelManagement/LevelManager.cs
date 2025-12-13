@@ -39,6 +39,11 @@ namespace ChainDefense.LevelManagement
             LoadLevelByIndex((highestLevelUnlocked + 1) % _levelList.Count);
         }
 
+        public void RestartLevel()
+        {
+            SceneManager.LoadScene("Game");
+        }
+
         private void OnWaveManager_OnAllWavesCompleted(object o, EventArgs eventArgs)
         {
             EventBus<LevelCompletedEvent>.Raise(
@@ -63,7 +68,7 @@ namespace ChainDefense.LevelManagement
         {
             _mapManager.LoadMap(_currentLevel.Map);
             _waveManager.SetupWavesList(_currentLevel.Waves);
-            _waveManager.RunWaveSequence().Forget();
+            _waveManager.RunWaveSequence(_currentLevel.FirstWaveDelay).Forget();
         }
 
         public int GetCurrentLevelNumber() =>

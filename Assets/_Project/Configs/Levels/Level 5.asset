@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b9dca9221070243cea6ac34d427a00ed, type: 2}
   - {fileID: 11400000, guid: 08e335a39d22344788fd80e8229171a6, type: 2}
   - {fileID: 11400000, guid: f9f61a031481144e3b3ca75d3625fbfa, type: 2}
+  FirstWaveDelay: 5
