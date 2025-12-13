@@ -1,13 +1,15 @@
 using ChainDefense.PlayerBase;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ChainDefense.UI
 {
     public class BaseManagerUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _baseHealthLabel;
-
+        [SerializeField] private Slider _slider;
+        
         private BaseManager _baseManager;
 
 
@@ -18,7 +20,10 @@ namespace ChainDefense.UI
             UpdateVisuals();
         }
 
-        private void UpdateVisuals() =>
-            _baseHealthLabel.text = $"Base HP: {_baseManager.GetCurrentHealth()}/{_baseManager.GetMaxHealth()}";
+        private void UpdateVisuals()
+        {
+            _baseHealthLabel.text = $"{_baseManager.GetCurrentHealth()}/{_baseManager.GetMaxHealth()}";
+            _slider.value = _baseManager.GetCurrentHealth() / (float)_baseManager.GetMaxHealth();
+        }
     }
 }
