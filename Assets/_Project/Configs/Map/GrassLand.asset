@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d606bc4c8f1c4c3da3b8e0e33d32ce99, type: 3}
   m_Name: GrassLand
   m_EditorClassIdentifier: 
-  MapName: Fields
+  MapName: GrassLand
   PathPrefab: {fileID: 3366851532075801754, guid: a3b95f0fe5ce34a02a1f37e74848be2f,
     type: 3}
   _environmentScene: {fileID: 102900000, guid: d675437fc3c694742918cfabbf522716, type: 3}
+  SceneName: GrassLand

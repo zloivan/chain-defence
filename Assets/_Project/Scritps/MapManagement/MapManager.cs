@@ -26,7 +26,7 @@ namespace ChainDefense.MapManagement
         public void LoadMap(MapSO currentLevelMap)
         {
             _pathManager.SetupPathPrefab(currentLevelMap.PathPrefab.transform);
-            SceneManager.LoadScene(currentLevelMap._environmentScene.name, LoadSceneMode.Additive);
+            SceneManager.LoadScene(currentLevelMap.SceneName, LoadSceneMode.Additive);
         }
     }
 }

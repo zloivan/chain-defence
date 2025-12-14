@@ -16,3 +16,4 @@ MonoBehaviour:
   PathPrefab: {fileID: 3366851532075801754, guid: b3ffd88fe087344ad8f454227eccae2c,
     type: 3}
   _environmentScene: {fileID: 102900000, guid: 099e7730d8eb447838c4916527c84876, type: 3}
+  SceneName: Desert

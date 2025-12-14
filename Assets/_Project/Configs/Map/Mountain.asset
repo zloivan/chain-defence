@@ -16,3 +16,4 @@ MonoBehaviour:
   PathPrefab: {fileID: 3366851532075801754, guid: 15f8868915b0345d6b5128b243f4d079,
     type: 3}
   _environmentScene: {fileID: 102900000, guid: 00551bab5ec2d4a4b850c6e498b75809, type: 3}
+  SceneName: Mountain
