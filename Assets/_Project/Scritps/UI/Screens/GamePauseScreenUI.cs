@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace ChainDefense.UI
 {
-    public class GamePauseScreenUI : MonoBehaviour
+    public class GamePauseScreenUI : BaseScreenUI
     {
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _restartButton;
@@ -29,16 +29,6 @@ namespace ChainDefense.UI
             });
             _settingsButton.onClick.AddListener(() => { Debug.Log("Load Settings"); });
             Hide();
-        }
-
-        private void Show()
-        {
-            gameObject.SetActive(true);
-        }
-
-        private void Hide()
-        {
-            gameObject.SetActive(false);
         }
     }
 }
