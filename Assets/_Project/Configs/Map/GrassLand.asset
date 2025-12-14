@@ -15,4 +15,4 @@ MonoBehaviour:
   MapName: Fields
   PathPrefab: {fileID: 3366851532075801754, guid: a3b95f0fe5ce34a02a1f37e74848be2f,
     type: 3}
-  GroundMaterial: {fileID: 2100000, guid: 433784044925a4e68af4c6a0e930a2aa, type: 2}
+  _environmentScene: {fileID: 102900000, guid: d675437fc3c694742918cfabbf522716, type: 3}

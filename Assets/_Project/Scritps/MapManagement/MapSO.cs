@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace ChainDefense.MapManagement
@@ -7,6 +8,6 @@ namespace ChainDefense.MapManagement
     {
         public string MapName;
         public GameObject PathPrefab;
-        public Material GroundMaterial;
+        public SceneAsset   _environmentScene;
     }
 }
