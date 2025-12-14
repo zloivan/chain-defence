@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyBasic
   m_EditorClassIdentifier: 
   MaxHealth: 50
-  BaseMoveSpeed: 3
+  BaseMoveSpeed: 2
   BaseDamage: 4
   EnemyPrefab: {fileID: 1891984561505503618, guid: 8c9e7ba5f015d4d2e97f1ce1a1c109bd,
     type: 3}

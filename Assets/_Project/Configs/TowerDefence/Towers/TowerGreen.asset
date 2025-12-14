@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31511c3ae434903975c1f97e8d3e57b, type: 3}
   m_Name: TowerGreen
   m_EditorClassIdentifier: 
-  BaseDamage: 5
+  BaseDamage: 3
   BaseAttackRange: 38
-  BaseAttackSpeed: 0.8
+  BaseAttackSpeed: 1
   AttackType: 1
   AoeRadius: 3.5
   AoeDamagePercentage: 0.4
   SlowPercentage: 0
   ChainTargets: 0
   SlowDuration: 0
+  ChainRadius: 0
+  ChainBounceDelay: 0
   TowerPrefab: {fileID: 4212539874750110819, guid: 3b1ddfea8e4bf47bf8da84119573653a,
     type: 3}
+  ChainDamagePercentage: 0

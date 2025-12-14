@@ -99,9 +99,6 @@ namespace ChainDefense.Towers
                 _currentTarget = null;
             }
 
-            if (_currentTarget != null)
-                return;
-
             var numColliders = Physics.OverlapSphereNonAlloc(
                 transform.position,
                 _currentAttackRange,
@@ -117,8 +114,18 @@ namespace ChainDefense.Towers
             for (var i = 0; i < numColliders; i++)
             {
                 var enemy = _enemyCollidersArray[i].GetComponent<Enemy>();
+
+                //Dont attack outside of screen
+                if (enemy.GetWaypointIndex() < 1)
+                {
+                    continue;
+                }
+
                 _visibleEnemiesList.Add(enemy);
             }
+
+            if (_visibleEnemiesList.Count == 0)
+                return;
 
             var maxWaypointIndex = _visibleEnemiesList.Max(e => e.GetWaypointIndex());
             var enemiesClosestToBase =
@@ -251,7 +258,7 @@ namespace ChainDefense.Towers
             }
         }
 
-        public void PerformAttack(Enemy enemy)
+        private void PerformAttack(Enemy enemy)
         {
             OnTowerBeginAttack?.Invoke(this, new AttackInfoEventArts
             {

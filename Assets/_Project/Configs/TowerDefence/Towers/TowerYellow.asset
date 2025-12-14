@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31511c3ae434903975c1f97e8d3e57b, type: 3}
   m_Name: TowerYellow
   m_EditorClassIdentifier: 
-  BaseDamage: 10
+  BaseDamage: 3
   BaseAttackRange: 38
-  BaseAttackSpeed: 0.3
+  BaseAttackSpeed: 0.5
   AttackType: 3
   AoeRadius: 0
   AoeDamagePercentage: 0
