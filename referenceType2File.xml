@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTypeDate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TypeDate>
+    <guid>be413f7641278fb4b824d2960196df5c</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Editor/BetterHierarchyIconDisplayer.cs</fileName>
+    <timeStamp>2024-03-06T23:31:17+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>37bb49c709a940dd8fc8dcbcce20f1ee</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Editor/HierarchyObjectStatus.cs</fileName>
+    <timeStamp>2024-03-06T23:31:15+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0c587e0cfc71415fa8f7beb1b844458a</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Editor/MouseStatus.cs</fileName>
+    <timeStamp>2024-03-06T23:31:15+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2022b9dc6dd347898613315d422d48a4</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Editor/UnityEditorBackgroundColor.cs</fileName>
+    <timeStamp>2024-03-06T23:31:15+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f638ee42972944eb1adb935e9fa9841d</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/AssetCollector.cs</fileName>
+    <timeStamp>2024-06-01T06:39:42+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ccb52384692bf42d2b67bc0cc562575e</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/AssetReferenceCollection.cs</fileName>
+    <timeStamp>2024-06-01T06:39:42+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>cf81d421f492b49a999753deaa910d79</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/ClassReferenceCollection.cs</fileName>
+    <timeStamp>2024-06-01T06:39:42+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>73495286918874bc1ae123b300bce68c</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/CollectionData.cs</fileName>
+    <timeStamp>2024-06-01T06:39:42+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>574b4b6a24a6f4f48be11b20e6b5de76</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/FindUnusedAssetsWindow.cs</fileName>
+    <timeStamp>2024-06-01T06:39:42+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>093cf56d43b704ab79061807f168543b</guid>
+    <fileName>Assets/Plugins/UnitySweeper/Editor/ShaderReferenceCollection.cs</fileName>
+    <timeStamp>2024-06-01T06:39:42+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>1bf7d23f42c106b40a7c6ca6eebaf16b</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Demo Scene/Scripts/UnityNamespaceScript.cs</fileName>
+    <timeStamp>2024-03-06T23:31:15+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>933125e1007629c4585a8f630e5cf3e8</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Demo Scene/Scripts/UserScriptExample.cs</fileName>
+    <timeStamp>2024-03-06T23:31:17+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f91b7e02b40e4824c9194428b8c7ef60</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Editor/Preferences Settings/BetterHierarchyPreferences.cs</fileName>
+    <timeStamp>2024-03-06T23:31:18+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>30aba600666b40418fb75847679dd137</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Editor/Preferences Settings/BoolPreference.cs</fileName>
+    <timeStamp>2024-03-06T23:31:15+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5e5e25f7aaba484bbdce979280dfa5e5</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Editor/Preferences Settings/EnumPreference.cs</fileName>
+    <timeStamp>2024-03-06T23:31:16+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5bbef8d6d17f4eb3a71537c542866a3b</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Editor/Preferences Settings/Preference.cs</fileName>
+    <timeStamp>2024-03-06T23:31:16+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>05c96992c9684d6caf66ebf53271dc88</guid>
+    <fileName>Assets/Plugins/Better Hierarchy/Editor/Preferences Settings/UIElementBuilder.cs</fileName>
+    <timeStamp>2024-03-06T23:31:14+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b766d08851589514b97afb23c6f30a70</guid>
+    <fileName>Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleAudio.cs</fileName>
+    <timeStamp>2025-12-05T14:51:28+04:00</timeStamp>
+    <typeFullName>
+      <string>DG.Tweening.DOTweenModuleAudio</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>e944529dcaee98f4e9498d80e541d93e</guid>
+    <fileName>Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs</fileName>
+    <timeStamp>2025-12-05T14:51:29+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>dae9aa560b4242648a3affa2bfabc365</guid>
+    <fileName>Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics.cs</fileName>
+    <timeStamp>2025-12-05T14:51:29+04:00</timeStamp>
+    <typeFullName>
+      <string>DG.Tweening.DOTweenModulePhysics</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>230fe34542e175245ba74b4659dae700</guid>
+    <fileName>Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics2D.cs</fileName>
+    <timeStamp>2025-12-05T14:51:23+04:00</timeStamp>
+    <typeFullName>
+      <string>DG.Tweening.DOTweenModulePhysics2D</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>188918ab119d93148aa0de59ccf5286b</guid>
+    <fileName>Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs</fileName>
+    <timeStamp>2025-12-05T14:51:23+04:00</timeStamp>
+    <typeFullName>
+      <string>DG.Tweening.DOTweenModuleSprite</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>a060394c03331a64392db53a10e7f2d1</guid>
+    <fileName>Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUI.cs</fileName>
+    <timeStamp>2025-12-05T14:51:28+04:00</timeStamp>
+    <typeFullName>
+      <string>DG.Tweening.DOTweenModuleUI</string>
+      <string>DG.Tweening.DOTweenModuleUI+Utils</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>63c02322328255542995bd02b47b0457</guid>
+    <fileName>Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUnityVersion.cs</fileName>
+    <timeStamp>2025-12-05T14:51:26+04:00</timeStamp>
+    <typeFullName>
+      <string>DG.Tweening.DOTweenModuleUnityVersion</string>
+      <string>DG.Tweening.DOTweenCYInstruction</string>
+      <string>DG.Tweening.DOTweenCYInstruction+WaitForCompletion</string>
+      <string>DG.Tweening.DOTweenCYInstruction+WaitForRewind</string>
+      <string>DG.Tweening.DOTweenCYInstruction+WaitForKill</string>
+      <string>DG.Tweening.DOTweenCYInstruction+WaitForElapsedLoops</string>
+      <string>DG.Tweening.DOTweenCYInstruction+WaitForPosition</string>
+      <string>DG.Tweening.DOTweenCYInstruction+WaitForStart</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>7bcaf917d9cf5b84090421a5a2abe42e</guid>
+    <fileName>Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUtils.cs</fileName>
+    <timeStamp>2025-12-05T14:51:27+04:00</timeStamp>
+    <typeFullName>
+      <string>DG.Tweening.DOTweenModuleUtils</string>
+      <string>DG.Tweening.DOTweenModuleUtils+Physics</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>bf5bab31bb38049d3a870619f6c92b44</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2019.4/BackendInstallationProgress.cs</fileName>
+    <timeStamp>2023-02-27T19:10:37+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ba706bdf25b168c4faca400572c420d9</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2019.4/EntryPoint.cs</fileName>
+    <timeStamp>2023-02-27T19:10:35+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e5d6c33e76c8dc6468113f596b3bf147</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2019.4/LogProgressManager.cs</fileName>
+    <timeStamp>2023-02-27T19:10:46+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9b4eed475701e9546a38bca7fb474c3f</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2019.4/SearchWindowSettings.cs</fileName>
+    <timeStamp>2023-02-27T19:10:28+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a19185ba414594100b5712a2726f7d9e</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2020.2/BackendInstallationProgress.cs</fileName>
+    <timeStamp>2023-02-27T19:10:30+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>52b7a14f1e6f67f46ba326d30586cf56</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2020.2/EntryPoint.cs</fileName>
+    <timeStamp>2023-02-27T19:10:12+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6738436c61a8af3419c766a0aeb7d0ce</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2020.2/ProgressManager.cs</fileName>
+    <timeStamp>2023-02-27T19:10:19+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>0a96b87e525d40d47a36414328ef9452</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2020.2/RecentFilesCache.cs</fileName>
+    <timeStamp>2023-02-27T19:09:56+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c0fd3e7d4eef4aa498e95391e9c34d45</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2020.2/SearchWindowSettings.cs</fileName>
+    <timeStamp>2023-02-27T19:10:37+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>cd212de7bae9b4344968b898583b6f3a</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/BackendInstallationProgress.cs</fileName>
+    <timeStamp>2023-02-27T19:10:40+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c825e9a7ab098944b93d4330f701fa5b</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/EntryPoint.cs</fileName>
+    <timeStamp>2023-02-27T19:10:38+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f0f30bc7b82225049878c699c620dbdd</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/ProgressManager.cs</fileName>
+    <timeStamp>2023-02-27T19:10:47+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>24316d3b40b88e548859a160a440cb49</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/RecentFilesCache.cs</fileName>
+    <timeStamp>2023-02-27T19:10:01+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f6ab96f2f1b12a24db464081576871b3</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SearchWindowSettings.cs</fileName>
+    <timeStamp>2023-02-27T19:10:49+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>a1b8d66d396114c4689da3365ab7be0a</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/BackendInstallationProgress.cs</fileName>
+    <timeStamp>2023-02-27T19:10:30+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c8528dff3ef7c4ca89802f48c5fca863</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/EntryPoint.cs</fileName>
+    <timeStamp>2023-02-27T19:10:39+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>109f06d18773247669ce0fff4b81fe28</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/ProgressManager.cs</fileName>
+    <timeStamp>2023-02-27T19:09:57+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>04770744e6e9e421d9d445ba6abbfe92</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/RecentFilesCache.cs</fileName>
+    <timeStamp>2023-02-27T19:09:55+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f59cf10ef0e96444db90cdc18231d46f</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SearchWindowSettings.cs</fileName>
+    <timeStamp>2023-02-27T19:10:48+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9c5789abe4dae43e2bf8047f1e9826dd</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2019.4/EnhancedHierarchyIntegration/OpenedPrefabPreviewTrackerIntegration.cs</fileName>
+    <timeStamp>2023-02-27T19:10:29+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>c56ab88c09b7d4563bc1b767a0012c16</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2020.2/EnhancedHierarchyIntegration/OpenedPrefabPreviewTrackerIntegration.cs</fileName>
+    <timeStamp>2023-02-27T19:10:38+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>45044c931abe84b7b92900dfff693f7e</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/EnhancedHierarchyIntegration/OpenedPrefabPreviewTrackerIntegration.cs</fileName>
+    <timeStamp>2023-02-27T19:10:08+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>3e284b993ad730c4b88d0af1a2cab236</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/NewToolbarCompositeAltActionProvider.cs</fileName>
+    <timeStamp>2023-02-27T19:10:07+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>70d1b5616b43e934ba9c591d38fdd92b</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/RiderFlowEditorToolbarButton.cs</fileName>
+    <timeStamp>2023-02-27T19:10:21+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d6f2d4022d627424bbca056329ef283c</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/RiderFlowEditorToolbarToggle.cs</fileName>
+    <timeStamp>2023-02-27T19:10:43+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>b173034054b2c9e4187a6f93a3a9086d</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/RiderFlowSceneToolbarRoot.cs</fileName>
+    <timeStamp>2023-02-27T19:10:33+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6eb298283da56bc4891dc0c6885b7dbb</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/RiderFlowToolbarConstants.cs</fileName>
+    <timeStamp>2023-02-27T19:10:20+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4d526e817292b2240accda8ac98e6ef1</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/SceneOccurrenceEffectToggle.cs</fileName>
+    <timeStamp>2023-02-27T19:10:10+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>454e6b5c2e9f1494d9985db35be8b2b2</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/SceneOccurrenceToolExtensions.cs</fileName>
+    <timeStamp>2023-02-27T19:10:08+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>e391afb218642f5459038ab9d478dda1</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/SceneSearchToggle.cs</fileName>
+    <timeStamp>2023-02-27T19:10:46+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>81476eaf8f4485d42ae9e118d256245d</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/SceneToolbar.cs</fileName>
+    <timeStamp>2023-02-27T19:10:24+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f22b82a72d669ca4b84d8f8562d1a0d5</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/SceneViewToolsExtensions.cs</fileName>
+    <timeStamp>2023-02-27T19:10:48+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f9674112366768d42bfc0f79967e2388</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/ShowUsagesExplorerButton.cs</fileName>
+    <timeStamp>2023-02-27T19:10:49+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>709214f1e351a3b4bbf3ca204631945f</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2021.2/SceneIntegration/VisualElementToolbarDisplay.cs</fileName>
+    <timeStamp>2023-02-27T19:10:21+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>cf814ed3f576842fd9766c0b87ed7389</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/EnhancedHierarchyIntegration/OpenedPrefabPreviewTrackerIntegration.cs</fileName>
+    <timeStamp>2023-02-27T19:10:41+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d5f5d39ebf24e45008de96d2130edfdb</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/NewToolbarCompositeAltActionProvider.cs</fileName>
+    <timeStamp>2023-02-27T19:10:43+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>22916d61bdf4c42f68a4d5201b089f74</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/RiderFlowEditorToolbarButton.cs</fileName>
+    <timeStamp>2023-02-27T19:10:00+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9d1e44334795b436cbe91c5e8935aaa7</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/RiderFlowEditorToolbarToggle.cs</fileName>
+    <timeStamp>2023-02-27T19:10:29+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>78a0fe6f410954a168caf09338bd9ca8</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/RiderFlowSceneToolbarRoot.cs</fileName>
+    <timeStamp>2023-02-27T19:10:23+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f3eba1ceebe874f5b892f80bdd56a063</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/RiderFlowToolbarConstants.cs</fileName>
+    <timeStamp>2023-02-27T19:10:48+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d7a56669fecbe45b8a1e3ccaa862d98e</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/SceneOccurrenceEffectToggle.cs</fileName>
+    <timeStamp>2023-02-27T19:10:44+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>548d675b5d19247e48fd68712c163f70</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/SceneOccurrenceToolExtensions.cs</fileName>
+    <timeStamp>2023-02-27T19:10:13+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4b6cdd79009ad48c0ade8171e9e4b0f4</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/SceneSearchToggle.cs</fileName>
+    <timeStamp>2023-02-27T19:10:09+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f309b07dc0b594a0b9a2ce7b7215d37d</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/SceneToolbar.cs</fileName>
+    <timeStamp>2023-02-27T19:10:48+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>dd92a86bac2164d54b378d52ea0bb3f6</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/SceneViewToolsExtensions.cs</fileName>
+    <timeStamp>2023-02-27T19:10:45+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>6b46f7a48f62c4fe3add1451de4d8c19</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/ShowUsagesExplorerButton.cs</fileName>
+    <timeStamp>2023-02-27T19:10:20+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>5d405d7e861414aa385f982911a4cf89</guid>
+    <fileName>Assets/Plugins/Editor/JetBrains.RiderFlow/2022.2/SceneIntegration/VisualElementToolbarDisplay.cs</fileName>
+    <timeStamp>2023-02-27T19:10:18+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>be53f59c705f7434a9d6581d0746990f</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor/Styles.cs</fileName>
+    <timeStamp>2025-08-26T23:50:40+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>ee68545419352384a950cc488e731084</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor Resources/ImageManager.cs</fileName>
+    <timeStamp>2025-08-26T23:50:44+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>380be3677d2e95144863ee00c051c1f2</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor/Dialogs/TextFieldDialog.cs</fileName>
+    <timeStamp>2025-08-26T23:50:35+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4202eaaf18e2e43438f2f3632b252393</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor/Dialogs/TextValidator.cs</fileName>
+    <timeStamp>2025-08-26T23:50:37+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>274db1862ad1a1b4c80a2ed6558e05ec</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor/Extensions/CenterOnWindow.cs</fileName>
+    <timeStamp>2025-08-26T23:50:35+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>2ae9239fbddf12b4099b3cacc5301271</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor/PreferencesEditor/PreferenceEntry.cs</fileName>
+    <timeStamp>2025-08-26T23:50:35+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>d5d94a5263d6af0478dde8fb08a3dcb7</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor/PreferencesEditor/PreferenceEntryHolder.cs</fileName>
+    <timeStamp>2025-08-26T23:50:43+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>f54241e622579a145a495df929a9330a</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor/PreferencesEditor/PreferenceStorageAccessor.cs</fileName>
+    <timeStamp>2025-08-26T23:50:45+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>13c94fa190e7e6f4690cadc347a312aa</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor/PreferencesEditor/PreferencesEditorWindow.cs</fileName>
+    <timeStamp>2025-08-26T23:50:34+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>9c38f17e357d98d4296b689ae716240b</guid>
+    <fileName>Assets/PlayerPrefsEditor/Editor/PreferencesEditor/RegistryMonitor.cs</fileName>
+    <timeStamp>2025-08-26T23:50:40+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>4004328c339a7cb4fb509e2e5f789688</guid>
+    <fileName>Assets/PlayerPrefsEditor/Samples/SampleScene/PlayerPrefsController.cs</fileName>
+    <timeStamp>2025-08-26T23:50:36+04:00</timeStamp>
+    <typeFullName />
+  </TypeDate>
+  <TypeDate>
+    <guid>eb89b4124fe2d4a8b85d91fe08eb04c1</guid>
+    <fileName>Assets/_Project/Scritps/Balls/Ball.cs</fileName>
+    <timeStamp>2025-12-13T14:22:45.8236508+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Balls.Ball</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>330235c2e4b449f2b04c2c129fb1212b</guid>
+    <fileName>Assets/_Project/Scritps/Balls/BallSO.cs</fileName>
+    <timeStamp>2025-12-10T17:23:17.3964781+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Balls.BallSO</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>90f4cf5e0f804731aefc3c08c85cc717</guid>
+    <fileName>Assets/_Project/Scritps/Balls/BallSpawner.cs</fileName>
+    <timeStamp>2025-12-13T14:23:18.7793326+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Balls.BallSpawner</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>dc66397a90d24af99017be4db8f4439b</guid>
+    <fileName>Assets/_Project/Scritps/Balls/BallVisual.cs</fileName>
+    <timeStamp>2025-12-14T17:42:02.4870765+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Balls.BallVisual</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>a9e475f4ed6040d3acffe46f281cfef4</guid>
+    <fileName>Assets/_Project/Scritps/ChainManagment/ChainValidator.cs</fileName>
+    <timeStamp>2025-12-14T17:33:13.8272+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.ChainManagment.ChainValidator</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>202b0bf9d17d4798b2423d811eb5d001</guid>
+    <fileName>Assets/_Project/Scritps/ChainManagment/ChainVisualizer.cs</fileName>
+    <timeStamp>2025-12-10T13:28:49.4883696+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.ChainManagment.ChainVisualizer</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>353e5848e0184105aedc5b46f64142ed</guid>
+    <fileName>Assets/_Project/Scritps/Core/GameplayController.cs</fileName>
+    <timeStamp>2025-12-14T17:33:13.8274323+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Core.GameplayController</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>0e5a973bc91e4ef4b23f3163efd60049</guid>
+    <fileName>Assets/_Project/Scritps/Core/InputController.cs</fileName>
+    <timeStamp>2025-12-14T15:40:44.8433477+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Core.InputController</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>fc9118c93ffa47db81bc7a570c43f284</guid>
+    <fileName>Assets/_Project/Scritps/Enemies/Enemy.cs</fileName>
+    <timeStamp>2025-12-14T13:41:25.3868651+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Enemies.Enemy</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>f629f470bf2c4d118d10b5b1a93ee295</guid>
+    <fileName>Assets/_Project/Scritps/Enemies/EnemySO.cs</fileName>
+    <timeStamp>2025-12-12T13:24:18.6451022+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Enemies.EnemySO</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>e694b8b1c645465092cb7ca6a5491898</guid>
+    <fileName>Assets/_Project/Scritps/Enemies/EnemySpawner.cs</fileName>
+    <timeStamp>2025-12-14T02:15:04.2007085+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Enemies.EnemySpawner</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>09e8aed23bf341c8b7c8c3b8a0d6c6c7</guid>
+    <fileName>Assets/_Project/Scritps/Enemies/EnemyVisual.cs</fileName>
+    <timeStamp>2025-12-12T16:12:19.7746648+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Enemies.EnemyVisual</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>7d97f79fb53a44938b67f284b449a7ff</guid>
+    <fileName>Assets/_Project/Scritps/Events/GameOverEvent.cs</fileName>
+    <timeStamp>2025-12-14T15:12:00.6621233+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Events.GameOverEvent</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>b31c16c0fce748a5abc30cf9e1364384</guid>
+    <fileName>Assets/_Project/Scritps/Events/LevelCompletedEvent.cs</fileName>
+    <timeStamp>2025-12-13T13:53:20.0696112+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Events.LevelCompletedEvent</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>f52a969da73dd489ca3cbb81bb9fc430</guid>
+    <fileName>Assets/_Project/Scritps/GameGrid/BoardGrid.cs</fileName>
+    <timeStamp>2025-12-14T17:33:13.8279094+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.GameGrid.BoardGrid</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>4467bc198041f484c9bcf8dd6c43276e</guid>
+    <fileName>Assets/_Project/Scritps/GameGrid/BoardGridVisual.cs</fileName>
+    <timeStamp>2025-12-14T15:39:35.6163371+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.GameGrid.BoardGridVisual</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>2646fdc13b6084efdadf731ab9a949db</guid>
+    <fileName>Assets/_Project/Scritps/GameGrid/BoardGridVisualSingle.cs</fileName>
+    <timeStamp>2025-12-12T15:30:06.3205487+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.GameGrid.BoardGridVisualSingle</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>54397a9468744d15a99bbbfe0fb60b7b</guid>
+    <fileName>Assets/_Project/Scritps/GridSystem/GridSystemSquare.cs</fileName>
+    <timeStamp>2025-12-09T19:43:35.3203163+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.GridSystem.GridSystemSquare`1</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>20e24c20a4ec4216bde9d6125a595437</guid>
+    <fileName>Assets/_Project/Scritps/LevelManagement/LevelManager.cs</fileName>
+    <timeStamp>2025-12-14T15:39:22.9515516+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.LevelManagement.LevelManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>bab774870e694eb1b344befcdc88797f</guid>
+    <fileName>Assets/_Project/Scritps/LevelManagement/LevelSO.cs</fileName>
+    <timeStamp>2025-12-14T02:23:12.8758924+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.LevelManagement.LevelSO</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>3a8ed625ad3e411caaf53803cd563992</guid>
+    <fileName>Assets/_Project/Scritps/MainMenu/MainMenuController.cs</fileName>
+    <timeStamp>2025-12-13T18:16:03.5216551+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.MainMenu.MainMenuController</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>0b332cd0a557493abdb6b2654dd6e4f0</guid>
+    <fileName>Assets/_Project/Scritps/MapManagement/MapManager.cs</fileName>
+    <timeStamp>2025-12-14T18:15:36.4472292+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.MapManagement.MapManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>d606bc4c8f1c4c3da3b8e0e33d32ce99</guid>
+    <fileName>Assets/_Project/Scritps/MapManagement/MapSO.cs</fileName>
+    <timeStamp>2025-12-14T18:15:46.4257431+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.MapManagement.MapSO</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>9063b484e4cf4642b012b03c4215f6ad</guid>
+    <fileName>Assets/_Project/Scritps/PathFinding/PathManager.cs</fileName>
+    <timeStamp>2025-12-13T01:36:45.9883365+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.PathFinding.PathManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>602f86fe007942078f1d208a7d0469ef</guid>
+    <fileName>Assets/_Project/Scritps/PlayerBase/BaseManager.cs</fileName>
+    <timeStamp>2025-12-14T15:39:11.2352764+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.PlayerBase.BaseManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>ba60630977a54e278da87bbf0f8d7031</guid>
+    <fileName>Assets/_Project/Scritps/SavingSystem/SaveManager.cs</fileName>
+    <timeStamp>2025-12-14T14:50:23.2271293+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.SavingSystem.SaveManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>fc8fa919756346a68f84e6c2f24a1326</guid>
+    <fileName>Assets/_Project/Scritps/Towers/Tower.cs</fileName>
+    <timeStamp>2025-12-14T17:33:13.8282462+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Towers.LevelModifier</string>
+      <string>ChainDefense.Towers.Tower</string>
+      <string>ChainDefense.Towers.Tower+AttackInfoEventArts</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>84e8831207a74ac5bd6c7908ccb7a932</guid>
+    <fileName>Assets/_Project/Scritps/Towers/TowerBallPairSO.cs</fileName>
+    <timeStamp>2025-12-11T12:19:36.253978+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Towers.TowerBallPairSO</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>02e57331d4fd40dcaff3336eb444d4c4</guid>
+    <fileName>Assets/_Project/Scritps/Towers/TowerManager.cs</fileName>
+    <timeStamp>2025-12-14T17:33:13.8284074+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Towers.LevelDefinition</string>
+      <string>ChainDefense.Towers.TowerManager</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>e31511c3ae434903975c1f97e8d3e57b</guid>
+    <fileName>Assets/_Project/Scritps/Towers/TowerSO.cs</fileName>
+    <timeStamp>2025-12-12T16:51:45.0619663+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Towers.TowerAttackType</string>
+      <string>ChainDefense.Towers.TowerSO</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>f13274e61ce04fd49e58365ab1d4e12f</guid>
+    <fileName>Assets/_Project/Scritps/Towers/TowerSpawner.cs</fileName>
+    <timeStamp>2025-12-14T17:33:13.8285531+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Towers.TowerSpawner</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>6818f9a705ca41c8b95f7c5df28429d7</guid>
+    <fileName>Assets/_Project/Scritps/Towers/TowerVisual.cs</fileName>
+    <timeStamp>2025-12-12T13:00:12.119103+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Towers.TowerVisual</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>d1f17d3416bf44f78d3f819333ceeccc</guid>
+    <fileName>Assets/_Project/Scritps/UI/BaseManagerUI.cs</fileName>
+    <timeStamp>2025-12-13T19:33:47.5224988+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.BaseManagerUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>302ca51c4dee4c0f9fe2ccebb299fb60</guid>
+    <fileName>Assets/_Project/Scritps/UI/DefeatScreenUI.cs</fileName>
+    <timeStamp>2025-12-14T19:52:18.5663948+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.DefeatScreenUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>c0b3fcb2a09042dabb0e777ad23add8c</guid>
+    <fileName>Assets/_Project/Scritps/UI/EnemyUI.cs</fileName>
+    <timeStamp>2025-12-13T00:47:10.6286842+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.EnemyUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>adc29631f46e54f1ea0fe55cffa98a49</guid>
+    <fileName>Assets/_Project/Scritps/UI/EnemyWavesUI.cs</fileName>
+    <timeStamp>2025-12-14T12:40:18.8697574+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.EnemyWavesUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>11ad3bfacc1d474b9f87470dd3e1faec</guid>
+    <fileName>Assets/_Project/Scritps/UI/LevelSelectUI.cs</fileName>
+    <timeStamp>2025-12-14T00:52:07.9713467+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.MainMenu.LevelSelectUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>feb37833991b4131885bd88f3d7b3ca8</guid>
+    <fileName>Assets/_Project/Scritps/UI/LevelStageUI.cs</fileName>
+    <timeStamp>2025-12-13T18:07:54.2958456+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.LevelStageUI</string>
+      <string>ChainDefense.UI.LevelStageUI+StageState</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>3ab9159e7f20401f8d29ebd7cfa4bd9f</guid>
+    <fileName>Assets/_Project/Scritps/UI/PauseButtonUI.cs</fileName>
+    <timeStamp>2025-12-14T02:17:59.0382896+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.PauseButtonUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>50b83b4461544688b9eea5f3a732e04b</guid>
+    <fileName>Assets/_Project/Scritps/Utilities/ListExtensions.cs</fileName>
+    <timeStamp>2025-12-09T19:43:35.2918771+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Utilities.ListExtensions</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>1473ac25efe1457499626a2f87eac94f</guid>
+    <fileName>Assets/_Project/Scritps/Utilities/OrthographicCameraAdjuster.cs</fileName>
+    <timeStamp>2025-12-09T19:43:35.3175936+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Utilities.OrthographicCameraAdjuster</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>dc24b05696e7544e6b47116e8084f64e</guid>
+    <fileName>Assets/_Project/Scritps/Utilities/PointerToWorld.cs</fileName>
+    <timeStamp>2025-12-12T23:18:31.3475872+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Utilities.PointerToWorld</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>022f88edfdfa44b65afcefde3c9d854e</guid>
+    <fileName>Assets/_Project/Scritps/Utilities/UIParticleSystem.cs</fileName>
+    <timeStamp>2025-05-07T13:45:33+04:00</timeStamp>
+    <typeFullName>
+      <string>UnityEngine.UI.Extensions.CasualGame.UIParticleSystem</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>2d634b6190b54c51879f43a3a44dba3d</guid>
+    <fileName>Assets/_Project/Scritps/Waves/WaveManager.cs</fileName>
+    <timeStamp>2025-12-14T14:37:48.0145095+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Waves.WaveManager</string>
+      <string>ChainDefense.Waves.WaveManager+WaveEventArgs</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>1eec98b2084743fe995ee32e702036b9</guid>
+    <fileName>Assets/_Project/Scritps/Waves/WaveSO.cs</fileName>
+    <timeStamp>2025-12-12T23:17:11.0950519+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.Waves.WaveConfig</string>
+      <string>ChainDefense.Waves.WaveSO</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>a32662d21bfe439c927b30966a71c770</guid>
+    <fileName>Assets/_Project/Scritps/GridSystem/components/GridDebugObject.cs</fileName>
+    <timeStamp>2025-12-09T19:43:35.3137954+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.GridSystem.components.GridDebugObject</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>d10893373d554d1d9fdad965ce93061b</guid>
+    <fileName>Assets/_Project/Scritps/GridSystem/core/GridObject.cs</fileName>
+    <timeStamp>2025-12-14T17:33:13.8280788+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.GridSystem.core.GridObject`1</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>247b232f645a4d89b85b2e2053f01458</guid>
+    <fileName>Assets/_Project/Scritps/GridSystem/core/GridPosition.cs</fileName>
+    <timeStamp>2025-12-10T16:25:46.0536575+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.GridSystem.core.GridPosition</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>105a15f1969f4cf8b13236debfdac1ed</guid>
+    <fileName>Assets/_Project/Scritps/GridSystem/core/GridSystemBase.cs</fileName>
+    <timeStamp>2025-12-09T19:43:35.3315278+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.GridSystem.core.GridSystemBase`1</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>35e309dcbfec450bb6822096b737085d</guid>
+    <fileName>Assets/_Project/Scritps/UI/ProgressBar/IHasProgress.cs</fileName>
+    <timeStamp>2025-12-11T16:49:04.6588801+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.ProgressBar.IHasProgress</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>915b43e9afdb479bab3d6a36310d6017</guid>
+    <fileName>Assets/_Project/Scritps/UI/ProgressBar/ProgressBarUI.cs</fileName>
+    <timeStamp>2025-12-14T00:10:18.2040792+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.ProgressBar.ProgressBarUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>1e6e9997312343e2b85b3082d6b30574</guid>
+    <fileName>Assets/_Project/Scritps/UI/Screens/BaseScreenUI.cs</fileName>
+    <timeStamp>2025-12-13T16:56:17.5411921+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.BaseScreenUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>b78d4a5fa4dc4d669846b988e818690e</guid>
+    <fileName>Assets/_Project/Scritps/UI/Screens/GamePauseScreenUI.cs</fileName>
+    <timeStamp>2025-12-14T13:30:34.0322519+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.GamePauseScreenUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>b80e6fd587e24bf0b2a1d0bcc4f445a8</guid>
+    <fileName>Assets/_Project/Scritps/UI/Screens/HomeScreenUI.cs</fileName>
+    <timeStamp>2025-12-13T17:53:08.5690987+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.HomeScreenUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>cb68c95e56b4475093419538ac49ffd4</guid>
+    <fileName>Assets/_Project/Scritps/UI/Screens/LevelSelectScreenUI.cs</fileName>
+    <timeStamp>2025-12-13T18:14:46.1644517+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.LevelSelectScreenUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>e961e99e16b14be8ab59d03d3a1342b1</guid>
+    <fileName>Assets/_Project/Scritps/UI/Screens/SettingsScreenUI.cs</fileName>
+    <timeStamp>2025-12-13T16:56:17.5376139+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.SettingsScreenUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+  <TypeDate>
+    <guid>dac13be67d0c474f8f0a90f2df5738b4</guid>
+    <fileName>Assets/_Project/Scritps/UI/Screens/VictoryScreenUI.cs</fileName>
+    <timeStamp>2025-12-14T13:49:33.5673712+04:00</timeStamp>
+    <typeFullName>
+      <string>ChainDefense.UI.VictoryScreenUI</string>
+    </typeFullName>
+    <assembly>Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</assembly>
+  </TypeDate>
+</ArrayOfTypeDate>
