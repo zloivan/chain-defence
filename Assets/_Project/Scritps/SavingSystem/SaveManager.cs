@@ -12,8 +12,9 @@ namespace ChainDefense.SavingSystem
         [Serializable]
         private class SaveData
         {
-            public int HighestCompletedLevelIndex;
-            public int LastCompletedLevelIndex;
+            public int HighestCompletedLevelIndex = -1;
+            public int LastCompletedLevelIndex = -1;
+            public int RequiredLevelIndex = -1;
             public bool[] CompletedLevelsArray;
         }
 
@@ -55,9 +56,10 @@ namespace ChainDefense.SavingSystem
         {
             var saveData = new SaveData
             {
-                HighestCompletedLevelIndex = 0,
-                LastCompletedLevelIndex = 0,
-                CompletedLevelsArray = new bool[100],
+                HighestCompletedLevelIndex = -1,
+                LastCompletedLevelIndex = -1,
+                RequiredLevelIndex = -1,
+                CompletedLevelsArray = new bool[10],
             };
 
             return saveData;
@@ -71,6 +73,12 @@ namespace ChainDefense.SavingSystem
 
         private void SetCompletedLevel(int levelIndex)
         {
+            if (_currentSave.RequiredLevelIndex != -1)
+            {
+                _currentSave.RequiredLevelIndex = -1;
+                return;
+            }
+            
             if (_currentSave.CompletedLevelsArray.Length <= levelIndex)
             {
                 Array.Resize(ref _currentSave.CompletedLevelsArray, levelIndex + 1);
@@ -95,5 +103,14 @@ namespace ChainDefense.SavingSystem
 
         public bool[] GetCompletedLevelsArray() =>
             _currentSave.CompletedLevelsArray;
+
+        public void SetRequireLevelToPlay(int levelIndex)
+        {
+            _currentSave.RequiredLevelIndex = levelIndex;
+            SaveGame();
+        }
+
+        public int GetRequiredLevelToPlay() =>
+            _currentSave.RequiredLevelIndex;
     }
 }

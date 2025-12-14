@@ -4,7 +4,6 @@ using System.Threading;
 using ChainDefense.PathFinding;
 using ChainDefense.UI.ProgressBar;
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ChainDefense.Enemies

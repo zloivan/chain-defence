@@ -22,6 +22,8 @@ namespace ChainDefense.LevelManagement
         private WaveManager _waveManager;
         private SaveManager _saveManager;
 
+        private bool _levelCompleted = false;
+
         private void Start()
         {
             _mapManager = MapManager.Instance;
@@ -29,17 +31,19 @@ namespace ChainDefense.LevelManagement
             _saveManager = SaveManager.Instance;
             _waveManager.OnAllWavesCompleted += OnWaveManager_OnAllWavesCompleted;
 
+            var requiredLevelToPlay = _saveManager.GetRequiredLevelToPlay();
             var highestLevelUnlocked = _saveManager.GetLastCompletedLevelNumber();
-            if (highestLevelUnlocked == 0)
+            
+            if (requiredLevelToPlay != -1 && requiredLevelToPlay < GetNumberOfLevels())
             {
-                LoadLevelByIndex(0);
+                LoadLevelByIndex(requiredLevelToPlay);
                 return;
             }
 
             LoadLevelByIndex((highestLevelUnlocked + 1) % _levelList.Count);
         }
 
-        public void RestartLevel()
+        private void RestartScene()
         {
             SceneManager.LoadScene("Game");
         }
@@ -49,10 +53,38 @@ namespace ChainDefense.LevelManagement
             EventBus<LevelCompletedEvent>.Raise(
                 new LevelCompletedEvent(GetCurrentLevelIndex(), GetCurrentLevelNumber()));
 
-            
-            SceneManager.LoadScene("Game");
-            //TODO: TEMP - gonna restart the scene here
-            //LoadLevelByIndex((_levelList.IndexOf(_currentLevel) + 1) % _levelList.Count);
+            _levelCompleted = true;
+        }
+
+        public void RestartLevel()
+        {
+            if (_levelCompleted)
+            {
+                _levelCompleted = false;
+                RequireLevelToPlay(GetCurrentLevelIndex());
+            }
+            else
+            {
+                RestartScene();
+            }
+        }
+
+        public void NextLevel()
+        {
+            if (!_levelCompleted)
+            {
+                RequireLevelToPlay((GetCurrentLevelIndex() + 1) % _levelList.Count);
+            }
+            else
+            {
+                RestartScene();
+            }
+        }
+
+        private void RequireLevelToPlay(int levelIndex)
+        {
+            _saveManager.SetRequireLevelToPlay(levelIndex);
+            RestartScene();
         }
 
         private void LoadLevelByIndex(int levelIndex)
