@@ -1,4 +1,5 @@
 using System;
+using ChainDefense.Core;
 using ChainDefense.Events;
 using ChainDefense.LevelManagement;
 using IKhom.EventBusSystem.Runtime;
@@ -26,7 +27,11 @@ namespace ChainDefense.UI
         {
             _levelManager = LevelManager.Instance;
 
-            _restartButton.onClick.AddListener(() => { LevelManager.Instance.RestartLevel(); });
+            _restartButton.onClick.AddListener(() =>
+            {
+                _levelManager.RestartLevel(); 
+                GameplayController.Instance.SwitchPauseState();
+            });
             _homeScreenButton.onClick.AddListener(() => Debug.Log("Open Home Screen")); //TODO: Placeholder
 
             Hide();
@@ -37,6 +42,7 @@ namespace ChainDefense.UI
 
         private void OnGameOverEvent(GameOverEvent obj)
         {
+            GameplayController.Instance.SwitchPauseState();
             Show();
         }
     }
