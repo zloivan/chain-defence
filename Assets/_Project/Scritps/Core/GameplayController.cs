@@ -2,13 +2,17 @@ using System;
 using System.Collections.Generic;
 using ChainDefense.Balls;
 using ChainDefense.ChainManagment;
+using ChainDefense.Events;
 using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
+using ChainDefense.LevelManagement;
 using ChainDefense.PlayerBase;
 using ChainDefense.Utilities;
 using ChainDefense.Waves;
 using DG.Tweening;
+using IKhom.EventBusSystem.Runtime;
 using IKhom.UtilitiesLibrary.Runtime.components;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ChainDefense.Core
@@ -37,7 +41,7 @@ namespace ChainDefense.Core
         private WaveManager _waveManager;
         private BaseManager _baseManager;
         private bool _isGamePaused;
-
+        private LevelManager _levelManager;
         protected override void Awake()
         {
             base.Awake();
@@ -50,6 +54,7 @@ namespace ChainDefense.Core
             _chainValidator = ChainValidator.Instance;
             _waveManager = WaveManager.Instance;
             _baseManager = BaseManager.Instance;
+            _levelManager = LevelManager.Instance;
 
             _chainValidator.OnChainDestroyed += ChainValidator_OnChainDestroyed;
             _waveManager.OnAllWavesCompleted += WaveManager_OnAllWavesCompleted;
@@ -61,12 +66,13 @@ namespace ChainDefense.Core
         private void BaseManager_OnGameOver(object sender, EventArgs e)
         {
             Debug.Log("Game Over!");
+
+            EventBus<GameOverEvent>.Raise(new GameOverEvent(_levelManager.GetCurrentLevelIndex()));
         }
 
-        private void WaveManager_OnAllWavesCompleted(object sender, EventArgs e)
-        {
+        //TODO: REFACTORING, THIS SHOULD DECIDE WHEN LEVEL IS COMPLETED, NOW LEVEL MANAGER
+        private void WaveManager_OnAllWavesCompleted(object sender, EventArgs e) =>
             Debug.Log("Victory!");
-        }
 
         private void ChainValidator_OnChainDestroyed(object sender, List<Ball> e)
         {

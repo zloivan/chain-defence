@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ChainDefense.Core;
 using ChainDefense.GridSystem.core;
-using ChainDefense.Utilities;
 using UnityEngine;
 
 namespace ChainDefense.GameGrid
@@ -30,22 +30,31 @@ namespace ChainDefense.GameGrid
         private GridPosition _selectedGridPosition;
         private BoardGrid _boardGrid;
         private BoardGridVisualSingle[,] _boarGridVisuals;
+        private InputController _inputController;
 
 
         private void Start()
         {
             _boardGrid = GetComponent<BoardGrid>();
 
+            _inputController = InputController.Instance;
+            _inputController.OnDrag += InputController_OnDrag;
+            _inputController.OnDragEnd += InputController_OnDragEnd;
             _selectedGridPosition = new GridPosition(-1, -1);
 
             InstantiateVisualSingles();
             UpdateVisuals();
         }
 
-        private void Update()
+        private void InputController_OnDragEnd(object sender, EventArgs e)
         {
-            var worldPointerPosition = PointerToWorld.GetPointerPositionInWorld();
-            var newSelected = _boardGrid.GetGridPosition(worldPointerPosition);
+            if (_boardGrid.IsValidGridPosition(_selectedGridPosition))
+                _boarGridVisuals[_selectedGridPosition.X, _selectedGridPosition.Z].RemoveHighlight();
+        }
+
+        private void InputController_OnDrag(object sender, Vector3 e)
+        {
+            var newSelected = _boardGrid.GetGridPosition(e);
 
             if (newSelected == _selectedGridPosition || !_boardGrid.IsValidGridPosition(newSelected))
                 return;
