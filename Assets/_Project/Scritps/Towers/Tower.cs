@@ -49,8 +49,12 @@ namespace ChainDefense.Towers
         private TowerAttackType _attackType;
 
         private readonly List<LevelModifier> _levelModifiersList = new();
+        
+        //Cache for performance
         private readonly Collider[] _enemyCollidersArray = new Collider[20];
         private readonly List<Enemy> _visibleEnemiesList = new();
+        private readonly List<Enemy> _enemiesClosestToBase = new();
+        private Enemy _closestEnemy;
 
         private void Awake()
         {
@@ -80,7 +84,7 @@ namespace ChainDefense.Towers
             PerformAttack(_currentTarget);
         }
 
-        private void FindTarget() //TODO: look for other way of prioritizing enemies & optimize if needed
+        private void FindTarget()
         {
             if (_findDelayTimer <= DELAY_BETWEEN_SEARCH)
             {
@@ -127,23 +131,40 @@ namespace ChainDefense.Towers
             if (_visibleEnemiesList.Count == 0)
                 return;
 
-            var maxWaypointIndex = _visibleEnemiesList.Max(e => e.GetWaypointIndex());
-            var enemiesClosestToBase =
-                _visibleEnemiesList.Where(e => e.GetWaypointIndex() == maxWaypointIndex).ToList();
+            var maxWaypointIndex = int.MinValue;
+            _enemiesClosestToBase.Clear();
 
-            Enemy closestEnemy = null;
+            //Find the enemy with the highest waypoint index
+            foreach (var enemy in _visibleEnemiesList)
+            {
+                var waypointIndex = enemy.GetWaypointIndex();
+
+                if (waypointIndex > maxWaypointIndex)
+                {
+                    maxWaypointIndex = waypointIndex;
+                    _enemiesClosestToBase.Clear();
+                    _enemiesClosestToBase.Add(enemy);
+                }
+                else if (waypointIndex == maxWaypointIndex)
+                {
+                    _enemiesClosestToBase.Add(enemy);
+                }
+            }
+
+            //Find the closest enemy
+            _closestEnemy = null;
             var closestDistance = float.MaxValue;
-            foreach (var enemy in enemiesClosestToBase)
+            foreach (var enemy in _enemiesClosestToBase)
             {
                 var distance = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distance >= closestDistance)
                     continue;
 
                 closestDistance = distance;
-                closestEnemy = enemy;
+                _closestEnemy = enemy;
             }
 
-            _currentTarget = closestEnemy;
+            _currentTarget = _closestEnemy;
         }
 
         public void SetLevel(int level)

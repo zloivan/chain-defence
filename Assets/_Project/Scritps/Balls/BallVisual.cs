@@ -17,6 +17,12 @@ namespace ChainDefense.Balls
             _initialScale = transform.localScale;
         }
 
+        private void OnDestroy()
+        {
+            transform.DOComplete();
+            transform.DOKill();
+        }
+
         private void Ball_OnBallDeselected(object sender, EventArgs e)
         {
             transform.DOScale(_initialScale, 0.3f).SetEase(Ease.OutBack);
