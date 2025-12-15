@@ -42,8 +42,6 @@ namespace ChainDefense.Towers
             remove => TowerSpawner.Instance.OnAnyTowerSpawned -= value;
         }
 
-        public static event EventHandler<AttackInfoEventArts> OnAnyTowerBeginAttack;
-
         //INSTANCE EVENTS
         public event EventHandler<AttackInfoEventArts> OnTowerFinishAttack;
         public event EventHandler<AttackInfoEventArts> OnTowerBeginAttack;
@@ -72,13 +70,15 @@ namespace ChainDefense.Towers
         private readonly List<Enemy> _visibleEnemiesList = new();
         private readonly List<Enemy> _enemiesClosestToBase = new();
         private Enemy _closestEnemy;
-
         private void Awake()
         {
             _currentDamage = _towerConfig.BaseDamage;
             _currentAttackRange = _towerConfig.BaseAttackRange;
             _currentAttackSpeed = _towerConfig.BaseAttackSpeed;
+            
         }
+
+      
 
         private void Update()
         {
@@ -296,6 +296,18 @@ namespace ChainDefense.Towers
             }
         }
 
+        public void ApplyDamageAndEffects(Enemy enemy)
+        {
+            enemy.TakeDamage(_currentDamage);
+            ApplyAttackType(enemy, _towerConfig);
+    
+            OnTowerFinishAttack?.Invoke(this, new AttackInfoEventArts
+            {
+                TargetEnemy = enemy,
+                DamageDealt = _currentDamage
+            });
+        }
+
         private void PerformAttack(Enemy enemy)
         {
             OnTowerBeginAttack?.Invoke(this, new AttackInfoEventArts
@@ -304,16 +316,8 @@ namespace ChainDefense.Towers
                 DamageDealt = _currentDamage
             });
 
-            EventBus<TowerAttackEvent>.Raise(new TowerAttackEvent(_towerConfig.AttackType));
-
-            enemy.TakeDamage(_currentDamage);
-            ApplyAttackType(enemy, _towerConfig);
-
-            OnTowerFinishAttack?.Invoke(this, new AttackInfoEventArts
-            {
-                TargetEnemy = _currentTarget,
-                DamageDealt = _currentDamage
-            });
+            EventBus<TowerAttackEvent>.Raise(
+                new TowerAttackEvent(_towerConfig.AttackType, _currentTarget, this));
         }
 
         private void ApplyModifiers(List<LevelModifier> modifiers)

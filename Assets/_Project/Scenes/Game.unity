@@ -455,6 +455,72 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &347838255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 347838256}
+  - component: {fileID: 347838257}
+  m_Layer: 0
+  m_Name: ProjectileSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &347838256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347838255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1999629187}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &347838257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347838255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74356252442347a298c4b4064cbda277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _persistAcrossScenes: 0
+  _unParentOnAwake: 0
+  _fireProjectilePrefab: {fileID: 2226068424995332139, guid: 19db7ec03606f49f298bd9c8dd692b2c,
+    type: 3}
+  _iceProjectilePrefab: {fileID: 2226068424995332139, guid: 243322996dbb84f07a0291a6aeb083af,
+    type: 3}
+  _poisonProjectilePrefab: {fileID: 2226068424995332139, guid: f722066a76e7f4b8394bbbd3181bb781,
+    type: 3}
+  _lightningProjectilePrefab: {fileID: 2226068424995332139, guid: 08208091b5b9e45e29ba153dc74cc218,
+    type: 3}
+  _impactExplosionPrefab: {fileID: 1569530225124986477, guid: cf0f81ac46c154a5d8e3f0ead1c57062,
+    type: 3}
+  _iceSlowAuraPrefab: {fileID: 7859534445770567468, guid: de0e9021148e54de982e6bfcd0af2e84,
+    type: 3}
+  _poisonCloudPrefab: {fileID: 879797461556058434, guid: 7f0183679fa1c419d98b3a70d38fb50c,
+    type: 3}
+  _chainLightningArcPrefab: {fileID: 553916191805149237, guid: 538b7b6b35cf14199b8761822080c3a9,
+    type: 3}
+  _defaultPoolCapacity: 10
+  _maxPoolSize: 50
+  _projectileParent: {fileID: 347838256}
+  _impactParent: {fileID: 0}
 --- !u!1 &368697122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,6 +2172,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1474221305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1474221306}
+  - component: {fileID: 1474221307}
+  m_Layer: 0
+  m_Name: TowerFXController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1474221306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474221305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1999629187}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1474221307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474221305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad22cebe7db4e71aa26ab788569b56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectileSpeed:
+  - ProjectileSpeed: 15
+    AttackType: 0
+  - ProjectileSpeed: 15
+    AttackType: 1
+  - ProjectileSpeed: 10
+    AttackType: 2
+  - ProjectileSpeed: 50
+    AttackType: 3
 --- !u!1 &1475691656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2949,6 +3068,8 @@ Transform:
   - {fileID: 161775094}
   - {fileID: 1689813471}
   - {fileID: 1511795849}
+  - {fileID: 1474221306}
+  - {fileID: 347838256}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
