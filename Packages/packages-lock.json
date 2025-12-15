@@ -200,7 +200,7 @@
       "hash": "fce74995d0ebb07bbd61ccd9b30699f4e18f2fc2"
     },
     "com.zloivan.soundsystem": {
-      "version": "git@github.com:zloivan/sound-system.git",
+      "version": "https://github.com/zloivan/sound-system.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
@@ -219,13 +219,6 @@
       "source": "git",
       "dependencies": {},
       "hash": "078f680523ad9d23e2911136ffdf3aba351cbf80"
-    },
-    "com.zloivan.v-fav": {
-      "version": "git@github.com:zloivan/v-fav.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "00960a683214a0bec4ad312dd375cee27b2a1c11"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
