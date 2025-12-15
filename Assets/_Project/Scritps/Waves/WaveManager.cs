@@ -194,5 +194,12 @@ namespace ChainDefense.Waves
 
         public float GetDelayBeforeWaveTimer() =>
             _delayBeforeWaveTimer;
+
+        public void Clear()
+        {
+            _currentWaveIndex = 0;
+            _waveSequenceCts?.Cancel();
+            OnWavesListUpdate?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

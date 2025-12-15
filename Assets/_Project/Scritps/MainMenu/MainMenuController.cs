@@ -28,7 +28,6 @@ namespace ChainDefense.MainMenu
 
         public void OpenSettingsScreen()
         {
-            Debug.Log("Load Settings");
 
             _settingsScreenScreen.Show();
             _levelSelectScreen.Hide();
@@ -37,7 +36,6 @@ namespace ChainDefense.MainMenu
 
         public void OpenLevelSelectScreen()
         {
-            Debug.Log("Load Level Selector");
 
             _levelSelectScreen.Show();
             _homeScreen.Hide();
@@ -46,7 +44,6 @@ namespace ChainDefense.MainMenu
 
         public void OpenHomeScreen()
         {
-            Debug.Log("Load Home Screen");
 
             _homeScreen.Show();
             _levelSelectScreen.Hide();

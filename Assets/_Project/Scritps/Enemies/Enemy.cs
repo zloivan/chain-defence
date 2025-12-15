@@ -177,5 +177,10 @@ namespace ChainDefense.Enemies
 
         public int GetAttackDamage() =>
             _currentAttackDamage;
+
+        public static void ClearAllEnemies()
+        {
+            EnemySpawner.Instance.ClearAllEnemies();
+        }
     }
 }

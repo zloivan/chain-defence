@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ChainDefense.Balls;
 using ChainDefense.ChainManagment;
+using ChainDefense.Enemies;
 using ChainDefense.Events;
 using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
@@ -66,7 +67,9 @@ namespace ChainDefense.Core
         private void BaseManager_OnGameOver(object sender, EventArgs e)
         {
             Debug.Log("Game Over!");
-
+            
+            _waveManager.Clear();
+            Enemy.ClearAllEnemies();
             EventBus<GameOverEvent>.Raise(new GameOverEvent(_levelManager.GetCurrentLevelIndex()));
         }
 
@@ -106,7 +109,6 @@ namespace ChainDefense.Core
                     break;
             }
         }
-
 
         private void ReorderBallsOnBoard()
         {

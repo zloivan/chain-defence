@@ -1,4 +1,3 @@
-using System;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 
@@ -7,7 +6,6 @@ namespace ChainDefense.Towers
     public class TowerSpawner : SingletonBehaviour<TowerSpawner>
     {
         [SerializeField] private Transform _parent;
-        public event EventHandler OnAnyTowerSpawned;
 
         protected override void Awake()
         {

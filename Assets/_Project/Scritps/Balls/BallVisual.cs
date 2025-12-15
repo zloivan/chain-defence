@@ -30,7 +30,7 @@ namespace ChainDefense.Balls
 
         private void Ball_OnBallSelected(object sender, EventArgs e)
         {
-            transform.DOScale(_initialScale * 1.3f, 0.3f).SetEase(Ease.OutBack);
+            transform.DOScale(_initialScale * 1.15f, 0.3f).SetEase(Ease.OutBack);
         }
     }
 }

@@ -48,5 +48,16 @@ namespace ChainDefense.Enemies
 
         public IReadOnlyList<Enemy> GetAliveEnemies() =>
             _aliveEnemies.AsReadOnly();
+
+        public void ClearAllEnemies()
+        {
+            foreach (var enemy in _aliveEnemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+
+            _aliveEnemies.Clear();
+            OnAliveCountChanged?.Invoke(this, 0);
+        }
     }
 }

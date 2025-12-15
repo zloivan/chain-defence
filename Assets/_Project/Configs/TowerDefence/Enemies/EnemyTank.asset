@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f629f470bf2c4d118d10b5b1a93ee295, type: 3}
   m_Name: EnemyTank
   m_EditorClassIdentifier: 
-  MaxHealth: 120
+  MaxHealth: 255
   BaseMoveSpeed: 3
   BaseDamage: 10
   EnemyPrefab: {fileID: 1891984561505503618, guid: fe6ce0cb484d74a02aea8d130c2fd6b3,

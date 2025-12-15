@@ -36,8 +36,16 @@ namespace ChainDefense.Towers
         private void Tower_OnAnyTowerBeginAttack(TowerAttackEvent attackInfo)
         {
             var config = attackInfo.Tower.GetTowerConfig();
-            const float TOWER_HEIGHT = 0.5f;
-            var spawnPos = attackInfo.Tower.transform.position + Vector3.up * TOWER_HEIGHT;
+            const float TOWER_HEIGHT = 3.7f;
+            const float BARREL_FORWARD_OFFSET = 3f; // Adjust this value based on your tower model
+    
+            // Get the direction to the target
+            var directionToTarget = (attackInfo.TargetEnemy.transform.position - attackInfo.Tower.transform.position).normalized;
+    
+            // Calculate barrel position: base position + height + forward offset in the direction of the target
+            var spawnPos = attackInfo.Tower.transform.position 
+                           + Vector3.up * TOWER_HEIGHT 
+                           + directionToTarget * BARREL_FORWARD_OFFSET;
 
             SpawnProjectile(config.AttackType, spawnPos, attackInfo.TargetEnemy, attackInfo.Tower);
         }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f629f470bf2c4d118d10b5b1a93ee295, type: 3}
   m_Name: EnemyFast
   m_EditorClassIdentifier: 
-  MaxHealth: 30
+  MaxHealth: 70
   BaseMoveSpeed: 4
   BaseDamage: 2
   EnemyPrefab: {fileID: 1891984561505503618, guid: 93511fcf2ba924058983cdc634501cc4,

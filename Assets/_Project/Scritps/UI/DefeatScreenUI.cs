@@ -27,11 +27,7 @@ namespace ChainDefense.UI
         {
             _levelManager = LevelManager.Instance;
 
-            _restartButton.onClick.AddListener(() =>
-            {
-                _levelManager.RestartLevel(); 
-                GameplayController.Instance.SwitchPauseState();
-            });
+            _restartButton.onClick.AddListener(() => { _levelManager.RestartLevel(); });
             _homeScreenButton.onClick.AddListener(() => Debug.Log("Open Home Screen")); //TODO: Placeholder
 
             Hide();
@@ -40,10 +36,7 @@ namespace ChainDefense.UI
         private void OnDestroy() =>
             EventBus<GameOverEvent>.Deregister(_eventBinding);
 
-        private void OnGameOverEvent(GameOverEvent obj)
-        {
-            GameplayController.Instance.SwitchPauseState();
+        private void OnGameOverEvent(GameOverEvent obj) =>
             Show();
-        }
     }
 }

@@ -45,12 +45,13 @@ namespace ChainDefense.Towers
         //INSTANCE EVENTS
         public event EventHandler<AttackInfoEventArts> OnTowerFinishAttack;
         public event EventHandler<AttackInfoEventArts> OnTowerBeginAttack;
-
+        public event EventHandler<Enemy> OnTargetChanged;
 
         [SerializeField] private TowerSO _towerConfig;
         [SerializeField] private TextMeshPro _levelNumberLabel; //TODO: DEBUG
         [SerializeField] private List<LevelModifier> _levelModifierSOList;
         [SerializeField] private LayerMask _enemyLayerMask;
+
 
         private int _currentDamage;
         private float _currentAttackRange;
@@ -70,15 +71,13 @@ namespace ChainDefense.Towers
         private readonly List<Enemy> _visibleEnemiesList = new();
         private readonly List<Enemy> _enemiesClosestToBase = new();
         private Enemy _closestEnemy;
+
         private void Awake()
         {
             _currentDamage = _towerConfig.BaseDamage;
             _currentAttackRange = _towerConfig.BaseAttackRange;
             _currentAttackSpeed = _towerConfig.BaseAttackSpeed;
-            
         }
-
-      
 
         private void Update()
         {
@@ -118,6 +117,7 @@ namespace ChainDefense.Towers
                     || _currentTarget.GetIsDead()))
             {
                 _currentTarget = null;
+                OnTargetChanged?.Invoke(this, null);
             }
 
             var numColliders = Physics.OverlapSphereNonAlloc(
@@ -182,6 +182,7 @@ namespace ChainDefense.Towers
             }
 
             _currentTarget = _closestEnemy;
+            OnTargetChanged?.Invoke(this, _currentTarget);
         }
 
         public void SetLevel(int level)
@@ -300,7 +301,7 @@ namespace ChainDefense.Towers
         {
             enemy.TakeDamage(_currentDamage);
             ApplyAttackType(enemy, _towerConfig);
-    
+
             OnTowerFinishAttack?.Invoke(this, new AttackInfoEventArts
             {
                 TargetEnemy = enemy,
@@ -373,5 +374,8 @@ namespace ChainDefense.Towers
 
         public TowerSO GetTowerConfig() =>
             _towerConfig;
+
+        public Enemy GetCurrentTarget() =>
+            _currentTarget;
     }
 }
