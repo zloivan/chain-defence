@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using ChainDefense.Balls;
 using ChainDefense.Core;
+using ChainDefense.Events;
 using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
+using IKhom.EventBusSystem.Runtime;
 using UnityEngine;
 
 namespace ChainDefense.ChainManagment
@@ -43,6 +45,7 @@ namespace ChainDefense.ChainManagment
                 first.SetSelected();
                 _lastConnectedPosition = gridPosition;
                 OnHeadChangedPosition?.Invoke(this, worldPos);
+                EventBus<BallDragStartedEvent>.Raise(new BallDragStartedEvent());
             }
             else
             {
@@ -60,6 +63,7 @@ namespace ChainDefense.ChainManagment
                 }
 
                 OnChainDestroyed?.Invoke(this, _conntectedList);
+                EventBus<ChainDestroyedEvent>.Raise(new ChainDestroyedEvent());
             }
             else
             {
@@ -67,10 +71,12 @@ namespace ChainDefense.ChainManagment
                 {
                     connectedBall.Deselect();
                 }
+                
+                EventBus<InvalidChainEvent>.Raise(new InvalidChainEvent());
+                
             }
-
-
             OnChainBreak?.Invoke(this, EventArgs.Empty);
+            
             _conntectedList.Clear();
         }
 

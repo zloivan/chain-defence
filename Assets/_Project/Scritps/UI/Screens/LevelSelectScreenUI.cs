@@ -29,7 +29,10 @@ namespace ChainDefense.UI
         {
             _saveManager = SaveManager.Instance;
             
-            _buttonText.text = $"Level {_saveManager.GetLastCompletedLevelNumber() + 1}";
+            var nextLevelIndex = _saveManager.GetLastCompletedLevelNumber() + 1;
+            var nextLevelNumber = nextLevelIndex + 1;
+            
+            _buttonText.text = $"Level {nextLevelNumber}";
         }
     }
 }

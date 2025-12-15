@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ChainDefense.Towers
 {
-    [CreateAssetMenu(fileName = "Pair", menuName = "Config/Tower Ball Pair SO", order = 0)]
+    [CreateAssetMenu(fileName = "Pair", menuName = "Configs/Tower Ball Pair SO", order = 0)]
     public class TowerBallPairSO : ScriptableObject
     {
         public TowerSO TowerConfig;

@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using ChainDefense.Enemies;
+using ChainDefense.Events;
 using ChainDefense.PathFinding;
 using Cysharp.Threading.Tasks;
+using IKhom.EventBusSystem.Runtime;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 
@@ -165,6 +167,7 @@ namespace ChainDefense.Waves
                 }
 
                 OnEnemyWaveSpawned?.Invoke(this, new WaveEventArgs(_currentWaveIndex, Enemy.GetAliveEnemies()));
+                EventBus<WaveSpawnedEvent>.Raise(new WaveSpawnedEvent());
             }
 
             return false;

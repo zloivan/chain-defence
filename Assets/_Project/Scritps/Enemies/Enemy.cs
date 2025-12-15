@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using ChainDefense.Events;
 using ChainDefense.PathFinding;
 using ChainDefense.UI.ProgressBar;
 using Cysharp.Threading.Tasks;
+using IKhom.EventBusSystem.Runtime;
 using UnityEngine;
 
 namespace ChainDefense.Enemies
@@ -30,6 +32,7 @@ namespace ChainDefense.Enemies
         private EnemySpawner _enemySpawner;
         private CancellationTokenSource _slowCts;
         private int _maxHealth;
+        public static event EventHandler OnAnyEnemyTakeDamage;
 
         public void Initialize(EnemySO enemyConfig, PathManager pathManager, EnemySpawner enemySpawner, int levelNumber)
         {
@@ -118,9 +121,16 @@ namespace ChainDefense.Enemies
                 new IHasProgress.ProgressEventArgs(GetNormalizedProgress()));
 
             OnEnemyTakeDamage?.Invoke(this, damage);
-
+            OnAnyEnemyTakeDamage?.Invoke(this, EventArgs.Empty);
             if (_currentHealth <= 0)
+            {
                 SelfDestroy();
+                EventBus<EnemyDestroyedEvent>.Raise(new EnemyDestroyedEvent());
+            }
+            else
+            {
+                EventBus<EnemyTakeDamageEvent>.Raise(new EnemyTakeDamageEvent());
+            }
         }
 
         public void SelfDestroy()

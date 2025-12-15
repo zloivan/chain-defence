@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ChainDefense.Enemies;
+using ChainDefense.Events;
 using Cysharp.Threading.Tasks;
+using IKhom.EventBusSystem.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,19 +20,34 @@ namespace ChainDefense.Towers
         public float AttackRangeModifier;
     }
 
+    public class AttackInfoEventArts : EventArgs
+    {
+        public Enemy TargetEnemy;
+        public int DamageDealt;
+    }
+
     [SelectionBase]
     public class Tower : MonoBehaviour
     {
         private const float DELAY_BETWEEN_SEARCH = .5f;
 
-        public class AttackInfoEventArts : EventArgs
+
+        //STATIC
+        public static GameObject SpawnTower(TowerSO config, Vector3 position) =>
+            TowerSpawner.Instance.SpawnTower(config, position);
+
+        public static event EventHandler OnAnyTowerSpawned
         {
-            public Enemy TargetEnemy;
-            public int DamageDealt;
+            add => TowerSpawner.Instance.OnAnyTowerSpawned += value;
+            remove => TowerSpawner.Instance.OnAnyTowerSpawned -= value;
         }
 
+        public static event EventHandler<AttackInfoEventArts> OnAnyTowerBeginAttack;
+
+        //INSTANCE EVENTS
         public event EventHandler<AttackInfoEventArts> OnTowerFinishAttack;
         public event EventHandler<AttackInfoEventArts> OnTowerBeginAttack;
+
 
         [SerializeField] private TowerSO _towerConfig;
         [SerializeField] private TextMeshPro _levelNumberLabel; //TODO: DEBUG
@@ -49,7 +66,7 @@ namespace ChainDefense.Towers
         private TowerAttackType _attackType;
 
         private readonly List<LevelModifier> _levelModifiersList = new();
-        
+
         //Cache for performance
         private readonly Collider[] _enemyCollidersArray = new Collider[20];
         private readonly List<Enemy> _visibleEnemiesList = new();
@@ -287,6 +304,8 @@ namespace ChainDefense.Towers
                 DamageDealt = _currentDamage
             });
 
+            EventBus<TowerAttackEvent>.Raise(new TowerAttackEvent(_towerConfig.AttackType));
+
             enemy.TakeDamage(_currentDamage);
             ApplyAttackType(enemy, _towerConfig);
 
@@ -348,7 +367,7 @@ namespace ChainDefense.Towers
             }
         }
 
-        public static GameObject SpawnTower(TowerSO config, Vector3 position) =>
-            TowerSpawner.Instance.SpawnTower(config, position);
+        public TowerSO GetTowerConfig() =>
+            _towerConfig;
     }
 }

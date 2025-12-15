@@ -29,7 +29,7 @@ namespace ChainDefense.Towers
         private void OnDestroy() =>
             _sequence.Kill();
 
-        private void TowerFinishOnTowerFinishAttack(object sender, Tower.AttackInfoEventArts attackInfo) =>
+        private void TowerFinishOnTowerFinishAttack(object sender, AttackInfoEventArts attackInfo) =>
             _sequence.Restart();
     }
 }

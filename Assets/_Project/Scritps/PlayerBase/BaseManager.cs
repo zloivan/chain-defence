@@ -1,5 +1,7 @@
 using System;
 using ChainDefense.Enemies;
+using ChainDefense.Events;
+using IKhom.EventBusSystem.Runtime;
 using IKhom.UtilitiesLibrary.Runtime.components;
 
 namespace ChainDefense.PlayerBase
@@ -32,12 +34,14 @@ namespace ChainDefense.PlayerBase
         {
             _currentHealth -= damage;
             OnBaseTakeDamage?.Invoke(this, _currentHealth);
-
+            EventBus<BaseTakeDamageEvent>.Raise(new BaseTakeDamageEvent());
+            
             if (_currentHealth > 0) 
                 return;
             
             _currentHealth = 0;
             OnGameOver?.Invoke(this, EventArgs.Empty);
+            EventBus<GameOverEvent>.Raise(new GameOverEvent()); 
         }
 
         public int GetCurrentHealth() =>
