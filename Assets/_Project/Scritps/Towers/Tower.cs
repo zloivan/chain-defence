@@ -36,12 +36,6 @@ namespace ChainDefense.Towers
         public static GameObject SpawnTower(TowerSO config, Vector3 position) =>
             TowerSpawner.Instance.SpawnTower(config, position);
 
-        public static event EventHandler OnAnyTowerSpawned
-        {
-            add => TowerSpawner.Instance.OnAnyTowerSpawned += value;
-            remove => TowerSpawner.Instance.OnAnyTowerSpawned -= value;
-        }
-
         //INSTANCE EVENTS
         public event EventHandler<AttackInfoEventArts> OnTowerFinishAttack;
         public event EventHandler<AttackInfoEventArts> OnTowerBeginAttack;
