@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ChainDefense.SavingSystem;
 using ChainDefense.UI;
 using Cysharp.Threading.Tasks;
+using IKhom.ServiceLocatorSystem.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,14 +13,13 @@ namespace ChainDefense.MainMenu
     {
         [SerializeField] private List<LevelStageUI> _leveStageList;
         [SerializeField] private ScrollRect _scrollRect;
-        
 
         private SaveManager _saveManager;
         private int _highestCompletedLevelIndex;
 
         private void Start()
         {
-            _saveManager = SaveManager.Instance;
+            _saveManager = ServiceLocator.Global.Get<SaveManager>();
             _highestCompletedLevelIndex = _saveManager.GetHighestCompletedLevelIndex();
 
             UpdateLevelStageVisuals();

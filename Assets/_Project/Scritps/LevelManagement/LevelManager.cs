@@ -12,7 +12,6 @@ using UnityEngine.SceneManagement;
 
 namespace ChainDefense.LevelManagement
 {
-    //TODO: this guy should hide everything and ask for scene number to load
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private List<LevelSO> _levelList;
@@ -26,9 +25,9 @@ namespace ChainDefense.LevelManagement
 
         private void Start()
         {
-            _mapManager = MapManager.Instance;
+            _mapManager = ServiceLocator.ForSceneOf(this).Get<MapManager>();
             _waveManager = ServiceLocator.ForSceneOf(this).Get<WaveManager>();
-            _saveManager = SaveManager.Instance;
+            _saveManager = ServiceLocator.Global.Get<SaveManager>();
             _waveManager.OnAllWavesCompleted += OnWaveManager_OnAllWavesCompleted;
 
             var requiredLevelToPlay = _saveManager.GetRequiredLevelToPlay();

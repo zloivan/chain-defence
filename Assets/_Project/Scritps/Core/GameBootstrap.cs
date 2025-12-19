@@ -3,6 +3,7 @@ using ChainDefense.ChainManagment;
 using ChainDefense.Enemies;
 using ChainDefense.GameGrid;
 using ChainDefense.LevelManagement;
+using ChainDefense.MapManagement;
 using ChainDefense.PathFinding;
 using ChainDefense.PlayerBase;
 using ChainDefense.Towers;
@@ -35,6 +36,8 @@ namespace ChainDefense.Core
         [SerializeField] private WaveManager _waveManager;
         [SerializeField] private BaseManager _baseManager;
         [SerializeField] private LevelManager _levelManager;
+        [SerializeField] private MapManager _mapManager;
+        
         
         private void Awake() =>
             RegisterServices();
@@ -58,6 +61,7 @@ namespace ChainDefense.Core
             locator.Register(_waveManager);
             locator.Register(_baseManager);
             locator.Register(_levelManager);
+            locator.Register(_mapManager);
             locator.Register(_gameplayController);
         }
     }

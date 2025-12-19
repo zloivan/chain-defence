@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353e5848e0184105aedc5b46f64142ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _debugSpeedup: 0
 --- !u!1 &161775093
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,8 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b332cd0a557493abdb6b2654dd6e4f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistAcrossScenes: 0
-  _unParentOnAwake: 0
   _defaultMap: {fileID: 11400000, guid: ce2db4edb335c468b9fc7e1f399c7ab3, type: 2}
   _useMockMap: 0
 --- !u!1 &304161091
@@ -2013,6 +2012,7 @@ MonoBehaviour:
   _waveManager: {fileID: 306650776}
   _baseManager: {fileID: 495359405}
   _levelManager: {fileID: 1511795850}
+  _mapManager: {fileID: 161775095}
 --- !u!1 &1389691767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,8 +2151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e694b8b1c645465092cb7ca6a5491898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistAcrossScenes: 0
-  _unParentOnAwake: 0
 --- !u!4 &1403722963
 Transform:
   m_ObjectHideFlags: 0

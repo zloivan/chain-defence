@@ -1,17 +1,11 @@
-using ChainDefense.ChainManagment;
-using ChainDefense.Core;
-using ChainDefense.Enemies;
 using ChainDefense.Events;
-using ChainDefense.PlayerBase;
 using ChainDefense.Towers;
-using ChainDefense.Waves;
 using IKhom.EventBusSystem.Runtime;
 using IKhom.SoundSystem.Runtime.components;
 using IKhom.SoundSystem.Runtime.data;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace ChainDefense.Sound
 {

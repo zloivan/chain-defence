@@ -1,6 +1,7 @@
 using System;
 using ChainDefense.MainMenu;
 using ChainDefense.SavingSystem;
+using IKhom.ServiceLocatorSystem.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,7 +28,7 @@ namespace ChainDefense.UI
 
         private void Start()
         {
-            _saveManager = SaveManager.Instance;
+            _saveManager = ServiceLocator.Global.Get<SaveManager>();
             
             var nextLevelIndex = _saveManager.GetLastCompletedLevelNumber() + 1;
             var nextLevelNumber = nextLevelIndex + 1;

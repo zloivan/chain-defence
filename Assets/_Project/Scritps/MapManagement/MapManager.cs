@@ -1,12 +1,11 @@
 using ChainDefense.PathFinding;
 using IKhom.ServiceLocatorSystem.Runtime;
-using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ChainDefense.MapManagement
 {
-    public class MapManager : SingletonBehaviour<MapManager>
+    public class MapManager : MonoBehaviour
     {
         [SerializeField] private MapSO _defaultMap;
         [SerializeField] private bool _useMockMap;
