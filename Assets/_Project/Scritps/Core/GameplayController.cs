@@ -21,7 +21,7 @@ namespace ChainDefense.Core
     public class GameplayController : MonoBehaviour
     {
         [SerializeField] private bool _debugSpeedup;
-        
+
         public event EventHandler OnGamePaused;
         public event EventHandler OnGameResumed;
 
@@ -41,11 +41,12 @@ namespace ChainDefense.Core
         private readonly Dictionary<Ball, Vector3> _ballTargetPositions = new();
         private readonly List<GridPosition> _allOccupiedPositions = new();
         private WaveManager _waveManager;
-        private BaseManager _baseManager;
         private bool _isGamePaused;
-        private LevelManager _levelManager;
         private BallSpawner _ballSpawner;
         private EnemySpawner _enemySpawner;
+        private EventBinding<AllWavesCompletedEvent> _waveCompleteBinding;
+        private EventBinding<BaseDestroyedEvent> _baseDestroyBinding;
+
         private void Awake()
         {
             Application.targetFrameRate = 30;
@@ -56,29 +57,31 @@ namespace ChainDefense.Core
             _boardGrid = ServiceLocator.ForSceneOf(this).Get<BoardGrid>();
             _chainValidator = ServiceLocator.ForSceneOf(this).Get<ChainValidator>();
             _waveManager = ServiceLocator.ForSceneOf(this).Get<WaveManager>();
-            _baseManager = ServiceLocator.ForSceneOf(this).Get<BaseManager>();
-            _levelManager = ServiceLocator.ForSceneOf(this).Get<LevelManager>();
             _ballSpawner = ServiceLocator.ForSceneOf(this).Get<BallSpawner>();
             _enemySpawner = ServiceLocator.ForSceneOf(this).Get<EnemySpawner>();
             _chainValidator.OnChainDestroyed += ChainValidator_OnChainDestroyed;
-            _waveManager.OnAllWavesCompleted += WaveManager_OnAllWavesCompleted;
-            _baseManager.OnGameOver += BaseManager_OnGameOver;
 
+            _waveCompleteBinding = new EventBinding<AllWavesCompletedEvent>(FillBoardWithGuaranteedDistribution);
+            EventBus<AllWavesCompletedEvent>.Register(_waveCompleteBinding);
+            _baseDestroyBinding = new EventBinding<BaseDestroyedEvent>(OnBaseDestroyed);
+            EventBus<BaseDestroyedEvent>.Register(_baseDestroyBinding);
+            
             FillBoardWithGuaranteedDistribution();
         }
 
-        private void BaseManager_OnGameOver(object sender, EventArgs e)
+        private void OnDestroy()
         {
-            Debug.Log("Game Over!");
-            
-            _waveManager.Clear();
-            _enemySpawner.ClearAllEnemies();
-            EventBus<GameOverEvent>.Raise(new GameOverEvent(_levelManager.GetCurrentLevelIndex()));
+            EventBus<AllWavesCompletedEvent>.Deregister(_waveCompleteBinding);
+            EventBus<BaseDestroyedEvent>.Deregister(_baseDestroyBinding);
         }
 
-        //TODO: REFACTORING, THIS SHOULD DECIDE WHEN LEVEL IS COMPLETED, NOW LEVEL MANAGER
-        private void WaveManager_OnAllWavesCompleted(object sender, EventArgs e) =>
-            Debug.Log("Victory!");
+        private void OnBaseDestroyed()
+        {
+            Debug.Log("Game Over!");
+
+            _waveManager.Clear();
+            _enemySpawner.ClearAllEnemies();
+        }
 
         private void ChainValidator_OnChainDestroyed(object sender, List<Ball> e)
         {

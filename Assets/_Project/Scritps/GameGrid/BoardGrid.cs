@@ -8,12 +8,8 @@ using UnityEngine;
 
 namespace ChainDefense.GameGrid
 {
-    public class BoardGrid : MonoBehaviour//TODO: Add support for towers
+    public class BoardGrid : MonoBehaviour //TODO: Add support for towers
     {
-        public event EventHandler OnNewBallPlaced;
-        public event EventHandler OnBallRemoved;
-        public event EventHandler OnBallMoved;
-        
         private const float SLOT_SIZE = 2f;
         [SerializeField] private int _width;
         [SerializeField] private int _height;
@@ -71,12 +67,11 @@ namespace ChainDefense.GameGrid
         public void AddBallToPosition(GridPosition gridPos, Ball ball)
         {
             _gridSystem.GetGridObject(gridPos).Add(ball);
-            OnNewBallPlaced?.Invoke(this, EventArgs.Empty);
         }
 
         public Ball GetBallAtPosition(GridPosition position) =>
             _gridSystem.GetGridObject(position).Get();
-        
+
         public bool TryGetBall(GridPosition position, out Ball ball)
         {
             if (_gridSystem.IsValidGridPosition(position) && !IsSlotEmpty(position))
@@ -89,18 +84,13 @@ namespace ChainDefense.GameGrid
             return false;
         }
 
-        public void RemoveBallAtPosition(GridPosition position, Ball targetBall)
-        {
+        public void RemoveBallAtPosition(GridPosition position, Ball targetBall) =>
             _gridSystem.GetGridObject(position).Remove(targetBall);
-            OnBallRemoved?.Invoke(this, EventArgs.Empty);
-        }
 
         public void MoveBall(GridPosition from, GridPosition to, Ball targetBall)
         {
-           RemoveBallAtPosition(from, targetBall);
-           AddBallToPosition(to, targetBall);
-           
-           OnBallMoved?.Invoke(this, EventArgs.Empty);
+            RemoveBallAtPosition(from, targetBall);
+            AddBallToPosition(to, targetBall);
         }
 
         public List<GridPosition> GetAllValidNeighbors(GridPosition position)

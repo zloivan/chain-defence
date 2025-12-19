@@ -7,26 +7,12 @@ using ChainDefense.PathFinding;
 using Cysharp.Threading.Tasks;
 using IKhom.EventBusSystem.Runtime;
 using IKhom.ServiceLocatorSystem.Runtime;
-using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 
 namespace ChainDefense.Waves
 {
     public class WaveManager : MonoBehaviour
     {
-        public class WaveEventArgs : EventArgs
-        {
-            public readonly int WaveIndex;
-            public IReadOnlyList<Enemy> SpawnedEnemies;
-
-            public WaveEventArgs(int waveIndex, IReadOnlyList<Enemy> spawnedEnemies)
-            {
-                WaveIndex = waveIndex;
-                SpawnedEnemies = spawnedEnemies;
-            }
-        }
-
-        public event EventHandler OnAllWavesCompleted;
         public event EventHandler<float> OnWaveCooldownChanged;
         public event EventHandler OnWavesListUpdate;
 
@@ -167,7 +153,8 @@ namespace ChainDefense.Waves
                             cancellationToken: cancellationToken
                         ).SuppressCancellationThrow();
 
-                        if (cancelled) return true;
+                        if (cancelled) 
+                            return true;
                     }
                 }
 
@@ -183,7 +170,7 @@ namespace ChainDefense.Waves
 
             if (_currentWaveIndex >= _wavesList.Count)
             {
-                OnAllWavesCompleted?.Invoke(this, EventArgs.Empty);
+                EventBus<AllWavesCompletedEvent>.Raise(new AllWavesCompletedEvent());
                 return;
             }
 

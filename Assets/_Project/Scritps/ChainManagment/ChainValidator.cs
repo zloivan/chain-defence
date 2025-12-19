@@ -18,7 +18,7 @@ namespace ChainDefense.ChainManagment
         public event EventHandler<List<Ball>> OnChainDestroyed;
         private const int MIN_DESTROY_NUMBER = 3;
 
-        [SerializeField] private BoardGrid _boardGrid;
+        private BoardGrid _boardGrid;
         private InputController _inputController;
 
         private readonly List<Ball> _conntectedList = new();
@@ -27,7 +27,7 @@ namespace ChainDefense.ChainManagment
         private void Start()
         {
             _inputController = ServiceLocator.ForSceneOf(this).Get<InputController>();
-            
+            _boardGrid = ServiceLocator.ForSceneOf(this).Get<BoardGrid>();
             _inputController.OnDrag += InputController_OnDrag;
             _inputController.OnDragStart += InputController_OnDragStart;
             _inputController.OnDragEnd += InputController_OnDragEnd;

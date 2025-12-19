@@ -13,13 +13,13 @@ namespace ChainDefense.UI
         [SerializeField] private Button _homeScreenButton;
 
 
-        private EventBinding<GameOverEvent> _eventBinding;
+        private EventBinding<BaseDestroyedEvent> _eventBinding;
         private LevelManager _levelManager;
 
         private void Awake()
         {
-            _eventBinding = new EventBinding<GameOverEvent>(OnGameOverEvent);
-            EventBus<GameOverEvent>.Register(_eventBinding);
+            _eventBinding = new EventBinding<BaseDestroyedEvent>(OnGameOverEvent);
+            EventBus<BaseDestroyedEvent>.Register(_eventBinding);
         }
 
         private void Start()
@@ -33,9 +33,9 @@ namespace ChainDefense.UI
         }
 
         private void OnDestroy() =>
-            EventBus<GameOverEvent>.Deregister(_eventBinding);
+            EventBus<BaseDestroyedEvent>.Deregister(_eventBinding);
 
-        private void OnGameOverEvent(GameOverEvent obj) =>
+        private void OnGameOverEvent(BaseDestroyedEvent obj) =>
             Show();
     }
 }

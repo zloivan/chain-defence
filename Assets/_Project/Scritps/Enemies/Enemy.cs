@@ -14,8 +14,6 @@ namespace ChainDefense.Enemies
     {
         private const float MIN_DISTANCE_TO_WAYPOINT = 0.1f;
         public event EventHandler<IHasProgress.ProgressEventArgs> OnProgressUpdate;
-        public static event EventHandler OnAnyEnemyReachedBase; //TODO: Move that to base logic. via trigger
-
         public event EventHandler<int> OnEnemyTakeDamage;
         public event EventHandler OnEnemySlowedStart;
         public event EventHandler OnEnemySlowedFinish;
@@ -77,10 +75,9 @@ namespace ChainDefense.Enemies
             _currentWaypointIndex++;
             if (_currentWaypointIndex >= _pathManager.GetWaypointCount())
             {
-                //TODO: latter attack the base
                 SelfDestroy();
 
-                OnAnyEnemyReachedBase?.Invoke(this, EventArgs.Empty);
+                EventBus<EnemyReachedBaseEvent>.Raise(new EnemyReachedBaseEvent(this));
             }
         }
 
@@ -140,8 +137,6 @@ namespace ChainDefense.Enemies
 
         public bool GetIsDead() =>
             _isDead;
-
-
 
         public float GetNormalizedProgress() =>
             _currentHealth / (float)_maxHealth;

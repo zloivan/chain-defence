@@ -46,7 +46,7 @@ namespace ChainDefense.Sound
         private EventBinding<EnemyDestroyedEvent> _enemyDestroyedBinding;
         private EventBinding<EnemyTakeDamageEvent> _enemyTakeDamageBinding;
         private EventBinding<BaseTakeDamageEvent> _baseTakeDamageBinding;
-        private EventBinding<GameOverEvent> _gameOverBinding;
+        private EventBinding<BaseDestroyedEvent> _gameOverBinding;
         private EventBinding<WaveSpawnedEvent> _waveSpawnedBinding;
         private EventBinding<LevelCompletedEvent> _levelCompletedBinding;
         private EventBinding<InvalidChainEvent> _invalidChainBinding;
@@ -77,8 +77,8 @@ namespace ChainDefense.Sound
             _baseTakeDamageBinding = new EventBinding<BaseTakeDamageEvent>(OnBaseTakeDamage);
             EventBus<BaseTakeDamageEvent>.Register(_baseTakeDamageBinding);
             
-            _gameOverBinding = new EventBinding<GameOverEvent>(OnGameOver);
-            EventBus<GameOverEvent>.Register(_gameOverBinding);
+            _gameOverBinding = new EventBinding<BaseDestroyedEvent>(OnGameOver);
+            EventBus<BaseDestroyedEvent>.Register(_gameOverBinding);
             
             _waveSpawnedBinding = new EventBinding<WaveSpawnedEvent>(OnWaveSpawned);
             EventBus<WaveSpawnedEvent>.Register(_waveSpawnedBinding);
@@ -96,7 +96,7 @@ namespace ChainDefense.Sound
         private void OnEnemyDestroyed(EnemyDestroyedEvent evt) => PlaySound(_enemyDeathSound);
         private void OnEnemyTakeDamage(EnemyTakeDamageEvent evt) => PlaySound(_enemyHitSound);
         private void OnBaseTakeDamage(BaseTakeDamageEvent evt) => PlaySound(_baseDamageSound);
-        private void OnGameOver(GameOverEvent evt) => PlaySound(_defeatSound);
+        private void OnGameOver(BaseDestroyedEvent evt) => PlaySound(_defeatSound);
         private void OnWaveSpawned(WaveSpawnedEvent evt) => PlaySound(_waveStartSound);
         private void OnLevelCompleted(LevelCompletedEvent evt) => PlaySound(_victorySound);
         private void OnInvalidChain(InvalidChainEvent evt) => PlaySound(_invalidChainSound);

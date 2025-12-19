@@ -31,9 +31,6 @@ namespace ChainDefense.Towers
     {
         private const float DELAY_BETWEEN_SEARCH = .5f;
 
-
-        //STATIC
-
         //INSTANCE EVENTS
         public event EventHandler<AttackInfoEventArts> OnTowerFinishAttack;
         public event EventHandler<AttackInfoEventArts> OnTowerBeginAttack;

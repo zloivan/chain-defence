@@ -22,17 +22,20 @@ namespace ChainDefense.LevelManagement
         private SaveManager _saveManager;
 
         private bool _levelCompleted = false;
+        private EventBinding<AllWavesCompletedEvent> _eventBinding;
 
         private void Start()
         {
             _mapManager = ServiceLocator.ForSceneOf(this).Get<MapManager>();
             _waveManager = ServiceLocator.ForSceneOf(this).Get<WaveManager>();
             _saveManager = ServiceLocator.Global.Get<SaveManager>();
-            _waveManager.OnAllWavesCompleted += OnWaveManager_OnAllWavesCompleted;
+            
+            _eventBinding = new EventBinding<AllWavesCompletedEvent>(OnWaveManager_OnAllWavesCompleted);
+            EventBus<AllWavesCompletedEvent>.Register(_eventBinding);
 
             var requiredLevelToPlay = _saveManager.GetRequiredLevelToPlay();
             var highestLevelUnlocked = _saveManager.GetLastCompletedLevelNumber();
-            
+
             if (requiredLevelToPlay != -1 && requiredLevelToPlay < GetNumberOfLevels())
             {
                 LoadLevelByIndex(requiredLevelToPlay);
@@ -42,12 +45,15 @@ namespace ChainDefense.LevelManagement
             LoadLevelByIndex((highestLevelUnlocked + 1) % _levelList.Count);
         }
 
+        private void OnDestroy() =>
+            EventBus<AllWavesCompletedEvent>.Deregister(_eventBinding);
+
         private void RestartScene()
         {
             SceneManager.LoadScene("Game");
         }
 
-        private void OnWaveManager_OnAllWavesCompleted(object o, EventArgs eventArgs)
+        private void OnWaveManager_OnAllWavesCompleted()
         {
             EventBus<LevelCompletedEvent>.Raise(
                 new LevelCompletedEvent(GetCurrentLevelIndex(), GetCurrentLevelNumber()));

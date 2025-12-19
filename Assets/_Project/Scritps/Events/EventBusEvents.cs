@@ -4,11 +4,11 @@ using IKhom.EventBusSystem.Runtime.abstractions;
 
 namespace ChainDefense.Events
 {
-    public struct GameOverEvent : IEvent
+    public struct BaseDestroyedEvent : IEvent
     {
         public readonly int LevelIndex;
 
-        public GameOverEvent(int levelIndex) =>
+        public BaseDestroyedEvent(int levelIndex) =>
             LevelIndex = levelIndex;
     }
 
@@ -46,6 +46,14 @@ namespace ChainDefense.Events
     {
     }
 
+    public struct EnemyReachedBaseEvent : IEvent
+    {
+        public readonly Enemy Enemy;
+
+        public EnemyReachedBaseEvent(Enemy enemy) =>
+            Enemy = enemy;
+    }
+
     public struct BaseTakeDamageEvent : IEvent
     {
     }
@@ -69,12 +77,16 @@ namespace ChainDefense.Events
     public struct InvalidChainEvent : IEvent
     {
     }
-    
+
     public struct EnemyAliveCountChangedEvent : IEvent
     {
         public readonly int AliveCount;
+
         public EnemyAliveCountChangedEvent(int aliveCount) =>
             AliveCount = aliveCount;
     }
-    
+
+    public struct AllWavesCompletedEvent : IEvent
+    {
+    }
 }
