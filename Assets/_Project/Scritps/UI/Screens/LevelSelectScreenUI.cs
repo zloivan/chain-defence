@@ -35,5 +35,12 @@ namespace ChainDefense.UI
             
             _buttonText.text = $"Level {nextLevelNumber}";
         }
+
+        private void OnDestroy()
+        {
+            _homeScreen.onClick.RemoveAllListeners();
+            _settingsScreen.onClick.RemoveAllListeners();
+            _startButton.onClick.RemoveAllListeners();
+        }
     }
 }

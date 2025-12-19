@@ -16,5 +16,11 @@ namespace ChainDefense.UI
             _settingsButton.onClick.AddListener(() => _mainMenuController.OpenSettingsScreen());
             _startButton.onClick.AddListener(() => _mainMenuController.OpenLevelSelectScreen());
         }
+
+        private void OnDestroy()
+        {
+            _settingsButton.onClick.RemoveAllListeners();
+            _startButton.onClick.RemoveAllListeners();
+        }
     }
 }

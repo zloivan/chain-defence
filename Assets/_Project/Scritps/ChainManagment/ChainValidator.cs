@@ -28,9 +28,17 @@ namespace ChainDefense.ChainManagment
         {
             _inputController = ServiceLocator.ForSceneOf(this).Get<InputController>();
             _boardGrid = ServiceLocator.ForSceneOf(this).Get<BoardGrid>();
+            
             _inputController.OnDrag += InputController_OnDrag;
             _inputController.OnDragStart += InputController_OnDragStart;
             _inputController.OnDragEnd += InputController_OnDragEnd;
+        }
+
+        private void OnDestroy()
+        {
+            _inputController.OnDrag -= InputController_OnDrag;
+            _inputController.OnDragStart -= InputController_OnDragStart;
+            _inputController.OnDragEnd -= InputController_OnDragEnd;
         }
 
         private void InputController_OnDragStart(object sender, Vector3 worldPos)

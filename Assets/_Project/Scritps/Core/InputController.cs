@@ -59,15 +59,11 @@ namespace ChainDefense.Core
                 HandleDrag();
         }
 
-        public void InterruptDragging()
-        {
+        public void InterruptDragging() =>
             OnEndDrag();
-        }
 
-        private void HandleDrag()
-        {
+        private void HandleDrag() =>
             OnDrag?.Invoke(this, PointerToWorld.GetPointerPositionInWorld());
-        }
 
         private void StartDrag()
         {

@@ -9,7 +9,7 @@ namespace ChainDefense.MapManagement
     {
         [SerializeField] private MapSO _defaultMap;
         [SerializeField] private bool _useMockMap;
-        
+
         private PathManager _pathManager;
 
         private void Start()

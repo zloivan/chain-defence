@@ -7,7 +7,6 @@ using Cysharp.Threading.Tasks;
 using IKhom.EventBusSystem.Runtime;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace ChainDefense.Towers
 {

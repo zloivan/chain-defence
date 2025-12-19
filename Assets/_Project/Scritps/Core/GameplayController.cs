@@ -73,6 +73,7 @@ namespace ChainDefense.Core
         {
             EventBus<AllWavesCompletedEvent>.Deregister(_waveCompleteBinding);
             EventBus<BaseDestroyedEvent>.Deregister(_baseDestroyBinding);
+            _chainValidator.OnChainDestroyed -= ChainValidator_OnChainDestroyed;
         }
 
         private void OnBaseDestroyed()

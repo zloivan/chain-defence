@@ -21,6 +21,9 @@ namespace ChainDefense.Balls
         {
             transform.DOComplete();
             transform.DOKill();
+            
+            _ball.OnBallSelected -= Ball_OnBallSelected;
+            _ball.OnBallDeselected -= Ball_OnBallDeselected;
         }
 
         private void Ball_OnBallDeselected(object sender, EventArgs e)

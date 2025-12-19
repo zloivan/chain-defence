@@ -47,6 +47,12 @@ namespace ChainDefense.GameGrid
             UpdateVisuals();
         }
 
+        private void OnDestroy()
+        {
+            _inputController.OnDrag -= InputController_OnDrag;
+            _inputController.OnDragEnd -= InputController_OnDragEnd;
+        }
+
         private void InputController_OnDragEnd(object sender, EventArgs e)
         {
             if (_boardGrid.IsValidGridPosition(_selectedGridPosition))

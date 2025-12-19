@@ -20,6 +20,7 @@ namespace ChainDefense.MainMenu
         private void Start()
         {
             _saveManager = ServiceLocator.Global.Get<SaveManager>();
+            
             _highestCompletedLevelIndex = _saveManager.GetHighestCompletedLevelIndex();
 
             UpdateLevelStageVisuals();
@@ -29,7 +30,7 @@ namespace ChainDefense.MainMenu
 
         private void UpdateLevelStageVisuals()
         {
-            for (int i = 0; i < _leveStageList.Count; i++)
+            for (var i = 0; i < _leveStageList.Count; i++)
             {
                 var stage = i + 1;
                 var state = i < _highestCompletedLevelIndex ? LevelStageUI.StageState.Completed :
@@ -54,29 +55,28 @@ namespace ChainDefense.MainMenu
             if (_leveStageList.Count == 0 || _highestCompletedLevelIndex < 0 || _highestCompletedLevelIndex >= _leveStageList.Count)
                 return;
 
-            RectTransform content = _scrollRect.content;
-            RectTransform viewport = _scrollRect.viewport;
-            RectTransform targetItem = _leveStageList[_highestCompletedLevelIndex].GetComponent<RectTransform>();
+            var content = _scrollRect.content;
+            var viewport = _scrollRect.viewport;
+            var targetItem = _leveStageList[_highestCompletedLevelIndex].GetComponent<RectTransform>();
 
             if (content == null || viewport == null || targetItem == null)
                 return;
 
-            // Force canvas update to ensure layout is calculated
             Canvas.ForceUpdateCanvases();
 
             // Calculate the position of the target item relative to the content
-            float contentHeight = content.rect.height;
-            float viewportHeight = viewport.rect.height;
+            var contentHeight = content.rect.height;
+            var viewportHeight = viewport.rect.height;
             
             // Get the target item's position in the content
-            float targetPosition = -targetItem.localPosition.y;
+            var targetPosition = -targetItem.localPosition.y;
             
             // Center the target item in the viewport
-            float targetOffset = targetPosition - (viewportHeight / 2f) + (targetItem.rect.height / 2f);
+            var targetOffset = targetPosition - viewportHeight / 2f + targetItem.rect.height / 2f;
             
             // Calculate normalized position (0 = bottom, 1 = top for vertical scroll)
-            float maxScroll = contentHeight - viewportHeight;
-            float normalizedPosition = maxScroll > 0 ? Mathf.Clamp01(targetOffset / maxScroll) : 0f;
+            var maxScroll = contentHeight - viewportHeight;
+            var normalizedPosition = maxScroll > 0 ? Mathf.Clamp01(targetOffset / maxScroll) : 0f;
             
             // Set the vertical normalized position (inverted: 1 = top, 0 = bottom)
             _scrollRect.verticalNormalizedPosition = 1f - normalizedPosition;

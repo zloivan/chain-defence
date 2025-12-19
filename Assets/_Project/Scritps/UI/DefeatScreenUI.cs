@@ -32,8 +32,12 @@ namespace ChainDefense.UI
             Hide();
         }
 
-        private void OnDestroy() =>
+        private void OnDestroy()
+        {
             EventBus<BaseDestroyedEvent>.Deregister(_eventBinding);
+            _restartButton.onClick.RemoveAllListeners();
+            _homeScreenButton.onClick.RemoveAllListeners();
+        }
 
         private void OnGameOverEvent(BaseDestroyedEvent obj) =>
             Show();

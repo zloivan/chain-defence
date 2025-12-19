@@ -6,7 +6,8 @@ namespace ChainDefense.GameGrid
     {
         private static readonly int EmissionColorPropertyId = Shader.PropertyToID("_EmissionColor");
         private static readonly int BaseColorPropertyId = Shader.PropertyToID("_BaseColor");
-
+        private const string EMISSION = "_EMISSION";
+        
         [SerializeField] private float _emissionIntensity = 2f;
 
         private MeshRenderer _meshRenderer;
@@ -23,15 +24,16 @@ namespace ChainDefense.GameGrid
 
         public void Show(Material matForVisual)
         {
+            
             if (_sharedMaterial != matForVisual)
             {
                 _sharedMaterial = matForVisual;
                 _meshRenderer.sharedMaterial = matForVisual;
                 _originalColor = matForVisual.GetColor(BaseColorPropertyId);
 
-                if (!matForVisual.IsKeywordEnabled("_EMISSION"))
+                if (!matForVisual.IsKeywordEnabled(EMISSION))
                 {
-                    matForVisual.EnableKeyword("_EMISSION");
+                    matForVisual.EnableKeyword(EMISSION);
                 }
             }
 

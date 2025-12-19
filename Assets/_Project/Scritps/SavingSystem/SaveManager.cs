@@ -18,14 +18,19 @@ namespace ChainDefense.SavingSystem
 
         private const string SAVE_DATA_PLAYER_PREFS_KEY = "SaveData";
         private SaveData _currentSave;
+        private EventBinding<LevelCompletedEvent> _eventBinding;
 
         private void Awake()
         {
+            _eventBinding = new EventBinding<LevelCompletedEvent>(LevelManager_OnAnyLevelComplete);
             EventBus<LevelCompletedEvent>.Register(
-                new EventBinding<LevelCompletedEvent>(LevelManager_OnAnyLevelComplete));
+                _eventBinding);
 
             LoadGame();
         }
+
+        private void OnDestroy() =>
+            EventBus<LevelCompletedEvent>.Deregister(_eventBinding);
 
         private void LevelManager_OnAnyLevelComplete(LevelCompletedEvent eventData) =>
             SetCompletedLevel(eventData.CompletedLevelIndex);
@@ -76,12 +81,12 @@ namespace ChainDefense.SavingSystem
                 _currentSave.RequiredLevelIndex = -1;
                 return;
             }
-            
+
             if (_currentSave.CompletedLevelsArray.Length <= levelIndex)
             {
                 Array.Resize(ref _currentSave.CompletedLevelsArray, levelIndex + 1);
             }
-            
+
             _currentSave.CompletedLevelsArray[levelIndex] = true;
             _currentSave.LastCompletedLevelIndex = levelIndex;
 

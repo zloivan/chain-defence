@@ -14,12 +14,10 @@ namespace ChainDefense.GridSystem.core
         public int X { get; }
         public int Z { get; }
 
-        public override bool Equals(object obj)
-        {
-            return obj is GridPosition position &&
-                   X == position.X &&
-                   Z == position.Z;
-        }
+        public override bool Equals(object obj) =>
+            obj is GridPosition position &&
+            X == position.X &&
+            Z == position.Z;
 
         public override int GetHashCode() => HashCode.Combine(X, Z);
         public static bool operator ==(GridPosition a, GridPosition b) => a.X == b.X && a.Z == b.Z;

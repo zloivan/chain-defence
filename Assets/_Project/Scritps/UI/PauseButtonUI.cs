@@ -21,5 +21,8 @@ namespace ChainDefense.UI
                 _gameplayController.SwitchPauseState();
             });
         }
+        
+        private void OnDestroy() =>
+            _pauseButton.onClick.RemoveAllListeners();
     }
 }

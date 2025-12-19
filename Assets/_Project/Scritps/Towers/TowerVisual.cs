@@ -17,7 +17,7 @@ namespace ChainDefense.Towers
         {
             _tower = GetComponentInParent<Tower>();
             
-            _tower.OnTowerBeginAttack += TowerFinishOnTowerFinishAttack;
+            _tower.OnTowerBeginAttack += Tower_OnTowerFinishAttack;
             _tower.OnTargetChanged += Tower_OnTargetChanged;
             _currentTarget = _tower.GetCurrentTarget();
             _sequence = DOTween.Sequence();
@@ -34,18 +34,20 @@ namespace ChainDefense.Towers
             _originalRotation = transform.rotation;
         }
 
-        private void Update()
+        private void OnDestroy()
         {
-            HandleRotation();
+            _sequence.Kill();
+            _tower.OnTowerBeginAttack -= Tower_OnTowerFinishAttack;
+            _tower.OnTargetChanged -= Tower_OnTargetChanged;
         }
+
+        private void Update() =>
+            HandleRotation();
 
         private void Tower_OnTargetChanged(object sender, Enemy enemy) =>
             _currentTarget = enemy;
 
-        private void OnDestroy() =>
-            _sequence.Kill();
-
-        private void TowerFinishOnTowerFinishAttack(object sender, AttackInfoEventArts attackInfo) =>
+        private void Tower_OnTowerFinishAttack(object sender, AttackInfoEventArts attackInfo) =>
             _sequence.Restart();
         
         private void HandleRotation()

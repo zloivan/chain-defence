@@ -1,3 +1,4 @@
+using System;
 using ChainDefense.Core;
 using ChainDefense.Events;
 using ChainDefense.LevelManagement;
@@ -23,17 +24,32 @@ namespace ChainDefense.UI
             _gameplayController = ServiceLocator.ForSceneOf(this).Get<GameplayController>();
             _levelManager = ServiceLocator.ForSceneOf(this).Get<LevelManager>();
 
-            _gameplayController.OnGamePaused += (_, _) => { Show(); };
-            _gameplayController.OnGameResumed += (_, _) => { Hide(); };
+            _gameplayController.OnGamePaused += GameplayController_OnGamePaused;
+            _gameplayController.OnGameResumed += GameplayController_OnGameResumed;
 
             _resumeButton.onClick.AddListener(() => { _gameplayController.SwitchPauseState(); });
             _restartButton.onClick.AddListener(() =>
             {
                 _gameplayController.SwitchPauseState();
-                _levelManager.RestartLevel();//TODO: ADD ORCHISTRETOR
+                _levelManager.RestartLevel();
             });
             _settingsButton.onClick.AddListener(() => { Debug.Log("Load Settings"); });
             Hide();
         }
+
+        private void OnDestroy()
+        {
+            _gameplayController.OnGamePaused -= GameplayController_OnGamePaused;
+            _gameplayController.OnGameResumed -= GameplayController_OnGameResumed;
+            _resumeButton.onClick.RemoveAllListeners();
+            _restartButton.onClick.RemoveAllListeners();
+            _settingsButton.onClick.RemoveAllListeners();
+        }
+
+        private void GameplayController_OnGameResumed(object o, EventArgs eventArgs) =>
+            Hide();
+
+        private void GameplayController_OnGamePaused(object o, EventArgs eventArgs) =>
+            Show();
     }
 }

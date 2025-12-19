@@ -31,6 +31,13 @@ namespace ChainDefense.Enemies
             _enemy.OnEnemyTakeDamage += Enemy_OnEnemyTakeDamage;
         }
 
+        private void OnDestroy()
+        {
+            _enemy.OnEnemySlowedStart -= Enemy_OnEnemySlowed;
+            _enemy.OnEnemySlowedFinish -= Enemy_OnEnemySlowedFinish;
+            _enemy.OnEnemyTakeDamage -= Enemy_OnEnemyTakeDamage;
+        }
+
         private void Enemy_OnEnemyTakeDamage(object sender, int damageValue)
         {
             EnemyTakeDamage().Forget();

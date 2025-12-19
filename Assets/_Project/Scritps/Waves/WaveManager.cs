@@ -30,7 +30,8 @@ namespace ChainDefense.Waves
         {
             _pathManager = ServiceLocator.ForSceneOf(this).Get<PathManager>();
             _enemySpawner = ServiceLocator.ForSceneOf(this).Get<EnemySpawner>();
-            _eventBinding = new EventBinding<EnemyDestroyedEvent>(Enemy_OnDestroyed);
+            
+            _eventBinding = new EventBinding<EnemyDestroyedEvent>(OnEnemyDestroyed);
             EventBus<EnemyDestroyedEvent>.Register(_eventBinding);
             
             if (_useMockWaves)
@@ -54,7 +55,7 @@ namespace ChainDefense.Waves
             _currentWaveIndex = 0;
         }
 
-        private void Enemy_OnDestroyed()
+        private void OnEnemyDestroyed()
         {
             if (_enemySpawner.GetAliveCount() > 0)
                 return;

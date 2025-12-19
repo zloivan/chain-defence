@@ -11,7 +11,7 @@ namespace ChainDefense.UI
     {
         [SerializeField] private TextMeshProUGUI _enemyCounterLabel;
 
-        EventBinding<EnemyAliveCountChangedEvent> _eventBusBinding;
+        private EventBinding<EnemyAliveCountChangedEvent> _eventBusBinding;
         private EnemySpawner _enemySpawner;
         
         private void Start()
@@ -20,7 +20,6 @@ namespace ChainDefense.UI
             
             _eventBusBinding = new EventBinding<EnemyAliveCountChangedEvent>(UpdateUI);
             EventBus<EnemyAliveCountChangedEvent>.Register(_eventBusBinding);
-
 
             UpdateUI();
         }

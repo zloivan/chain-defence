@@ -28,6 +28,7 @@ namespace ChainDefense.Towers
         private void Start()
         {
             _projectileSpawner = ServiceLocator.ForSceneOf(this).Get<ProjectileSpawner>();
+            
             _towerAttackBinding = new EventBinding<TowerAttackEvent>(Tower_OnAnyTowerBeginAttack);
             EventBus<TowerAttackEvent>.Register(_towerAttackBinding);
         }

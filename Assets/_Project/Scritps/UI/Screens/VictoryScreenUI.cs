@@ -26,15 +26,21 @@ namespace ChainDefense.UI
         private void Start()
         {
             _levelManager = ServiceLocator.ForSceneOf(this).Get<LevelManager>();
+            
             _restartButton.onClick.AddListener(() => { _levelManager.RestartLevel(); });
-            _homeScreen.onClick.AddListener(() => Debug.Log("Open Home Screen")); //TODO: Placeholder
+            _homeScreen.onClick.AddListener(() => Debug.Log("Open Home Screen"));
             _nextLevelButton.onClick.AddListener(() => _levelManager.NextLevel());
 
             Hide();
         }
 
-        private void OnDestroy() =>
+        private void OnDestroy()
+        {
             EventBus<LevelCompletedEvent>.Deregister(_eventBinding);
+            _restartButton.onClick.RemoveAllListeners();
+            _homeScreen.onClick.RemoveAllListeners();
+            _nextLevelButton.onClick.RemoveAllListeners();
+        }
 
         private void OnLevelCompleted(LevelCompletedEvent eventData) =>
             Show();

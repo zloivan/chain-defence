@@ -1,3 +1,4 @@
+using System;
 using ChainDefense.PlayerBase;
 using IKhom.ServiceLocatorSystem.Runtime;
 using TMPro;
@@ -10,17 +11,24 @@ namespace ChainDefense.UI
     {
         [SerializeField] private TextMeshProUGUI _baseHealthLabel;
         [SerializeField] private Slider _slider;
-        
+
         private BaseManager _baseManager;
 
 
         private void Start()
         {
             _baseManager = ServiceLocator.ForSceneOf(this).Get<BaseManager>();
-            _baseManager.OnBaseTakeDamage += (_, _) => UpdateVisuals();
             
+            _baseManager.OnBaseTakeDamage += BaseManager_OnBaseTakeDamage;
+
             UpdateVisuals();
         }
+
+        private void OnDestroy() =>
+            _baseManager.OnBaseTakeDamage -= BaseManager_OnBaseTakeDamage;
+
+        private void BaseManager_OnBaseTakeDamage(object o, int i) =>
+            UpdateVisuals();
 
         private void UpdateVisuals()
         {

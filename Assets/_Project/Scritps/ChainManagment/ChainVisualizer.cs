@@ -17,10 +17,8 @@ namespace ChainDefense.ChainManagment
         private Vector3[] _positionsBuffer = new Vector3[BASE_CAPACITY];
         private int _currentPositionCount;
 
-        private void Awake()
-        {
+        private void Awake() =>
             ConfigureLineRenderer();
-        }
 
         private void ConfigureLineRenderer()
         {
@@ -34,6 +32,12 @@ namespace ChainDefense.ChainManagment
         {
             _chainValidator.OnHeadChangedPosition += ChainValidator_OnHeadChangedPosition;
             _chainValidator.OnChainBreak += ChainValidator_OnChainBreak;
+        }
+
+        private void OnDestroy()
+        {
+            _chainValidator.OnHeadChangedPosition -= ChainValidator_OnHeadChangedPosition;
+            _chainValidator.OnChainBreak -= ChainValidator_OnChainBreak;
         }
 
         private void Update()

@@ -16,26 +16,36 @@ namespace ChainDefense.UI
 
         private WaveManager _waveManager;
         private EventBinding<WaveSpawnedEvent> _eventBinding;
+        private int _previousNumberOfSeconds = -1;
+        private bool _isTimerVisible;
+
         private void Start()
         {
             _waveManager = ServiceLocator.ForSceneOf(this).Get<WaveManager>();
+            
             _eventBinding = new EventBinding<WaveSpawnedEvent>(UpdateWavesNumber);
             EventBus<WaveSpawnedEvent>.Register(_eventBinding);
-
-            _waveManager.OnWavesListUpdate += (_, _) => UpdateWavesNumber();
-            _waveManager.OnWaveCooldownChanged += (_, _) => UpdateTimerLabel();
+            _waveManager.OnWavesListUpdate += WaveManager_OnWaveListUpdate;
+            _waveManager.OnWaveCooldownChanged += WaveManager_OnWaveCooldownChanged;
 
             UpdateWavesNumber();
-
             UpdateTimerLabel();
+            
             _waveTimerLabel.gameObject.SetActive(false);
         }
 
-        private void OnDestroy() =>
+        private void OnDestroy()
+        {
             EventBus<WaveSpawnedEvent>.Deregister(_eventBinding);
+            _waveManager.OnWavesListUpdate -= WaveManager_OnWaveListUpdate;
+            _waveManager.OnWaveCooldownChanged -= WaveManager_OnWaveCooldownChanged;
+        }
 
-        private int _previousNumberOfSeconds = -1;
-        private bool _isTimerVisible = false;
+        private void WaveManager_OnWaveCooldownChanged(object source, float f) =>
+            UpdateTimerLabel();
+
+        private void WaveManager_OnWaveListUpdate(object source, EventArgs eventArgs) =>
+            UpdateWavesNumber();
 
         private void UpdateTimerLabel()
         {
