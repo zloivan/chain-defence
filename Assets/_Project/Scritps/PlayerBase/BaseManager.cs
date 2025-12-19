@@ -2,11 +2,11 @@ using System;
 using ChainDefense.Enemies;
 using ChainDefense.Events;
 using IKhom.EventBusSystem.Runtime;
-using IKhom.UtilitiesLibrary.Runtime.components;
+using UnityEngine;
 
 namespace ChainDefense.PlayerBase
 {
-    public class BaseManager : SingletonBehaviour<BaseManager>
+    public class BaseManager : MonoBehaviour
     {
         public event EventHandler OnGameOver;
         public event EventHandler<int> OnBaseTakeDamage;
@@ -14,12 +14,8 @@ namespace ChainDefense.PlayerBase
 
         private int _currentHealth;
 
-        protected override void Awake()
-        {
-            base.Awake();
-
+        private void Awake() =>
             _currentHealth = MAX_HEALTH;
-        }
 
         private void Start() =>
             Enemy.OnAnyEnemyReachedBase += Enemy_OnAnyEnemyReachedBase;

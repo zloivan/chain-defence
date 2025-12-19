@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace ChainDefense.Towers
 {
-    public class TowerSpawner : SingletonBehaviour<TowerSpawner>
+    public class TowerSpawner : MonoBehaviour
     {
         [SerializeField] private Transform _parent;
 
-        protected override void Awake()
+        private void Awake()
         {
-            if (_parent == null)
+            if (_parent == null) 
                 _parent = transform;
         }
 

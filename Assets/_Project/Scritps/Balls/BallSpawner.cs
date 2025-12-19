@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
+using IKhom.ServiceLocatorSystem.Runtime;
 using UnityEngine;
 
 namespace ChainDefense.Balls
 {
     public class BallSpawner : MonoBehaviour
     {
-        public static BallSpawner Instance { get; private set; }
-
         [SerializeField] private List<BallSO> _ballConfigList;
         [SerializeField] private Transform _parent;
 
@@ -17,18 +16,14 @@ namespace ChainDefense.Balls
 
         private void Awake()
         {
-            Instance = this;
-
             if (_parent == null)
             {
                 _parent = transform;
             }
         }
 
-        private void Start()
-        {
-            _boardGrid = BoardGrid.Instance;
-        }
+        private void Start() =>
+            _boardGrid = ServiceLocator.ForSceneOf(this).Get<BoardGrid>();
 
         public Ball SpawnBallAtGridPosition(int ballIndex, GridPosition position) =>
             SpawnBall(ballIndex, position);

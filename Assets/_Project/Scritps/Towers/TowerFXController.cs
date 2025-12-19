@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ChainDefense.Enemies;
 using ChainDefense.Events;
 using IKhom.EventBusSystem.Runtime;
+using IKhom.ServiceLocatorSystem.Runtime;
 using UnityEngine;
 
 namespace ChainDefense.Towers
@@ -23,9 +24,10 @@ namespace ChainDefense.Towers
         private ProjectileSpawner _projectileSpawner;
         private EventBinding<TowerAttackEvent> _towerAttackBinding;
 
+
         private void Start()
         {
-            _projectileSpawner = ProjectileSpawner.Instance;
+            _projectileSpawner = ServiceLocator.ForSceneOf(this).Get<ProjectileSpawner>();
             _towerAttackBinding = new EventBinding<TowerAttackEvent>(Tower_OnAnyTowerBeginAttack);
             EventBus<TowerAttackEvent>.Register(_towerAttackBinding);
         }
@@ -38,13 +40,14 @@ namespace ChainDefense.Towers
             var config = attackInfo.Tower.GetTowerConfig();
             const float TOWER_HEIGHT = 3.7f;
             const float BARREL_FORWARD_OFFSET = 3f; // Adjust this value based on your tower model
-    
+
             // Get the direction to the target
-            var directionToTarget = (attackInfo.TargetEnemy.transform.position - attackInfo.Tower.transform.position).normalized;
-    
+            var directionToTarget = (attackInfo.TargetEnemy.transform.position - attackInfo.Tower.transform.position)
+                .normalized;
+
             // Calculate barrel position: base position + height + forward offset in the direction of the target
-            var spawnPos = attackInfo.Tower.transform.position 
-                           + Vector3.up * TOWER_HEIGHT 
+            var spawnPos = attackInfo.Tower.transform.position
+                           + Vector3.up * TOWER_HEIGHT
                            + directionToTarget * BARREL_FORWARD_OFFSET;
 
             SpawnProjectile(config.AttackType, spawnPos, attackInfo.TargetEnemy, attackInfo.Tower);

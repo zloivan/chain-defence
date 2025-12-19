@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ChainDefense.LevelManagement;
 using ChainDefense.PathFinding;
+using IKhom.ServiceLocatorSystem.Runtime;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace ChainDefense.Enemies
 
         private void Start()
         {
-            _pathManager = PathManager.Instance;
+            _pathManager = ServiceLocator.ForSceneOf(this).Get<PathManager>();
             _levelManager = LevelManager.Instance;
         }
 

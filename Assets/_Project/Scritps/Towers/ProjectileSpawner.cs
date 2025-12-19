@@ -4,50 +4,44 @@ using UnityEngine.Pool;
 
 namespace ChainDefense.Towers
 {
-    public class ProjectileSpawner : SingletonBehaviour<ProjectileSpawner>
+    public class ProjectileSpawner : MonoBehaviour
     {
         [Header("Projectile Prefabs")]
         [SerializeField] private GameObject _fireProjectilePrefab;
-
         [SerializeField] private GameObject _iceProjectilePrefab;
         [SerializeField] private GameObject _poisonProjectilePrefab;
         [SerializeField] private GameObject _lightningProjectilePrefab;
 
         [Header("Impact Effect Prefabs")]
         [SerializeField] private GameObject _impactExplosionPrefab;
-
         [SerializeField] private GameObject _iceSlowAuraPrefab;
         [SerializeField] private GameObject _poisonCloudPrefab;
         [SerializeField] private GameObject _chainLightningArcPrefab;
 
         [Header("Pool Settings")]
         [SerializeField] private int _defaultPoolCapacity = 10;
-
         [SerializeField] private int _maxPoolSize = 50;
 
         [Header("Parent Transform")]
         [SerializeField] private Transform _projectileParent;
-
         [SerializeField] private Transform _impactParent;
 
-        // Projectile pools
         private ObjectPool<Projectile> _fireProjectilePool;
         private ObjectPool<Projectile> _iceProjectilePool;
         private ObjectPool<Projectile> _poisonProjectilePool;
         private ObjectPool<Projectile> _lightningProjectilePool;
 
-        // Impact effect pools
         private ObjectPool<GameObject> _impactExplosionPool;
         private ObjectPool<GameObject> _iceSlowAuraPool;
         private ObjectPool<GameObject> _poisonCloudPool;
         private ObjectPool<GameObject> _chainLightningArcPool;
 
-        protected override void Awake()
+        private void Awake()
         {
-            if (_projectileParent == null) 
+            if (_projectileParent == null)
                 _projectileParent = transform;
 
-            if (_impactParent == null) 
+            if (_impactParent == null)
                 _impactParent = transform;
 
             InitializePools();
@@ -55,13 +49,11 @@ namespace ChainDefense.Towers
 
         private void InitializePools()
         {
-            // Initialize projectile pools
             _fireProjectilePool = CreateProjectilePool(_fireProjectilePrefab);
             _iceProjectilePool = CreateProjectilePool(_iceProjectilePrefab);
             _poisonProjectilePool = CreateProjectilePool(_poisonProjectilePrefab);
             _lightningProjectilePool = CreateProjectilePool(_lightningProjectilePrefab);
 
-            // Initialize impact effect pools
             _impactExplosionPool = CreateImpactPool(_impactExplosionPrefab);
             _iceSlowAuraPool = CreateImpactPool(_iceSlowAuraPrefab);
             _poisonCloudPool = CreateImpactPool(_poisonCloudPrefab);
@@ -146,7 +138,8 @@ namespace ChainDefense.Towers
                 _ => null,
             };
 
-            if (projectilePool == null) return null;
+            if (projectilePool == null) 
+                return null;
 
             var projectile = projectilePool.Get();
             projectile.transform.position = position;
@@ -159,18 +152,15 @@ namespace ChainDefense.Towers
         public void ReturnProjectile(Projectile projectile, ObjectPool<Projectile> pool)
         {
             if (pool != null)
-            {
                 pool.Release(projectile);
-            }
             else
-            {
                 Destroy(projectile.gameObject);
-            }
         }
 
         public GameObject SpawnImpactEffect(ObjectPool<GameObject> impactPool, Vector3 position)
         {
-            if (impactPool == null) return null;
+            if (impactPool == null) 
+                return null;
 
             var impact = impactPool.Get();
             impact.transform.position = position;
@@ -182,13 +172,9 @@ namespace ChainDefense.Towers
         public void ReturnImpactEffect(GameObject impact, ObjectPool<GameObject> pool)
         {
             if (pool != null)
-            {
                 pool.Release(impact);
-            }
             else
-            {
                 Destroy(impact);
-            }
         }
     }
 }

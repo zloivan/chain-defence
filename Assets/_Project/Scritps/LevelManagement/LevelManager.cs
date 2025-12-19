@@ -6,6 +6,7 @@ using ChainDefense.SavingSystem;
 using ChainDefense.Waves;
 using Cysharp.Threading.Tasks;
 using IKhom.EventBusSystem.Runtime;
+using IKhom.ServiceLocatorSystem.Runtime;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,7 +28,7 @@ namespace ChainDefense.LevelManagement
         private void Start()
         {
             _mapManager = MapManager.Instance;
-            _waveManager = WaveManager.Instance;
+            _waveManager = ServiceLocator.ForSceneOf(this).Get<WaveManager>();
             _saveManager = SaveManager.Instance;
             _waveManager.OnAllWavesCompleted += OnWaveManager_OnAllWavesCompleted;
 

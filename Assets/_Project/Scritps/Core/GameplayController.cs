@@ -12,6 +12,7 @@ using ChainDefense.Utilities;
 using ChainDefense.Waves;
 using DG.Tweening;
 using IKhom.EventBusSystem.Runtime;
+using IKhom.ServiceLocatorSystem.Runtime;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -43,6 +44,7 @@ namespace ChainDefense.Core
         private BaseManager _baseManager;
         private bool _isGamePaused;
         private LevelManager _levelManager;
+        private BallSpawner _ballSpawner;
         protected override void Awake()
         {
             base.Awake();
@@ -51,12 +53,12 @@ namespace ChainDefense.Core
 
         private void Start()
         {
-            _boardGrid = BoardGrid.Instance;
-            _chainValidator = ChainValidator.Instance;
-            _waveManager = WaveManager.Instance;
-            _baseManager = BaseManager.Instance;
+            _boardGrid = ServiceLocator.ForSceneOf(this).Get<BoardGrid>();
+            _chainValidator = ServiceLocator.ForSceneOf(this).Get<ChainValidator>();
+            _waveManager = ServiceLocator.ForSceneOf(this).Get<WaveManager>();
+            _baseManager = ServiceLocator.ForSceneOf(this).Get<BaseManager>();
             _levelManager = LevelManager.Instance;
-
+            _ballSpawner = ServiceLocator.ForSceneOf(this).Get<BallSpawner>();
             _chainValidator.OnChainDestroyed += ChainValidator_OnChainDestroyed;
             _waveManager.OnAllWavesCompleted += WaveManager_OnAllWavesCompleted;
             _baseManager.OnGameOver += BaseManager_OnGameOver;
@@ -191,7 +193,7 @@ namespace ChainDefense.Core
             {
                 if (!_allOccupiedPositions.Contains(allGridPositions[i]))
                 {
-                    Ball.SpawnBall(ballIndices[i], allGridPositions[i]);
+                    _ballSpawner.SpawnBallAtGridPosition(ballIndices[i], allGridPositions[i]);
                 }
             }
         }

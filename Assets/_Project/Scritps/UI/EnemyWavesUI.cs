@@ -1,5 +1,6 @@
 using ChainDefense.Waves;
 using DG.Tweening;
+using IKhom.ServiceLocatorSystem.Runtime;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace ChainDefense.UI
 
         private void Start()
         {
-            _waveManager = WaveManager.Instance;
+            _waveManager = ServiceLocator.ForSceneOf(this).Get<WaveManager>();
 
             _waveManager.OnWavesListUpdate += (_, _) => UpdateWavesNumber();
             _waveManager.OnEnemyWaveSpawned += (_, _) => UpdateWavesNumber();
@@ -42,10 +43,8 @@ namespace ChainDefense.UI
                 _isTimerVisible = shouldBeVisible;
                 _waveTimerLabel.gameObject.SetActive(shouldBeVisible);
 
-                if (shouldBeVisible)
-                {
+                if (shouldBeVisible) 
                     _waveTimerLabel.rectTransform.DOShakeAnchorPos(0.3f, strength: 100f, vibrato: 30);
-                }
             }
 
             if (_isTimerVisible && currentNumberOfSeconds != _previousNumberOfSeconds)

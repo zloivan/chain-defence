@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ChainDefense.PathFinding
 {
-    public class PathManager : SingletonBehaviour<PathManager>
+    public class PathManager : MonoBehaviour
     {
         [SerializeField] private Transform _pathParent;
         [SerializeField] [ReadOnly] private List<Transform> _waypoints = new();

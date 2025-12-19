@@ -1,4 +1,5 @@
 using ChainDefense.PlayerBase;
+using IKhom.ServiceLocatorSystem.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,8 +16,9 @@ namespace ChainDefense.UI
 
         private void Start()
         {
-            _baseManager = BaseManager.Instance;
+            _baseManager = ServiceLocator.ForSceneOf(this).Get<BaseManager>();
             _baseManager.OnBaseTakeDamage += (_, _) => UpdateVisuals();
+            
             UpdateVisuals();
         }
 

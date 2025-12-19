@@ -14,9 +14,6 @@ namespace ChainDefense.GameGrid
         public event EventHandler OnBallRemoved;
         public event EventHandler OnBallMoved;
         
-        
-        public static BoardGrid Instance { get; private set; }
-
         private const float SLOT_SIZE = 2f;
         [SerializeField] private int _width;
         [SerializeField] private int _height;
@@ -29,8 +26,6 @@ namespace ChainDefense.GameGrid
 
         private void Awake()
         {
-            Instance = this;
-
             _gridSystem = new GridSystemSquare<GridObject<Ball>>(
                 _width,
                 _height,

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace ChainDefense.Core
 {
-    public class InputController : SingletonBehaviour<InputController>
+    public class InputController : MonoBehaviour
     {
         public event EventHandler<Vector3> OnDragStart;
         public event EventHandler<Vector3> OnDrag;
@@ -16,12 +16,8 @@ namespace ChainDefense.Core
 
         private EventSystem _eventSystem;
 
-        protected override void Awake()
-        {
-            base.Awake();
-
+        private void Awake() =>
             _eventSystem = EventSystem.current;
-        }
 
         private void Update()
         {

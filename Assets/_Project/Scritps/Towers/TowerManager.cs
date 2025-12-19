@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using ChainDefense.Balls;
 using ChainDefense.ChainManagment;
+using IKhom.ServiceLocatorSystem.Runtime;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace ChainDefense.Towers
 {
@@ -24,10 +24,12 @@ namespace ChainDefense.Towers
 
         private int _spawnedTowersNumber;
         private ChainValidator _chainValidator;
+        private TowerSpawner _towerSpawner;
 
         private void Start()
         {
-            _chainValidator = ChainValidator.Instance;
+            _chainValidator = ServiceLocator.ForSceneOf(this).Get<ChainValidator>();
+            _towerSpawner = ServiceLocator.ForSceneOf(this).Get<TowerSpawner>();
 
             _chainValidator.OnChainDestroyed += ChainValidator_OnChainDestroyed;
         }
@@ -43,7 +45,7 @@ namespace ChainDefense.Towers
             var chainCenterPosition = centerBall.GetWorldPosition();
             var towerConfig = GetTowerTypeFromBall(centerBall.GetBallConfig());
 
-            var towerGo = Tower.SpawnTower(towerConfig, chainCenterPosition);
+            var towerGo = _towerSpawner.SpawnTower(towerConfig, chainCenterPosition);
             towerGo.GetComponent<Tower>().SetLevel(GetLevel(destroyedBalls.Count));
             _spawnedTowersNumber++;
         }

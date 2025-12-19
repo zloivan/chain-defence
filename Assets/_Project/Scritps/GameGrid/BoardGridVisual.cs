@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ChainDefense.Core;
 using ChainDefense.GridSystem.core;
+using IKhom.ServiceLocatorSystem.Runtime;
 using UnityEngine;
 
 namespace ChainDefense.GameGrid
@@ -37,7 +38,7 @@ namespace ChainDefense.GameGrid
         {
             _boardGrid = GetComponent<BoardGrid>();
 
-            _inputController = InputController.Instance;
+            _inputController = ServiceLocator.ForSceneOf(this).Get<InputController>();
             _inputController.OnDrag += InputController_OnDrag;
             _inputController.OnDragEnd += InputController_OnDragEnd;
             _selectedGridPosition = new GridPosition(-1, -1);

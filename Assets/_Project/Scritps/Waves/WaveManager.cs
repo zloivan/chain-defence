@@ -6,12 +6,13 @@ using ChainDefense.Events;
 using ChainDefense.PathFinding;
 using Cysharp.Threading.Tasks;
 using IKhom.EventBusSystem.Runtime;
+using IKhom.ServiceLocatorSystem.Runtime;
 using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 
 namespace ChainDefense.Waves
 {
-    public class WaveManager : SingletonBehaviour<WaveManager>
+    public class WaveManager : MonoBehaviour
     {
         public class WaveEventArgs : EventArgs
         {
@@ -40,7 +41,7 @@ namespace ChainDefense.Waves
 
         private void Start()
         {
-            _pathManager = PathManager.Instance;
+            _pathManager = ServiceLocator.ForSceneOf(this).Get<PathManager>();
             Enemy.OnDestroyed += Enemy_OnDestroyed;
 
             if (_useMockWaves)
@@ -49,9 +50,8 @@ namespace ChainDefense.Waves
             }
         }
 
-        protected override void OnDestroy()
+        private void OnDestroy()
         {
-            base.OnDestroy();
             _waveSequenceCts?.Cancel();
             _waveSequenceCts?.Dispose();
         }
@@ -89,7 +89,7 @@ namespace ChainDefense.Waves
 
             if (cancelled)
             {
-                linkedCts?.Dispose();
+                linkedCts.Dispose();
                 return;
             }
 
@@ -100,14 +100,14 @@ namespace ChainDefense.Waves
                 cancelled = await RunWaveCooldown(currentWave.DelayBeforeStarting, linkedCts.Token);
                 if (cancelled)
                 {
-                    linkedCts?.Dispose();
+                    linkedCts.Dispose();
                     return;
                 }
 
                 cancelled = await SpawnWave(currentWave, linkedCts.Token);
                 if (cancelled)
                 {
-                    linkedCts?.Dispose();
+                    linkedCts.Dispose();
                     return;
                 }
 
@@ -116,11 +116,11 @@ namespace ChainDefense.Waves
                     continue;
                 }
 
-                linkedCts?.Dispose();
+                linkedCts.Dispose();
                 return;
             }
 
-            linkedCts?.Dispose();
+            linkedCts.Dispose();
         }
 
         private async UniTask<bool> RunWaveCooldown(float cooldownDuration, CancellationToken cancellationToken)

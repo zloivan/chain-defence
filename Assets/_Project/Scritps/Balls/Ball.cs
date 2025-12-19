@@ -2,6 +2,7 @@ using System;
 using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
 using DG.Tweening;
+using IKhom.ServiceLocatorSystem.Runtime;
 using UnityEngine;
 
 namespace ChainDefense.Balls
@@ -18,10 +19,8 @@ namespace ChainDefense.Balls
         private BallSpawner _ballSpawner;
         private GridPosition _currentGridPosition;
 
-        private void Awake()
-        {
-            _boardGrid = BoardGrid.Instance;
-        }
+        private void Awake() =>
+            _boardGrid = ServiceLocator.ForSceneOf(this).Get<BoardGrid>();
 
         private void Start()
         {
@@ -32,26 +31,22 @@ namespace ChainDefense.Balls
         private void OnDisable() =>
             transform.DOKill();
 
-        public void SetupSpawner(BallSpawner spawner)
-        {
+        public void SetupSpawner(BallSpawner spawner) =>
             _ballSpawner = spawner;
-        }
 
-        private void Update()//TODO: Check performance, probable problem
-        {
+        private void Update() =>
             UpdateUnitPosition();
-        }
 
         private void UpdateUnitPosition()
         {
             var newGridPosition = _boardGrid.GetGridPosition(transform.position);
-            
+
             if (newGridPosition == _currentGridPosition)
                 return;
 
             var oldGridPosition = _currentGridPosition;
             _currentGridPosition = newGridPosition;
-            
+
             _boardGrid.MoveBall(oldGridPosition, newGridPosition, this);
         }
 
@@ -78,8 +73,5 @@ namespace ChainDefense.Balls
 
         public Vector3 GetWorldPosition() =>
             transform.position;
-        
-        public static Ball SpawnBall(int ballIndexType, GridPosition gridPosition) =>
-            BallSpawner.Instance.SpawnBallAtGridPosition(ballIndexType, gridPosition);
     }
 }

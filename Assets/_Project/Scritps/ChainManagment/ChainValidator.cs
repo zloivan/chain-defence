@@ -6,31 +6,28 @@ using ChainDefense.Events;
 using ChainDefense.GameGrid;
 using ChainDefense.GridSystem.core;
 using IKhom.EventBusSystem.Runtime;
+using IKhom.ServiceLocatorSystem.Runtime;
 using UnityEngine;
 
 namespace ChainDefense.ChainManagment
 {
     public class ChainValidator : MonoBehaviour
     {
-        public static ChainValidator Instance { get; private set; }
         public event EventHandler<Vector3> OnHeadChangedPosition;
         public event EventHandler OnChainBreak;
         public event EventHandler<List<Ball>> OnChainDestroyed;
         private const int MIN_DESTROY_NUMBER = 3;
 
         [SerializeField] private BoardGrid _boardGrid;
-        [SerializeField] private InputController _inputController;
+        private InputController _inputController;
 
         private readonly List<Ball> _conntectedList = new();
         private GridPosition _lastConnectedPosition;
 
-        private void Awake()
-        {
-            Instance = this;
-        }
-
         private void Start()
         {
+            _inputController = ServiceLocator.ForSceneOf(this).Get<InputController>();
+            
             _inputController.OnDrag += InputController_OnDrag;
             _inputController.OnDragStart += InputController_OnDragStart;
             _inputController.OnDragEnd += InputController_OnDragEnd;
