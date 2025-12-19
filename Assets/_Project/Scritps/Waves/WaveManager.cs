@@ -26,7 +26,6 @@ namespace ChainDefense.Waves
             }
         }
 
-        public event EventHandler<WaveEventArgs> OnEnemyWaveSpawned;
         public event EventHandler OnAllWavesCompleted;
         public event EventHandler<float> OnWaveCooldownChanged;
         public event EventHandler OnWavesListUpdate;
@@ -38,12 +37,16 @@ namespace ChainDefense.Waves
         private PathManager _pathManager;
         private float _delayBeforeWaveTimer;
         private CancellationTokenSource _waveSequenceCts;
+        private EnemySpawner _enemySpawner;
+        private EventBinding<EnemyDestroyedEvent> _eventBinding;
 
         private void Start()
         {
             _pathManager = ServiceLocator.ForSceneOf(this).Get<PathManager>();
-            Enemy.OnDestroyed += Enemy_OnDestroyed;
-
+            _enemySpawner = ServiceLocator.ForSceneOf(this).Get<EnemySpawner>();
+            _eventBinding = new EventBinding<EnemyDestroyedEvent>(Enemy_OnDestroyed);
+            EventBus<EnemyDestroyedEvent>.Register(_eventBinding);
+            
             if (_useMockWaves)
             {
                 RunWaveSequence().Forget();
@@ -54,6 +57,8 @@ namespace ChainDefense.Waves
         {
             _waveSequenceCts?.Cancel();
             _waveSequenceCts?.Dispose();
+
+            EventBus<EnemyDestroyedEvent>.Deregister(_eventBinding);
         }
 
         public void SetupWavesList(List<WaveSO> wavesList)
@@ -63,9 +68,9 @@ namespace ChainDefense.Waves
             _currentWaveIndex = 0;
         }
 
-        private void Enemy_OnDestroyed(object sender, Enemy enemy)
+        private void Enemy_OnDestroyed()
         {
-            if (Enemy.GetAliveEnemyCount() > 0)
+            if (_enemySpawner.GetAliveCount() > 0)
                 return;
 
             CompleteCurrentWave();
@@ -153,7 +158,7 @@ namespace ChainDefense.Waves
             {
                 for (var i = 0; i < enemyGroup.EnemyCount; i++)
                 {
-                    Enemy.SpawnEnemy(enemyGroup.EnemyType, _pathManager.GetSpawnPosition());
+                    _enemySpawner.SpawnEnemy(enemyGroup.EnemyType, _pathManager.GetSpawnPosition());
 
                     if (i < enemyGroup.EnemyCount - 1)
                     {
@@ -166,7 +171,6 @@ namespace ChainDefense.Waves
                     }
                 }
 
-                OnEnemyWaveSpawned?.Invoke(this, new WaveEventArgs(_currentWaveIndex, Enemy.GetAliveEnemies()));
                 EventBus<WaveSpawnedEvent>.Raise(new WaveSpawnedEvent());
             }
 

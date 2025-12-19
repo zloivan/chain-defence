@@ -2,6 +2,7 @@ using System;
 using ChainDefense.Events;
 using ChainDefense.LevelManagement;
 using IKhom.EventBusSystem.Runtime;
+using IKhom.ServiceLocatorSystem.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +25,7 @@ namespace ChainDefense.UI
 
         private void Start()
         {
-            _levelManager = LevelManager.Instance;
+            _levelManager = ServiceLocator.ForSceneOf(this).Get<LevelManager>();
             _restartButton.onClick.AddListener(() => { _levelManager.RestartLevel(); });
             _homeScreen.onClick.AddListener(() => Debug.Log("Open Home Screen")); //TODO: Placeholder
             _nextLevelButton.onClick.AddListener(() => _levelManager.NextLevel());

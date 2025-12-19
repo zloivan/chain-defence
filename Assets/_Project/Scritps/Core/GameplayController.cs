@@ -13,15 +13,15 @@ using ChainDefense.Waves;
 using DG.Tweening;
 using IKhom.EventBusSystem.Runtime;
 using IKhom.ServiceLocatorSystem.Runtime;
-using IKhom.UtilitiesLibrary.Runtime.components;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ChainDefense.Core
 {
     //TODO: TEMP SOLUTION, FIX AND REFACTOR. Move board filling to separate class
-    public class GameplayController : SingletonBehaviour<GameplayController>
+    public class GameplayController : MonoBehaviour
     {
+        [SerializeField] private bool _debugSpeedup;
+        
         public event EventHandler OnGamePaused;
         public event EventHandler OnGameResumed;
 
@@ -45,9 +45,9 @@ namespace ChainDefense.Core
         private bool _isGamePaused;
         private LevelManager _levelManager;
         private BallSpawner _ballSpawner;
-        protected override void Awake()
+        private EnemySpawner _enemySpawner;
+        private void Awake()
         {
-            base.Awake();
             Application.targetFrameRate = 30;
         }
 
@@ -57,8 +57,9 @@ namespace ChainDefense.Core
             _chainValidator = ServiceLocator.ForSceneOf(this).Get<ChainValidator>();
             _waveManager = ServiceLocator.ForSceneOf(this).Get<WaveManager>();
             _baseManager = ServiceLocator.ForSceneOf(this).Get<BaseManager>();
-            _levelManager = LevelManager.Instance;
+            _levelManager = ServiceLocator.ForSceneOf(this).Get<LevelManager>();
             _ballSpawner = ServiceLocator.ForSceneOf(this).Get<BallSpawner>();
+            _enemySpawner = ServiceLocator.ForSceneOf(this).Get<EnemySpawner>();
             _chainValidator.OnChainDestroyed += ChainValidator_OnChainDestroyed;
             _waveManager.OnAllWavesCompleted += WaveManager_OnAllWavesCompleted;
             _baseManager.OnGameOver += BaseManager_OnGameOver;
@@ -71,7 +72,7 @@ namespace ChainDefense.Core
             Debug.Log("Game Over!");
             
             _waveManager.Clear();
-            Enemy.ClearAllEnemies();
+            _enemySpawner.ClearAllEnemies();
             EventBus<GameOverEvent>.Raise(new GameOverEvent(_levelManager.GetCurrentLevelIndex()));
         }
 
@@ -110,6 +111,8 @@ namespace ChainDefense.Core
                 case GameplayState.LevelComplete:
                     break;
             }
+
+            Time.timeScale = _debugSpeedup ? 2f : 1f;
         }
 
         private void ReorderBallsOnBoard()

@@ -69,4 +69,12 @@ namespace ChainDefense.Events
     public struct InvalidChainEvent : IEvent
     {
     }
+    
+    public struct EnemyAliveCountChangedEvent : IEvent
+    {
+        public readonly int AliveCount;
+        public EnemyAliveCountChangedEvent(int aliveCount) =>
+            AliveCount = aliveCount;
+    }
+    
 }

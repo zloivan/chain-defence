@@ -1,4 +1,5 @@
 using ChainDefense.Core;
+using IKhom.ServiceLocatorSystem.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,15 @@ namespace ChainDefense.UI
         [SerializeField] private Button _pauseButton;
         [SerializeField] private GameObject _pausePopup;
 
-        private void Awake()
+        private GameplayController _gameplayController;
+        
+        private void Start()
         {
+            _gameplayController = ServiceLocator.ForSceneOf(this).Get<GameplayController>();
+            
             _pauseButton.onClick.AddListener(() =>
             {
-                GameplayController.Instance.SwitchPauseState();
+                _gameplayController.SwitchPauseState();
             });
         }
     }

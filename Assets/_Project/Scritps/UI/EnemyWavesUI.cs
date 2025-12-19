@@ -1,5 +1,8 @@
+using System;
+using ChainDefense.Events;
 using ChainDefense.Waves;
 using DG.Tweening;
+using IKhom.EventBusSystem.Runtime;
 using IKhom.ServiceLocatorSystem.Runtime;
 using TMPro;
 using UnityEngine;
@@ -12,13 +15,14 @@ namespace ChainDefense.UI
         [SerializeField] private TextMeshProUGUI _waveTimerLabel;
 
         private WaveManager _waveManager;
-
+        private EventBinding<WaveSpawnedEvent> _eventBinding;
         private void Start()
         {
             _waveManager = ServiceLocator.ForSceneOf(this).Get<WaveManager>();
+            _eventBinding = new EventBinding<WaveSpawnedEvent>(UpdateWavesNumber);
+            EventBus<WaveSpawnedEvent>.Register(_eventBinding);
 
             _waveManager.OnWavesListUpdate += (_, _) => UpdateWavesNumber();
-            _waveManager.OnEnemyWaveSpawned += (_, _) => UpdateWavesNumber();
             _waveManager.OnWaveCooldownChanged += (_, _) => UpdateTimerLabel();
 
             UpdateWavesNumber();
@@ -26,6 +30,9 @@ namespace ChainDefense.UI
             UpdateTimerLabel();
             _waveTimerLabel.gameObject.SetActive(false);
         }
+
+        private void OnDestroy() =>
+            EventBus<WaveSpawnedEvent>.Deregister(_eventBinding);
 
         private int _previousNumberOfSeconds = -1;
         private bool _isTimerVisible = false;

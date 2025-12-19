@@ -7,14 +7,13 @@ using ChainDefense.Waves;
 using Cysharp.Threading.Tasks;
 using IKhom.EventBusSystem.Runtime;
 using IKhom.ServiceLocatorSystem.Runtime;
-using IKhom.UtilitiesLibrary.Runtime.components;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ChainDefense.LevelManagement
 {
     //TODO: this guy should hide everything and ask for scene number to load
-    public class LevelManager : SingletonBehaviour<LevelManager>
+    public class LevelManager : MonoBehaviour
     {
         [SerializeField] private List<LevelSO> _levelList;
 

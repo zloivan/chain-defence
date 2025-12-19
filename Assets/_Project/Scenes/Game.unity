@@ -168,8 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353e5848e0184105aedc5b46f64142ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistAcrossScenes: 0
-  _unParentOnAwake: 0
 --- !u!1 &161775093
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,8 +293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d634b6190b54c51879f43a3a44dba3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistAcrossScenes: 0
-  _unParentOnAwake: 0
   _wavesList:
   - {fileID: 11400000, guid: 0508faebd51fa4d11a2eaa722754c2f7, type: 2}
   - {fileID: 11400000, guid: ff8ffa4a4162845ce83640ddcd2d93a8, type: 2}
@@ -490,8 +486,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74356252442347a298c4b4064cbda277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistAcrossScenes: 0
-  _unParentOnAwake: 0
   _fireProjectilePrefab: {fileID: 2226068424995332139, guid: 19db7ec03606f49f298bd9c8dd692b2c,
     type: 3}
   _iceProjectilePrefab: {fileID: 2226068424995332139, guid: 243322996dbb84f07a0291a6aeb083af,
@@ -951,8 +945,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602f86fe007942078f1d208a7d0469ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistAcrossScenes: 0
-  _unParentOnAwake: 0
 --- !u!1 &706312660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,8 +1035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9063b484e4cf4642b012b03c4215f6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistAcrossScenes: 0
-  _unParentOnAwake: 0
   _pathParent: {fileID: 5692503077583040825}
   _waypoints:
   - {fileID: 5692503077583040839}
@@ -2014,14 +2004,15 @@ MonoBehaviour:
   _inputController: {fileID: 368697124}
   _boardGrid: {fileID: 1270108531}
   _chainValidator: {fileID: 706312662}
+  _gameplayController: {fileID: 136847364}
   _ballSpawner: {fileID: 1917212137}
   _towerSpawner: {fileID: 1928306959}
-  _towerManager: {fileID: 1389691769}
   _projectileSpawner: {fileID: 347838257}
   _enemySpawner: {fileID: 1403722962}
   _pathManager: {fileID: 732297020}
   _waveManager: {fileID: 306650776}
   _baseManager: {fileID: 495359405}
+  _levelManager: {fileID: 1511795850}
 --- !u!1 &1389691767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,8 +2631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e24c20a4ec4216bde9d6125a595437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistAcrossScenes: 0
-  _unParentOnAwake: 0
   _levelList:
   - {fileID: 11400000, guid: 66291530cb549410d930fc971d274f98, type: 2}
   - {fileID: 11400000, guid: 45c691b6789d54ec9b78e7cfaefdaee3, type: 2}
@@ -3121,8 +3110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13274e61ce04fd49e58365ab1d4e12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistAcrossScenes: 1
-  _unParentOnAwake: 1
   _parent: {fileID: 1928306958}
 --- !u!1 &1979498661
 GameObject:

@@ -2,6 +2,7 @@ using ChainDefense.Balls;
 using ChainDefense.ChainManagment;
 using ChainDefense.Enemies;
 using ChainDefense.GameGrid;
+using ChainDefense.LevelManagement;
 using ChainDefense.PathFinding;
 using ChainDefense.PlayerBase;
 using ChainDefense.Towers;
@@ -17,6 +18,7 @@ namespace ChainDefense.Core
         [SerializeField] private InputController _inputController;
         [SerializeField] private BoardGrid _boardGrid;
         [SerializeField] private ChainValidator _chainValidator;
+        [SerializeField] private GameplayController _gameplayController;
         
         [Header("Ball System")]
         [SerializeField] private BallSpawner _ballSpawner;
@@ -32,6 +34,7 @@ namespace ChainDefense.Core
         [Header("Wave & Level")]
         [SerializeField] private WaveManager _waveManager;
         [SerializeField] private BaseManager _baseManager;
+        [SerializeField] private LevelManager _levelManager;
         
         private void Awake() =>
             RegisterServices();
@@ -54,6 +57,8 @@ namespace ChainDefense.Core
             
             locator.Register(_waveManager);
             locator.Register(_baseManager);
+            locator.Register(_levelManager);
+            locator.Register(_gameplayController);
         }
     }
 }

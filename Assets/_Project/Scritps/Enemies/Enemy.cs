@@ -32,7 +32,6 @@ namespace ChainDefense.Enemies
         private EnemySpawner _enemySpawner;
         private CancellationTokenSource _slowCts;
         private int _maxHealth;
-        public static event EventHandler OnAnyEnemyTakeDamage;
 
         public void Initialize(EnemySO enemyConfig, PathManager pathManager, EnemySpawner enemySpawner, int levelNumber)
         {
@@ -121,22 +120,19 @@ namespace ChainDefense.Enemies
                 new IHasProgress.ProgressEventArgs(GetNormalizedProgress()));
 
             OnEnemyTakeDamage?.Invoke(this, damage);
-            OnAnyEnemyTakeDamage?.Invoke(this, EventArgs.Empty);
-            if (_currentHealth <= 0)
-            {
-                SelfDestroy();
-                EventBus<EnemyDestroyedEvent>.Raise(new EnemyDestroyedEvent());
-            }
-            else
-            {
-                EventBus<EnemyTakeDamageEvent>.Raise(new EnemyTakeDamageEvent());
-            }
+            EventBus<EnemyTakeDamageEvent>.Raise(new EnemyTakeDamageEvent());
+            
+            if (_currentHealth > 0) 
+                return;
+            
+            SelfDestroy();
         }
 
         public void SelfDestroy()
         {
             _isDead = true;
             _enemySpawner.ReturnEnemy(this);
+            EventBus<EnemyDestroyedEvent>.Raise(new EnemyDestroyedEvent());
         }
 
         public int GetWaypointIndex() =>
@@ -145,32 +141,7 @@ namespace ChainDefense.Enemies
         public bool GetIsDead() =>
             _isDead;
 
-        public static Enemy SpawnEnemy(EnemySO config, Vector3 position) =>
-            EnemySpawner.Instance.SpawnEnemy(config, position);
 
-        public static int GetAliveEnemyCount() =>
-            EnemySpawner.Instance.GetAliveCount();
-
-        public static IReadOnlyList<Enemy> GetAliveEnemies() =>
-            EnemySpawner.Instance.GetAliveEnemies();
-
-        public static event EventHandler<Enemy> OnEnemySpawned
-        {
-            add => EnemySpawner.Instance.OnEnemySpawned += value;
-            remove => EnemySpawner.Instance.OnEnemySpawned -= value;
-        }
-
-        public static event EventHandler<Enemy> OnDestroyed
-        {
-            add => EnemySpawner.Instance.OnEnemyDestroyed += value;
-            remove => EnemySpawner.Instance.OnEnemyDestroyed -= value;
-        }
-
-        public static event EventHandler<int> OnAliveCountChanged
-        {
-            add => EnemySpawner.Instance.OnAliveCountChanged += value;
-            remove => EnemySpawner.Instance.OnAliveCountChanged -= value;
-        }
 
         public float GetNormalizedProgress() =>
             _currentHealth / (float)_maxHealth;
@@ -178,9 +149,5 @@ namespace ChainDefense.Enemies
         public int GetAttackDamage() =>
             _currentAttackDamage;
 
-        public static void ClearAllEnemies()
-        {
-            EnemySpawner.Instance.ClearAllEnemies();
-        }
     }
 }
