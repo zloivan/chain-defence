@@ -199,6 +199,13 @@
       "dependencies": {},
       "hash": "fce74995d0ebb07bbd61ccd9b30699f4e18f2fc2"
     },
+    "com.zloivan.servicelocator": {
+      "version": "https://github.com/zloivan/service-locator.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "132102fb2149bf49334f4bdce84f72dd3b8f6368"
+    },
     "com.zloivan.soundsystem": {
       "version": "https://github.com/zloivan/sound-system.git",
       "depth": 0,
