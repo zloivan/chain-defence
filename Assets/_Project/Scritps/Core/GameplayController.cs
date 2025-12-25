@@ -116,7 +116,6 @@ namespace ChainDefense.Core
                     break;
             }
 
-            Time.timeScale = _debugSpeedup ? 2f : 1f;
         }
 
         private void ReorderBallsOnBoard()
