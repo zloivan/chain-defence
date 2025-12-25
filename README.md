@@ -1,11 +1,13 @@
 # Chain Defence
-
 A Unity-based tower defense game with a unique match-3 puzzle mechanic. Defend your base by creating chains of matching colored balls to spawn towers that attack incoming enemy waves.
 
 ## Preview
 ![Gameplay](docs/gameplay.gif)
-## 🎮 Game Concept
 
+Development Time
+7 days
+
+## 🎮 Game Concept
 Chain Defence combines tower defense strategy with match-3 puzzle gameplay. Players draw chains by connecting 3 or more balls of the same color on a grid. When a valid chain is created, those balls are destroyed and towers are spawned to defend against waves of enemies approaching your base.
 
 ## ✨ Key Features
