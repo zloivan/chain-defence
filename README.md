@@ -4,7 +4,7 @@ A Unity-based tower defense game with a unique match-3 puzzle mechanic. Defend y
 ## Preview
 ![Gameplay](docs/gameplay.gif)
 
-Development Time
+## ⌛️ Development Time
 7 days
 
 ## 🎮 Game Concept
